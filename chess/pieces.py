@@ -7,3 +7,6 @@ class Rook(Piece): #torre
 
 class Pawn(Piece): #peon
     ...
+
+class Bishop(Piece): #alfil
+    ...
