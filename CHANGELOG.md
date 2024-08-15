@@ -4,4 +4,4 @@
 
 ## Agregado
 
-- Agregado posiciones de alfiles
+- Agregado posiciones de alfiles en el board
