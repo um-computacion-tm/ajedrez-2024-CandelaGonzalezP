@@ -11,3 +11,9 @@
 ### Agregado
 
 - Agregado de posiciones en el board (Knight, Queen, King, Pawns)
+
+## [0.3] - 17 / 08 / 2024 - Separacion clases
+
+### Agregado
+
+- Clases de las piezas en archivos separados
