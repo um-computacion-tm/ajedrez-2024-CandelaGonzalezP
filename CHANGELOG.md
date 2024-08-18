@@ -17,3 +17,10 @@
 ### Agregado
 
 - Clases de las piezas en archivos separados
+
+## [0.4] - 18 / 08 / 2024 - Torre
+
+### Agregado
+
+- Movimientos validos e invalidos
+- Primera prueba de test Torres
