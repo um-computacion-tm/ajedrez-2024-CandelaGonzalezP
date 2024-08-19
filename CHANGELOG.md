@@ -24,3 +24,10 @@
 
 - Movimientos validos e invalidos
 - Primera prueba de test Torres
+
+## [0.5] - 19 / 08 / 2024 - Turnos
+
+### Agregado
+
+- Turnos y excepciones
+- Verificar que la pieza existe en el tablero
