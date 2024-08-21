@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.6] - 20 / 08 / 2024 - MOdificaciones
+## [0.6] - 20 / 08 / 2024 - Modificaciones
 
 ### Agregado
 
