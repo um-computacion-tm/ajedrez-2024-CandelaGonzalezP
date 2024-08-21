@@ -30,6 +30,8 @@ def play(chess):
         if (self.__turn__ == "WHITE" and piece.color == "BLACK") or (self.__turn__ == "BLACK" and piece.color == "WHITE"):     #turnos
             raise ValueError("No es tu turno.")
    
+    except Exception as e:
+        print("error", e)
     
 if __name__ == '__main__':
     main()
