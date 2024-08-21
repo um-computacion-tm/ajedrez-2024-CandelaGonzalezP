@@ -1,10 +1,14 @@
+from chess.board import Board
+
 class Chess:
 
-    def __init__():
-        self.__board__ = Board ()
-        self.__turn__ = 'white'
+    def __init__(self):
+        self.__board__ = Board()
+        self.__turn__ = "WHITE"
 
-
+    def is_playing(self):
+        return True
+    
     def move (
         self,
         from_row,
@@ -12,8 +16,15 @@ class Chess:
         to_row,
         to_col,
     ):
-        piece = self.board.get_piece(from_row, from_col)   #no tiene __porque get piece es publico
+        piece = self.__board__.get_piece(from_row, from_col)
         self.change_turn()
+
+    @property
+    def turn(self):
+        return self.__turn__
+
+    def show_board(self):
+        return str(self.__board__)
 
     def change_turn(self):
         if self.__turn__ == 'white':
