@@ -1,14 +1,14 @@
-from pieces import Rook
-from pieces import Bishop
-from pieces import Knight
-from pieces import King
-from pieces import Queen
-from pieces import Pawn
+from chess.rook import Rook
+from chess.knight import Knight
+from chess.bishop import Bishop
+from chess.queen import Queen
+from chess.king import King
+from chess.pawn import Pawn
 
-    class Board:
-        def _init__ (self):
-            self.__positions__ = [] #matriz (lista de listas)
-            for _ in range(8):  #por cada fila creo una columna con ocho lugares
+class Board:
+    def __init__ (self):
+            self.__positions__ = []                      #matriz (lista de listas)
+            for _ in range(8):                           #por cada fila creo una columna con ocho lugares
                 col = []
                 for _ in range(8):
                     col.append(None)
@@ -35,9 +35,20 @@ from pieces import Pawn
             self.__positions__[7][1] = Knight ('White') #caballo blanco
             self.__positions__[7][6] = Knight ('White') #caballo blanco2
 
-        for i in range(8):
-            self.__positions__[1][i] = Pawn("BLACK")  #peones negros
-            self.__positions__[6][i] = Pawn("WHITE")  #peones blancos
-
-        def get_piece(self, row, col):
+            for i in range(8):
+                self.__positions__[1][i] = Pawn("BLACK")  #peones negros
+                self.__positions__[6][i] = Pawn("WHITE")  #peones blancos
+    
+    def __str__(self):
+        board_str = ""
+        for row in self.__positions__:
+            for cell in row:
+                if cell is not None:
+                    board_str += str(cell)
+                else:
+                    board_str += " "
+            board_str += "\n"
+        return board_str
+    
+    def get_piece(self, row, col):
             return self.__positions__ [row] [col]
