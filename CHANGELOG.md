@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7] - 21 / 08 / 2024 - Excepciones
+
+### Agregado
+
+- Excepciones agrupadas
+- Excepciones estandar y genericas 
+
 ## [0.6] - 20 / 08 / 2024 - Modificaciones
 
 ### Agregado
