@@ -1,17 +1,18 @@
-from chess import Chess
+from chess.chess import Chess
 
 def main():
     chess = Chess()
-    while True:
+    while chess.is_playing():
         play(chess)
 
-def play (chess):
+def play(chess):
     try:
-        print(chess.show_board())                   #muestro tablero
-        from_row = int(input('From row: '))
-        from_col = int(input('From col: '))
-        to_row = int(input('To Row: '))
-        to_col = int(input('To Col: '))
+        print(chess.show_board())
+        print("turn: ", chess.turn)
+        from_row = int(input("From row: "))
+        from_col = int(input("From col: "))
+        to_row = int(input("To Row: "))
+        to_col = int(input("To Col: "))
 
         chess.move(                                #para decir desde cual casilla hasta cual casilla (movimientos)
             from_row,
@@ -37,3 +38,7 @@ def play (chess):
 
     except Excepcion as e:
         print ('error')
+
+
+if __name__ == '__main__':
+    main()
