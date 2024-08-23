@@ -1,48 +1,60 @@
-# Changelog
+# CHANGELOG
+
+## [0.9] - 23 / 08 / 2024 - Tests Interfaz
+
+### Added
+
+- Test cli
+
+## [0.8] - 22 / 08 / 2024 - Modificaciones
+
+### Fixed
+
+- Movimientos completos de la torre
 
 ## [0.7] - 21 / 08 / 2024 - Excepciones
 
-### Agregado
+### Changed
 
 - Excepciones agrupadas
 - Excepciones estandar y genericas 
 
 ## [0.6] - 20 / 08 / 2024 - Modificaciones
 
-### Agregado
+### Added
 
 - testeos movimientos del usuario
 - clase excepciones
 
 ## [0.5] - 19 / 08 / 2024 - Turnos
 
-### Agregado
+### Added
 
 - Turnos y excepciones
 - Verificar que la pieza existe en el tablero
 
 ## [0.4] - 18 / 08 / 2024 - Torre
 
-### Agregado
+### Added
 
 - Movimientos validos e invalidos
 - Primera prueba de test Torres
 
 ## [0.3] - 17 / 08 / 2024 - Separacion clases
 
-### Agregado
+### Added
 
 - Clases de las piezas en archivos separados
 
 ## [0.2] - 16 / 08 / 2024 - Posiciones
 
-### Agregado
+### Added
 
 - Agregado de posiciones en el board (Knight, Queen, King, Pawns)
 
 
 ## [0.1] - 15 / 08 / 2024 - Primeros cambios
 
-### Agregado
+### Added
 
 - Agregado posiciones de alfiles en el board
