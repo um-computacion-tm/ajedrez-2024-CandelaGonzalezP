@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [0.10] - 24 / 08 / 2024 - Tests Interfaz
+## [0.10] - 24 / 08 / 2024 - Tablero
 
 ### Added
 
