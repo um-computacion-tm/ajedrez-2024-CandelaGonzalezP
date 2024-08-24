@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [0.10] - 24 / 08 / 2024 - Tests Interfaz
+
+### Added
+
+- Test torres movimientos
+- Test Board movimientos
+- Posiciones en el tablero de todas las fichas
+
 ## [0.9] - 23 / 08 / 2024 - Tests Interfaz
 
 ### Added
