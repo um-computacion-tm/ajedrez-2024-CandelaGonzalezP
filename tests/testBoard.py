@@ -1,10 +1,9 @@
 import unittest
 from chess.board import Board
 
-
 class TestBoard(unittest.TestCase):
 
-    def test_str_board(self):
+    def test_str_board(self):                #Inicializa el tablero y compara la salida esperada con la real utilizando simbolos
         board = Board()
         self.assertEqual(
             str(board),
@@ -19,7 +18,6 @@ class TestBoard(unittest.TestCase):
                 "♜♞♝♛♚♝♞♜\n"
             )
         )
-
 
     def setUp(self):                                                    #Configura un tablero para cada prueba.
         self.board = Board()
