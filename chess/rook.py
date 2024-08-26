@@ -2,17 +2,17 @@ from chess.pieces import Piece       #TORRE CLASE
 
 class Rook (Piece):
 
-    def __init__(self, position, color):
-        super().__init__(color)
-        self.__position__ = position
+    def __init__(self, position, color):         #El constructor inicializa una nueva instancia de la torre con una posición en el tablero y un color.
+        super().__init__(color)                  #Llama al constructor de la clase base Piece para inicializar el color de la pieza.
+        self.__position__ = position             #Establece la posición inicial de la torre en el tablero.
 
-    def __str__(self):
+    def __str__(self):                           #Como la torre se muestra visualmente en el tablero cuando se imprime.
         if self.__color__ == "WHITE":
             return "♜"
         else:
             return "♖"
         
-    def get_possible_moves(self, board):
+    def get_possible_moves(self, board):          #Define movimientos posibles en el tablero
         moves = []
         x, y = self.__position__
 
