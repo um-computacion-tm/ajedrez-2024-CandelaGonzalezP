@@ -5,7 +5,7 @@ from chess.queen import Queen
 from chess.king import King
 from chess.pawn import Pawn
 
-class Board:
+class Board:                                            #se crea un tablero de ajedrez vacío de 8x8 y coloca todas las piezas en sus posiciones iniciales, con piezas negras en la primera fila y piezas blancas en la última fila
     def __init__ (self):
             self.__positions__ = []                      #matriz (lista de listas)
             for _ in range(8):                           #por cada fila creo una columna con ocho lugares
@@ -39,7 +39,7 @@ class Board:
                 self.__positions__[1][i] = Pawn("BLACK")  #peones negros
                 self.__positions__[6][i] = Pawn("WHITE")  #peones blancos
     
-    def __str__(self):
+    def __str__(self):                         #convierte el tablero en una cadena de texto que muestra las piezas en sus posiciones, dejando espacios en blanco donde no hay piezas, para que puedas ver el tablero en la consola.
         board_str = ""
         for row in self.__positions__:
             for cell in row:
@@ -50,5 +50,5 @@ class Board:
             board_str += "\n"
         return board_str
     
-    def get_piece(self, row, col):
+    def get_piece(self, row, col):             #devuelve la pieza que se encuentra en una posición específica del tablero. Toma como parámetros la fila (row) y la columna (col) y devuelve la pieza ubicada en esa celda, o None si la celda está vacía.
             return self.__positions__ [row] [col]
