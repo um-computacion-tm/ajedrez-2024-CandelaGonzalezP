@@ -1,12 +1,12 @@
 from chess.chess import Chess
-from exceptions import InvalidMoveNoPiece, InvalidMoveRookMove, handle_value_error, handle_generic_exception
+from chess.exceptions import InvalidMoveNoPiece, InvalidMoveRookMove, handle_value_error, handle_generic_exception
 
-def main():
+def main():                                    #inicia un juego de ajedrez y ejecuta un bucle que sigue corriendo mientras el juego esté en curso 
     chess = Chess()
     while chess.is_playing():
         play(chess)
 
-def play(chess):
+def play(chess):                         # muestra representacion del tablero, turno actual del jugador y pide al usuario que ingrese las filas y columnas de origen (from_row, from_col) y destino (to_row, to_col).
     try:
         print(chess.show_board())
         print("turn: ", chess.turn)
@@ -15,7 +15,7 @@ def play(chess):
         to_row = int(input("To Row: "))
         to_col = int(input("To Col: "))
 
-        chess.move(                                #para decir desde cual casilla hasta cual casilla (movimientos)
+        chess.move(                                #especifica desde cual casilla hasta cual casilla (movimientos)
             from_row,
             from_col,
             to_row,
@@ -27,10 +27,10 @@ def play(chess):
             raise ValueError("No existe una pieza en esa posición.")
 
 
-        if (self.__turn__ == "WHITE" and piece.color == "BLACK") or (self.__turn__ == "BLACK" and piece.color == "WHITE"):     #turnos
+        if (self.__turn__ == "WHITE" and piece.color == "BLACK") or (self.__turn__ == "BLACK" and piece.color == "WHITE"):     #verifica turnos
             raise ValueError("No es tu turno.")
    
-    except Exception as e:
+    except Exception as e:            #Captura cualquier excepción que ocurra durante la ejecución del bloque try y muestra un mensaje de error con print("error", e).
         print("error", e)
     
 if __name__ == '__main__':
