@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [0.11] - 25 / 08 / 2024 - Alfil
+
+### Added
+
+- Movimientos clase alfil
+- Test Alfil
+- Documentacion clase torre y test torres
+
 ## [0.10] - 24 / 08 / 2024 - Tablero
 
 ### Added
