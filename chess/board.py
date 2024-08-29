@@ -5,14 +5,15 @@ from chess.queen import Queen
 from chess.king import King
 from chess.pawn import Pawn
 
-class Board:                                            #se crea un tablero de ajedrez vacío de 8x8 y coloca todas las piezas en sus posiciones iniciales, con piezas negras en la primera fila y piezas blancas en la última fila
-    def __init__ (self):
-            self.__positions__ = []                      #matriz (lista de listas)
-            for _ in range(8):                           #por cada fila creo una columna con ocho lugares
-                col = []
-                for _ in range(8):
-                    col.append(None)
-                self.__positions__.append(col)
+class Board:                                       #se crea un tablero de ajedrez vacío de 8x8 y coloca todas las piezas en sus posiciones iniciales, con piezas negras en la primera fila y piezas blancas en la última fila
+    def __init__(self, for_test = False):
+        self.__positions__ = []                      #matriz (lista de listas)
+        for _ in range(8):                           #por cada fila creo una columna con ocho lugares
+            col = []
+            for _ in range(8):
+                col.append(None)
+            self.__positions__.append(col)
+        if not for_test:                          #indica si el tablero se está inicializando para una prueba (test unitario) o para el juego normal
             
             self.__positions__[0] [0] = Rook('Black') #torres negra
             self.__positions__[7] [7] = Rook('White') #torre blanca
@@ -52,3 +53,6 @@ class Board:                                            #se crea un tablero de a
     
     def get_piece(self, row, col):             #devuelve la pieza que se encuentra en una posición específica del tablero. Toma como parámetros la fila (row) y la columna (col) y devuelve la pieza ubicada en esa celda, o None si la celda está vacía.
             return self.__positions__ [row] [col]
+    
+    def set_piece(self, row, col, piece):      #mueve una pieza en una posición específica del tablero al actualizar las posiciones
+        self.__positions__[row][col] = piece
