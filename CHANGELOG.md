@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [0.12] - 29 / 08 / 2024 - Cambios 
+
+### Changed
+
+- Cambios en clase piezas
+- Movimientos clase torre
+
+### Added
+
+- Funciones enn clase board
+
 ## [0.11] - 25 / 08 / 2024 - Alfil
 
 ### Added
