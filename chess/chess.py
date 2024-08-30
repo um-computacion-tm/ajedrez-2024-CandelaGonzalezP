@@ -1,4 +1,5 @@
 from chess.board import Board
+from chess.exceptions import InvalidMove
 
 class Chess:                      #inicializa un nuevo juego de ajedrez creando un tablero con la clase Board y establece el turno inicial en "WHITE"
 
@@ -17,7 +18,11 @@ class Chess:                      #inicializa un nuevo juego de ajedrez creando 
         to_row,
         to_col,
     ):
+        
+        #validate coords
         piece = self.__board__.get_piece(from_row, from_col)
+        if piece.valid_positions(from_row, from_col, to_row, to_col):
+            raise InvalidMove()
         self.change_turn()
 
     @property                 #Retorna el color del jugador cuyo turno es el actual.
