@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.13] - 30 / 08 / 2024 - Cambios 
+
+### Changed
+
+- Modificaciones movimientos invalidos y validacion de coords (chess)
+- Excepciones
+
 ## [0.12] - 29 / 08 / 2024 - Cambios 
 
 ### Changed
@@ -9,7 +16,7 @@
 
 ### Added
 
-- Funciones enn clase board
+- Funciones en clase board
 
 ## [0.11] - 25 / 08 / 2024 - Alfil
 
