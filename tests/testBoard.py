@@ -86,5 +86,27 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board_str[8:16], "♙♙♙♙♙♙♙♙")  # Peones negros en (1,0) a (1,7)
         self.assertEqual(board_str[-16:-8], "♟♟♟♟♟♟♟♟")  # Peones blancos en (6,0) a (6,7)
 
+
+    def test_move_piece(self):                                         # Verifica que las piezas se muevan correctamente
+        rook = self.board.get_piece(0, 0)                              # Mover una torre negra de (0, 0) a (3, 0)
+        self.board.set_piece(3, 0, rook)                               # Colocar la torre en la nueva posición
+        self.board.set_piece(0, 0, None)                               # Vaciar la posición original
+        self.assertIsNone(self.board.get_piece(0, 0))                  # La posición original debe estar vacía
+        self.assertIsInstance(self.board.get_piece(3, 0), Rook)        # La nueva posición debe tener la torre
+        self.assertEqual(self.board.get_piece(3, 0).color, "BLACK")    # Verificar que la torre sea del color esperado
+
+
+    def test_invalid_move(self):                                       # Verifica que se detecten movimientos inválidos
+        rook = self.board.get_piece(0, 0)                              # Obtener una torre
+        with self.assertRaises(IndexError):                            # Se espera un IndexError si la posición está fuera de rango
+            self.board.set_piece(-1, 0, rook)                          # Intentar mover fuera del tablero
+        with self.assertRaises(IndexError):
+            self.board.set_piece(8, 0, rook)                           # Intentar mover fuera del tablero por arriba
+        with self.assertRaises(IndexError):
+            self.board.set_piece(0, -1, rook)                          # Intentar mover fuera del tablero hacia la izquierda
+        with self.assertRaises(IndexError):
+            self.board.set_piece(0, 8, rook)                           # Intentar mover fuera del tablero hacia la derecha
+
+
 if __name__ == '__main__':
     unittest.main()
