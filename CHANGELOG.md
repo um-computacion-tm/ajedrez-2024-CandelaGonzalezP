@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.14] - 31 / 08 / 2024 - Cambios 
+
+### Changed
+
+- Test movimientos invalidos en board
+- Test movimiento piezas (rook) en board
+
 ## [0.13] - 30 / 08 / 2024 - Cambios 
 
 ### Changed
