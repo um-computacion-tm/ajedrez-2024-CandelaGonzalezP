@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.15] - 01 / 09 / 2024 - Arreglos board 
+
+### Changed
+
+- Test movimientos en clase board
+
 ## [0.14] - 31 / 08 / 2024 - Cambios 
 
 ### Changed
