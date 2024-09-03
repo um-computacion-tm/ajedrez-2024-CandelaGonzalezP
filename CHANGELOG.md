@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.16] - 02 / 09 / 2024 - Knight 
+
+### Added
+
+- Primeros movimientos clase caballo
+
 ## [0.15] - 01 / 09 / 2024 - Arreglos board 
 
 ### Changed
