@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.17] - 04 / 09 / 2024 - Knight Test
+
+### Added
+
+- Test clase caballo- movimientos validos e invalidos
+
 ## [0.16] - 02 / 09 / 2024 - Knight 
 
 ### Added
