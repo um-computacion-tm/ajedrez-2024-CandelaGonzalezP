@@ -3,7 +3,7 @@ from chess.pieces import Piece      #CABALLO CLASE
 class Knight(Piece):
     ...
 
-####################  falta test prueba (codigo a testear, no se si funciona)
+#################### 
 class Knight(Piece):
     def __init__(self, position, color, board):
         super().__init__(color, board)
