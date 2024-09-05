@@ -30,8 +30,11 @@ def play(chess):                         # muestra representacion del tablero, t
         if (self.__turn__ == "WHITE" and piece.color == "BLACK") or (self.__turn__ == "BLACK" and piece.color == "WHITE"):     #verifica turnos
             raise ValueError("No es tu turno.")
    
+
+    except InvalidMove as e:
+        print(e)
     except Exception as e:            #Captura cualquier excepción que ocurra durante la ejecución del bloque try y muestra un mensaje de error con print("error", e).
         print("error", e)
-    
+
 if __name__ == '__main__':
     main()

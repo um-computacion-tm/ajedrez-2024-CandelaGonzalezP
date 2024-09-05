@@ -1,4 +1,4 @@
-from pieces import Piece         #REINA CLASE
+from chess.pieces import Piece         #REINA CLASE
 
 class Queen(Piece):
     ...

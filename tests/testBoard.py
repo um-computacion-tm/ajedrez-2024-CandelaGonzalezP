@@ -152,5 +152,17 @@ class TestBoard(unittest.TestCase):
                 self.board.set_piece(0, 8, piece)
 
 
+    def test_get_piece_out_of_range(self):
+        board = Board(for_test=True)
+
+        with self.assertRaises(OutOfBoard) as exc:
+            board.get_piece(10, 10)
+
+        self.assertEqual(
+            exc.exception.message,
+            "La posicion indicada se encuentra fuera del tablero"
+        )
+
+
 if __name__ == '__main__':
     unittest.main()

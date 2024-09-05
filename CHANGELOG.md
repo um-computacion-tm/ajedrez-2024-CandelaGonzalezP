@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [0.18] - 05 / 09 / 2024 - Cambios
+
+### Changed
+
+- Funcion "get piece" del board
+- Clase rook posiciones posibles
+- Excepciones 
+- Test board
+
+### Added
+
+- Funcion "move" del board
+- Clase pawn piezas
+- Funcion "color" clase chess
+
 ## [0.17] - 04 / 09 / 2024 - Knight Test
 
 ### Added

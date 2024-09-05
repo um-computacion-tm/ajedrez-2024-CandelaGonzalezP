@@ -2,12 +2,13 @@ from chess.pieces import Piece       #TORRE CLASE
 
 class Rook (Piece):
 
+    white_str = "♜"                   #Como la torre se muestra visualmente en el tablero cuando se imprime.
+    black_str = "♖"
+
     def __init__(self, position, color):         #El constructor inicializa una nueva instancia de la torre con una posición en el tablero y un color.
         super().__init__(color)                  #Llama al constructor de la clase base Piece para inicializar el color de la pieza.
         self.__position__ = position             #Establece la posición inicial de la torre en el tablero.
         
-    white_str = "♜"                   #Como la torre se muestra visualmente en el tablero cuando se imprime.
-    black_str = "♖"
 
     def valid_positions(
         self,
@@ -17,15 +18,16 @@ class Rook (Piece):
         to_col,
     ):
         possible_positions = (
-            possible_positions_vd(from_row, from_col) +
-            possible_positions_va(from_row, from_col)
+            self.possible_positions_vd(from_row, from_col) +
+            self.possible_positions_va(from_row, from_col)
         )
-        return (to_row, to_col) in possible_positions:
+        return (to_row, to_col) in possible_positions
 
     def possible_positions_vd(self, row, col):
         possibles = []
         for next_row in range(row + 1, 8):
-            other_piece = self.__board__.get_piece(next_row, col)            # que la celda que sigue no este ocupada..
+            # que la celda que sigue no este ocupada..
+            other_piece = self.__board__.get_piece(next_row, col)
             if other_piece is not None:
                 if other_piece.__color__ != self.__color__:
                     possibles.append((next_row, col))

@@ -1,4 +1,4 @@
-from pieces import Piece        #REY CLASE
+from chess.pieces import Piece        #REY CLASE
 
 class King(Piece):
     ...
