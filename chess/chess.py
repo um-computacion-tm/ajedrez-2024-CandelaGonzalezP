@@ -1,5 +1,5 @@
 from chess.board import Board
-from chess.exceptions import InvalidMove
+from chess.exceptions import InvalidMove, InvalidTurn, EmptyPosition
 
 class Chess:                      #inicializa un nuevo juego de ajedrez creando un tablero con la clase Board y establece el turno inicial en "WHITE"
 
