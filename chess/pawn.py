@@ -1,5 +1,9 @@
 from chess.pieces import Piece      #PEON CLASE
 
 class Pawn(Piece):
-    white_str = "♜"
-    black_str = "♖"
+
+    def __str__(self):  
+      if self.__color__ == "WHITE":
+          return "♟"
+      else:
+         return "♙" 

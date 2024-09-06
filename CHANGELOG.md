@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [0.19] - 06 / 09 / 2024 - Simbolos piezas
+
+### Changed
+
+- clase chess excepciones
+
+### Added
+
+- Simbolos piezas
+
 ## [0.18] - 05 / 09 / 2024 - Cambios
 
 ### Changed
