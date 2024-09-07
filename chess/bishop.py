@@ -2,18 +2,8 @@ from chess.pieces import Piece                 #ALFIL CLASE
 
 class Bishop(Piece):
 
-    def get_color(self):
-        return self.__color__
-
-    def __init__(self, position, color):                 #se inicializan la posición y el color.
-        super().__init__(color)
-        self.__position__ = position
-
-    def __str__(self):                                  # devuelve el símbolo Unicode correspondiente al alfil dependiendo de su color.
-        if self.get_color() == "WHITE":
-            return "♗"
-        else:
-            return "♝"
+    white_str = "♝"
+    black_str = "♗"
 
     def get_possible_moves(self, board):              #calcula los movimientos posibles en las cuatro direcciones diagonales, verificando si la casilla está vacía o si contiene una pieza del oponente.
         moves = []

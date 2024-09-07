@@ -1,20 +1,11 @@
 from chess.pieces import Piece      #CABALLO CLASE
 
 class Knight(Piece):
-    
-    def __str__(self):  
-      if self.__color__ == "WHITE":
-          return "♞"
-      else:
-         return "♘" 
+
+    white_str ="♞"
+    black_str ="♘" 
       
-
-#################### 
-class Knight(Piece):
-    def __init__(self, position, color, board):
-        super().__init__(color, board)
-        self.__position__ = position
-
+"""
     def get_possible_moves(self):
         x, y = self.__position__
         moves = []
@@ -35,3 +26,4 @@ class Knight(Piece):
                     moves.append(move)
 
         return moves
+"""

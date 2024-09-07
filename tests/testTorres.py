@@ -1,8 +1,74 @@
 import unittest
 from chess.rook import Rook
 from chess.board import Board
+from chess.pawn import Pawn
 
-class TestRookInitialization(unittest.TestCase):
+class TestRook(unittest.TestCase):
+
+    def test_str(self):
+        board = Board()
+        rook = Rook("WHITE", board)
+        self.assertEqual(
+            str(rook),
+            "♜",
+        )
+
+    def test_move_vertical_desc(self):
+        board = Board()
+        rook = Rook("WHITE", board)
+        possibles = rook.possible_positions_vd(4, 1)
+        self.assertEqual(
+            possibles,
+            [(5, 1), (6, 1)]
+        )
+
+    def test_move_vertical_asc(self):
+        board = Board()
+        rook = Rook("WHITE", board)
+        possibles = rook.possible_positions_va(4, 1)
+        self.assertEqual(
+            possibles,
+            [(3, 1), (2, 1), (1, 1), (0, 1)]
+        )
+
+    def test_move_vertical_desc_with_own_piece(self):
+        board = Board()
+        board.set_piece(6, 1, Pawn("WHITE", board))
+        rook = Rook("WHITE", board)
+        board.set_piece(4, 1, rook)
+        possibles = rook.possible_positions_vd(4, 1)
+        self.assertEqual(
+            possibles,
+            [(5, 1)]
+        )
+
+    def test_move_vertical_desc_with_not_own_piece(self):
+        board = Board()
+        board.set_piece(6, 1, Pawn("BLACK", board))
+        rook = Rook("WHITE", board)
+        board.set_piece(4, 1, rook)
+        possibles = rook.possible_positions_vd(4, 1)
+        self.assertEqual(
+            possibles,
+            [(5, 1), (6, 1)]
+        )
+
+    def test_move_diagonal_desc(self):
+        board = Board()
+        rook = board.get_piece(col=0, row=0)
+        is_possible = rook.valid_positions(
+            from_row=0,
+            from_col=0,
+            to_row=1,
+            to_col=1,
+        )
+
+        self.assertFalse(is_possible)
+
+
+
+
+"""class TestRookInitialization(unittest.TestCase):
 
     def test_rook_initialization(self):
         position = (4, 4)                                             #Prueba que la torre se inicializa con la posición y el color correctos.
@@ -66,6 +132,6 @@ class TestRook(unittest.TestCase):
         moves = rook.get_possible_moves(self.board)
         diagonal_moves = [(i, i) for i in range(8)]                            # Posiciones diagonales en el tablero
         self.assertTrue(all(move not in moves for move in diagonal_moves))
-
+"""
 if __name__ == '__main__':
     unittest.main()

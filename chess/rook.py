@@ -1,17 +1,9 @@
 from chess.pieces import Piece       #TORRE CLASE
 
-class Rook (Piece):
+class Rook(Piece):
 
-    def __str__(self):  
-      if self.__color__ == "WHITE":
-          return "♜"
-      else:
-         return "♖" 
-
-    def __init__(self, position, color):         #El constructor inicializa una nueva instancia de la torre con una posición en el tablero y un color.
-        super().__init__(color)                  #Llama al constructor de la clase base Piece para inicializar el color de la pieza.
-        self.__position__ = position             #Establece la posición inicial de la torre en el tablero.
-        
+    white_str = "♜"
+    black_str = "♖"
 
     def valid_positions(
         self,

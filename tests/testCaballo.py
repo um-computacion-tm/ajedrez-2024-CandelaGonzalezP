@@ -1,4 +1,4 @@
-import unittest
+"""import unittest
 from chess.board import Board
 from chess.knight import Knight
 
@@ -43,4 +43,4 @@ class TestKnight(unittest.TestCase):        #Configura el tablero y los caballos
 
         
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()"""

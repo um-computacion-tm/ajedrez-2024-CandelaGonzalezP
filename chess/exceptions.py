@@ -1,9 +1,4 @@
 #excepciones: siempre se va de la mas particular a la mas general (engloba)
-#def handle_value_error(e):                            # Funciones para manejar excepciones estándar
-#    print(f"Error: {e}")
-#    return False
-#def handle_generic_exception(e):
-#    print('error')
 
 class InvalidMove(Exception):
     message = "Movimieto de pieza invalido"
