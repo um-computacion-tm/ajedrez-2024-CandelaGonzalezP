@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [0.20] - 07 / 09 / 2024 - Arreglos
+
+### Changed
+
+- Arreglos en clase bishop, king, knight, pawn, rook
+- Arreglos en clase board, pieces, excepcions
+- Arreglos test caballo, test cli, test board, test torres
+
 ## [0.19] - 06 / 09 / 2024 - Simbolos piezas
 
 ### Changed
