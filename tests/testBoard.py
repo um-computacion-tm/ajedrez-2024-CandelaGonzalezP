@@ -43,6 +43,15 @@ class TestBoard(unittest.TestCase):
         )
 
 
+        def test_capture_piece(self):
+        board = Board()
+        # Se coloca una torre blanca en (0, 0) y un peón negro en (0, 1)
+        board.set_piece(0, 0, Rook(color='WHITE'))
+        board.set_piece(0, 1, Pawn(color='BLACK'))
+        # La torre blanca se mueve a (0, 1) y se "come" al peón negro
+        board.move(0, 0, 0, 1)
+
+
 if __name__ == '__main__':
     unittest.main()
 """
