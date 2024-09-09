@@ -43,7 +43,7 @@ class TestBoard(unittest.TestCase):
         )
 
 
-        def test_capture_piece(self):
+    def test_capture_piece(self):
         board = Board()
         # Se coloca una torre blanca en (0, 0) y un peón negro en (0, 1)
         board.set_piece(0, 0, Rook(color='WHITE'))
