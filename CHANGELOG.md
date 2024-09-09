@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.21] - 08 / 09 / 2024 - Tests
+
+### Added
+
+- Test funcion "capturar pieza"
+
 ## [0.20] - 07 / 09 / 2024 - Arreglos
 
 ### Changed
