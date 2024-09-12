@@ -6,7 +6,7 @@ from chess.king import King
 from chess.pawn import Pawn
 from chess.exceptions import OutOfBoard
 
-class Board:                                       #se crea un tablero de ajedrez vacío de 8x8 y coloca todas las piezas en sus posiciones iniciales, con piezas negras en la primera fila y piezas blancas en la última fila
+class Board:                                       #se crea un tablero vacío de 8x8 y coloca piezas en sus posiciones iniciales, con piezas negras en la primera fila y piezas blancas en la última fila
     def __init__(self, for_test = False):
         self.__positions__ = []                      #matriz (lista de listas)
         for _ in range(8):                           #por cada fila creo una columna con ocho lugares
@@ -37,9 +37,12 @@ class Board:                                       #se crea un tablero de ajedre
             self.__positions__[7][1] = Knight ('White', self) #caballo blanco
             self.__positions__[7][6] = Knight ('White', self) #caballo blanco2
 
-            for i in range(8):
-                self.__positions__[1][i] = Pawn("Black", self)  #peones negros
-                self.__positions__[6][i] = Pawn("White", self)  #peones blancos
+            for col in range(8):
+                self.__positions__[1][col]= Pawn("BLACK", self) #peones negros
+                self.__positions__[6][col]= Pawn("WHITE", self) #peones blancos
+
+
+
     
     def __str__(self):                         #convierte el tablero en una cadena de texto que muestra las piezas en sus posiciones, dejando espacios en blanco donde no hay piezas, para que puedas ver el tablero en la consola.
         board_str = ""

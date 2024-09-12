@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [0.22] - 12 / 09 / 2024 - Movimientos horizontales rook
+
+### Fixed
+ 
+- Test torres movimiento vertical en descenso
+
+### Added
+
+- Movimientos horizontales clase rook
+
 ## [0.21] - 08 / 09 / 2024 - Tests
 
 ### Added

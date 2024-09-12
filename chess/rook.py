@@ -12,11 +12,16 @@ class Rook(Piece):
         to_row,
         to_col,
     ):
+
         possible_positions = (
-            self.possible_positions_vd(from_row, from_col) +
-            self.possible_positions_va(from_row, from_col)
+            self.possible_positions_vd(from_row, from_col) +  # verticales hacia abajo
+            self.possible_positions_va(from_row, from_col) +  # verticales hacia arriba
+            self.possible_positions_hr(from_row, from_col) +  # horizontales hacia la derecha
+            self.possible_positions_hl(from_row, from_col)    # horizontales hacia la izquierda
         )
         return (to_row, to_col) in possible_positions
+    
+
 
     def possible_positions_vd(self, row, col):
         possibles = []
@@ -29,35 +34,40 @@ class Rook(Piece):
                 break
             possibles.append((next_row, col))
         return possibles
+    
 
     def possible_positions_va(self, row, col):
         possibles = []
         for next_row in range(row - 1, -1, -1):
             possibles.append((next_row, col))
         return possibles
+    
 
-#    def get_possible_moves(self, board):          #Define movimientos posibles en el tablero
-#        moves = []
-#        x, y = self.__position__
+
+    def possible_positions_hr(self, row, col):
+            possibles = []
+            for next_col in range(col +1, 8):
+                other_piece = self.__board__.get_piece(row, next_col)
+                if other_piece is not None:
+                    if other_piece.__color__ != self.__color__:
+                        possibles.append((row, next_col))
+                    break
+                possibles.append((row, next_col))
+            return possibles    
+                
+
+                
+    def possible_positions_hl(self, row, col):
+            possibles = []
+            for next_col in range(col - 1, -1, -1):
+                other_piece = self.__board__.get_piece(row, next_col)
+                if other_piece is not None:
+                    if other_piece.__color__ != self.__color__:
+                        possibles.append((row, next_col))
+                    break  
+                possibles.append((row, next_col))
+            return possibles
+
+
+#agregar movimientos horizontales
 #
-#        for i in range(8):                                   # MOVIMIENTO HORIZONTAL
-#            if i != x:                                       # No incluir la posición actual
-#                if board.get_piece(i, y) is None:
-#                    moves.append((i, y))
-#                elif board.get_piece(i, y).__color__ != self.__color__:
-#                    moves.append((i, y))
-#                    break                                     # Detenerse si encuentra una pieza del color contrario
-#                else:
-#                    break                                     # Detenerse si encuentra una pieza del mismo color
-#
-#        for j in range(8):                                    # MOVIMIENTO VERTICAL
-#            if j != y:                                        # No incluir la posición actual
-#                if board.get_piece(x, j) is None:
-#                    moves.append((x, j))
-#                elif board.get_piece(x, j).__color__ != self.__color__:
-#                    moves.append((x, j))
-#                    break
-#                else:
-#                    break
-#        
-#        return moves

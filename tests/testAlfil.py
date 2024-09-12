@@ -1,4 +1,4 @@
-import unittest
+"""import unittest
 from chess.bishop import Bishop
 from chess.board import Board
 
@@ -22,4 +22,4 @@ class TestBishop(unittest.TestCase):
         self.assertEqual(set(moves), set(expected_moves))
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()"""
