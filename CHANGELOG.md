@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.23] - 15 / 09 / 2024 - Pawns
+### Fixed
+ 
+- clase peon
+- test peon movimientos
+
+
 ## [0.22] - 12 / 09 / 2024 - Movimientos horizontales rook
 
 ### Fixed
