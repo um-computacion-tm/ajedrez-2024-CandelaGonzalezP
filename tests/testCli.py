@@ -1,9 +1,10 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from chess.chess import Chess
 from chess.cli import play, main
 
 class TestCli(unittest.TestCase):
+
     @patch(                                     # este patch controla lo que hace el input
         'builtins.input',
         side_effect=['1', '1', '2', '2'],       # estos son los valores que simula lo que ingresaria el usuario
@@ -59,7 +60,17 @@ class TestCli(unittest.TestCase):
         self.assertEqual(mock_chess_move.call_count, 0)
 
 
-    
+    @patch('chess.cli.play')  # Mock the play function to avoid user interaction
+    @patch.object(Chess, 'is_playing', side_effect=[True, False])  # Mock is_playing to return True once and then False
+    def test_main(self, mock_is_playing, mock_play):
+        main()
+        # Verify that play was called exactly once
+        self.assertEqual(mock_play.call_count, 1)
+
+
+
+if __name__ == '__main__':
+    unittest.main()
  
 
 
