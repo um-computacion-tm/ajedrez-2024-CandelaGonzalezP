@@ -1,9 +1,5 @@
 import unittest
 from chess.chess import Chess
-#from chess.rook import Rook
-#from chess.bishop import Bishop
-#from chess.pawn import Pawn
-#from chess.board import Board
 from chess.exceptions import InvalidMove, InvalidTurn, EmptyPosition, OutOfBoard
 
 class TestChess(unittest.TestCase):
