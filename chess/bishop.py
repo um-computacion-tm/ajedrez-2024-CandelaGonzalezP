@@ -11,4 +11,5 @@ class Bishop(Piece):
             from_col,
         )
 
- #agregar movimientos diagonales 
+
+ #agregar movimientos diagonales (hecho)
