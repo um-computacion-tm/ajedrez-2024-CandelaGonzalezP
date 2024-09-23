@@ -1,11 +1,73 @@
 # CHANGELOG
 
-## [0.23] - 15 / 09 / 2024 - Pawns
+## [0.31] - 23 / 09 / 2024 - Test 
+
+### Added
+
+- Test knight
+
+## [0.30] - 22 / 09 / 2024 - Knight 
+
+### Added
+
+- Knight, movimientos caballo
+
+## [0.29] - 21 / 09 / 2024 - Tests 
+
+### Added
+
+- Test Queen
+
+## [0.28] - 20 / 09 / 2024 - Tests arreglos 
+
+### Fixed
+
+- Test Torres
+- Test Bishop
+
+## [0.27] - 19 / 09 / 2024 - Codigo repetido
+
+### Changed
+
+- Pieces
+- Rook 
+- Bishop
+- Queen
+- King
+
+## [0.26] - 18 / 09 / 2024 - Testeos varios
+
+### Fixed
+
+- test cli
+
+### Added
+
+- test excepciones
+- test chess
+
+## [0.25] - 17 / 09 / 2024 - Movimientos piezas
+
+### Added
+ 
+- Movimientos clase Queen, King, Knight, Bishop
+
+## [0.24] - 16 / 09 / 2024 - Pieces
+
 ### Fixed
  
-- clase peon
-- test peon movimientos
+- clase pieces
 
+### Added
+
+- Test pieces
+
+## [0.23] - 15 / 09 / 2024 - Pawns
+
+### Fixed
+ 
+- Clase peon
+- Test peon movimientos
 
 ## [0.22] - 12 / 09 / 2024 - Movimientos horizontales rook
 
