@@ -1,46 +1,139 @@
-"""import unittest
-from chess.board import Board
+import unittest
 from chess.knight import Knight
+from chess.board import Board
 
-class TestKnight(unittest.TestCase):        #Configura el tablero y los caballos para las pruebas
+class TestKnightSymbol(unittest.TestCase):
+
     def setUp(self):
-        self.board = Board(for_test=True)
+        self.board = Board(for_test=True)  # Inicializa el tablero vacío
+        self.knight = Knight('WHITE', self.board)
 
-    def test_knight_centro(self):        #Prueba los movimientos del caballo en el centro del tablero
-        knight = Knight((4, 4), 'WHITE', self.board)
-        self.board.set_piece(4, 4, knight)
-        expected_moves = [
-            (6, 5), (6, 3), (2, 5), (2, 3),
-            (5, 6), (5, 2), (3, 6), (3, 2)
+# testeo color de las piezas
+
+    def test_white_knight_symbol(self):
+        """Verifica que el caballo blanco retorne 'N' como símbolo"""
+        knight = Knight('WHITE', self.board)
+        self.assertEqual(knight.symbol(), 'N')
+
+    def test_black_knight_symbol(self):
+        """Verifica que el caballo negro retorne 'n' como símbolo"""
+        knight = Knight('BLACK', self.board)
+        self.assertEqual(knight.symbol(), 'n')
+
+# testeo movimientos validos
+
+    def test_valid_moves(self):
+        """Verifica movimientos válidos en forma de 'L'."""
+        valid_moves = [
+            ((4, 4), (6, 5)),  # Movimiento en L hacia abajo y derecha
+            ((4, 4), (6, 3)),  # Movimiento en L hacia abajo e izquierda
+            ((4, 4), (2, 5)),  # Movimiento en L hacia arriba y derecha
+            ((4, 4), (2, 3)),  # Movimiento en L hacia arriba e izquierda
+            ((4, 4), (5, 6)),  # Movimiento en L hacia la derecha
+            ((4, 4), (5, 2)),  # Movimiento en L hacia la izquierda
         ]
-        moves = knight.get_possible_moves()
-        self.assertCountEqual(moves, expected_moves)
+        for from_pos, to_pos in valid_moves:
+            with self.subTest(from_pos=from_pos, to_pos=to_pos):
+                self.assertTrue(self.knight.is_valid_piece_move(self.board, from_pos, to_pos))
 
-    def test_knight_esquina(self):        #Prueba los movimientos del caballo en una esquina del tablero
-        knight = Knight((0, 0), 'WHITE', self.board)
-        self.board.set_piece(0, 0, knight)
-        expected_moves = [(2, 1), (1, 2)]
-        moves = knight.get_possible_moves()
-        self.assertCountEqual(moves, expected_moves)
+# testeo de movimientos invalidos
 
-    def test_knight_bloqueado(self):        #Prueba los movimientos del caballo cuando está rodeado de piezas del mismo color
-        knight = Knight((4, 4), 'WHITE', self.board)
-        self.board.set_piece(4, 4, knight)
-        
-        for move in knight.get_possible_moves():        # Bloquear todas las posiciones posibles con piezas del mismo color
-            self.board.set_piece(move[0], move[1], Knight(move, 'WHITE', self.board))
-        moves = knight.get_possible_moves()
-        self.assertEqual(moves, [])
-
-    def test_knight_capturar(self):        #Prueba que el caballo puede capturar una pieza de color opuesto
-        knight = Knight((4, 4), 'WHITE', self.board)
-        self.board.set_piece(4, 4, knight)
-        enemy_piece = Knight((6, 5), 'BLACK', self.board)        # Colocar una pieza de color opuesto en una de las posiciones posibles
-        self.board.set_piece(6, 5, enemy_piece)
-        moves = knight.get_possible_moves()        # Debe incluir el movimiento de captura
-        self.assertIn((6, 5), moves)  
+    def test_invalid_moves(self):
+        """Verifica movimientos inválidos que no cumplen la forma de 'L'."""
+        invalid_moves = [
+            ((4, 4), (4, 6)),  # Movimiento horizontal (no válido para un caballo)
+            ((4, 4), (6, 6)),  # Movimiento diagonal (no válido para un caballo)
+            ((4, 4), (5, 5)),  # Movimiento recto (no válido para un caballo)
+            ((4, 4), (4, 3)),  # Movimiento horizontal (no válido para un caballo)
+        ]
+        for from_pos, to_pos in invalid_moves:
+            with self.subTest(from_pos=from_pos, to_pos=to_pos):
+                self.assertFalse(self.knight.is_valid_piece_move(self.board, from_pos, to_pos))
 
 
-        
 if __name__ == '__main__':
-    unittest.main()"""
+    unittest.main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+import unittest
+from chess.knight import Knight  
+from chess.board import Board
+from chess.pawn import Pawn
+
+class TestKnight(unittest.TestCase):
+
+    def setUp(self):
+        self.board = Board(for_test=True)  # Inicializa el tablero sin piezas
+        self.knight = Knight('White', self.board)  # Crea un caballo blanco
+
+# Testeo de las posiciones posibles
+    def test_get_possible_positions(self):
+        self.board.set_piece(3, 3, self.knight) 
+        result = self.knight.get_possible_positions(3, 3)
+        expected_positions = [
+            (5, 4), (5, 2), (1, 4), (1, 2), (4, 5), (4, 1), (2, 5), (2, 1)       # Movimientos en "L"
+        ]
+        self.assertEqual(result, expected_positions)
+
+# Testeo de los movimientos con una pieza bloqueando
+
+    def test_get_possible_positions_with_block(self):
+        self.board.set_piece(3, 3, self.knight)  
+        self.board.set_piece(5, 4, Pawn('White', self.board))  # Pieza propia bloqueando
+        result = self.knight.get_possible_positions(3, 3)
+        expected_positions = [
+            (5, 2), (1, 4), (1, 2), (4, 5), (4, 1), (2, 5), (2, 1)
+        ] 
+        self.assertEqual(result, expected_positions)
+
+# Testeo de los movimientos con una pieza enemiga
+
+    def test_get_possible_positions_with_enemy(self):
+        self.board.set_piece(3, 3, self.knight)  
+        self.board.set_piece(5, 4, Pawn('Black', self.board))  # Pieza enemiga en (5, 4)
+        result = self.knight.get_possible_positions(3, 3)
+        expected_positions = [
+            (5, 4), (5, 2), (1, 4), (1, 2), (4, 5), (4, 1), (2, 5), (2, 1)
+        ] 
+        self.assertEqual(result, expected_positions) # Se puede capturar la pieza enemiga en (5, 4)
+
+# Testeo de los movimientos en "L" en los 4 sentidos (dire)
+
+    def test_knight_moves_in_L(self):
+        self.board.set_piece(4, 4, self.knight)       # Coloca el caballo en el centro del tablero (4, 4)
+        result = self.knight.get_possible_positions(4, 4)
+        
+# Movimientos en "L" desde el centro en todas las direcciones posibles
+        expected_positions = [
+            (6, 5), (6, 3),  # Movimientos en "L" hacia arriba
+            (2, 5), (2, 3),  # Movimientos en "L" hacia abajo
+            (5, 6), (5, 2),  # Movimientos en "L" hacia la derecha
+            (3, 6), (3, 2)   # Movimientos en "L" hacia la izquierda
+        ]
+        self.assertEqual(result, expected_positions)
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+"""
