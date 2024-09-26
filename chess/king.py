@@ -2,8 +2,8 @@ from chess.pieces import Piece        #REY CLASE
 
 class King(Piece):
 
-    white_str ="♚"
-    black_str = "♔" 
+    def symbol(self):
+        return 'K' if self.get_color() == "WHITE" else 'k'
 
     def valid_positions(
         self,
@@ -38,8 +38,6 @@ class King(Piece):
             ):
                 possible_king.append((possible_row, possible_col))
         return possible_king
-
-
 
 
 
