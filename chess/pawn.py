@@ -2,9 +2,8 @@ from chess.pieces import Piece      #PEON CLASE
 
 class Pawn(Piece):
 
-    white_str = "♙" 
-    black_str = "♟"
-
+    def symbol(self):
+        return 'P' if self.get_color() == "WHITE" else 'p'
 
     def get_possible_positions(self, from_row, from_col):
         possibles = self.get_possible_positions_move(
