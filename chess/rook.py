@@ -2,8 +2,8 @@ from chess.pieces import Piece       #TORRE CLASE
 
 class Rook(Piece):
 
-    white_str = "♜"
-    black_str = "♖"
+    def symbol(self):
+        return 'R' if self.get_color() == "WHITE" else 'r'
 
     def valid_positions(
         self,
