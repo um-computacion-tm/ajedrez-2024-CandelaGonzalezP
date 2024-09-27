@@ -2,8 +2,8 @@ from chess.pieces import Piece         #REINA CLASE
 
 class Queen(Piece):
     
-    white_str = "♛"
-    black_str = "♕"
+    def symbol(self):
+        return 'Q' if self.get_color() == "WHITE" else 'q'
     
     def get_possible_positions(self, from_row, from_col):
         return self.possible_diagonal_positions(
