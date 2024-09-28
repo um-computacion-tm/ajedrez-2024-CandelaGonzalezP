@@ -5,14 +5,17 @@ from chess.pawn import Pawn
 
 class TestRook(unittest.TestCase):
 
-    def test_str(self):                        #verifica simbolo de pieza (blanca)
+# simbolos piezas reyes (blanco y negro)
+
+    def test_rook_symbol_white(self):
         board = Board()
         rook = Rook("WHITE", board)
-        self.assertEqual(
-            str(rook),
-            "♜",
-        )
+        self.assertEqual(rook.symbol(), 'R')
 
+    def test_rook_symbol_black(self):
+        board = Board()
+        rook = Rook("BLACK", board)
+        self.assertEqual(rook.symbol(), 'r')
 
 # testeo movimientos verticales ascendentes y descendentes
 
