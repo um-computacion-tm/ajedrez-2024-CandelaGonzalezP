@@ -4,7 +4,7 @@ from chess.board import Board
 
 class TestKing(unittest.TestCase):
 
-# simbolos 
+# simbolos piezas reyes (blanco y negro)
 
     def test_king_symbol_white(self):
         board = Board()
@@ -15,6 +15,8 @@ class TestKing(unittest.TestCase):
         board = Board()
         king = King("BLACK", board)
         self.assertEqual(king.symbol(), 'k')
+
+# movimientos
 
     def setUp(self):
         self.board = Board(for_test=True)

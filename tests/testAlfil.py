@@ -5,6 +5,20 @@ from chess.pawn import Pawn
 
 class TestBishop(unittest.TestCase):
 
+# simbolos piezas alfiles (blanco y negro)
+
+    def test_bishop_symbol_white(self):
+        board = Board()
+        bishop = Bishop("WHITE", board)
+        self.assertEqual(bishop.symbol(), 'B')
+
+    def test_bishop_symbol_black(self):
+        board = Board()
+        bishop = Bishop("BLACK", board)
+        self.assertEqual(bishop.symbol(), 'b')
+
+# inicializar tablero
+
     def setUp(self):
         self.board = Board(for_test=True)  # Inicializa el tablero sin piezas
         self.bishop = Bishop('White', self.board)  # Crea un alfil blanco
