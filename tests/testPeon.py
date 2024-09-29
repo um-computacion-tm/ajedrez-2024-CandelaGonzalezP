@@ -5,6 +5,20 @@ from chess.board import Board
 
 class TestPawn(unittest.TestCase):
 
+# simbolos piezas alfiles (blanco y negro)
+
+    def test_pawn_symbol_white(self):
+        board = Board()
+        pawn = Pawn("WHITE", board)
+        self.assertEqual(pawn.symbol(), 'P')
+
+    def test_pawn_symbol_black(self):
+        board = Board()
+        pawn = Pawn("BLACK", board)
+        self.assertEqual(pawn.symbol(), 'p')
+
+# movimientos
+
     def test_initial_black(self):
         board = Board(for_test = True)
         pawn = Pawn("BLACK", board)
@@ -88,7 +102,6 @@ if __name__ == '__main__':
 #funcion comer y mover
 # extend para unir metodos
 # no se puede mover si hay una pieza adelante
-
 
 
 #promote = hace que se convierta el peon al llegar al final, se cambie por una pieza
