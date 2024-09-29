@@ -8,16 +8,16 @@ class TestKnightSymbol(unittest.TestCase):
         self.board = Board(for_test=True)  # Inicializa el tablero vacío
         self.knight = Knight('WHITE', self.board)
 
-# testeo color de las piezas
+# simbolos piezas caballos (blanco y negro)
 
-    def test_white_knight_symbol(self):
-        """Verifica que el caballo blanco retorne 'N' como símbolo"""
-        knight = Knight('WHITE', self.board)
+    def test_knight_symbol_white(self):
+        board = Board()
+        knight = Knight("WHITE", board)
         self.assertEqual(knight.symbol(), 'N')
 
-    def test_black_knight_symbol(self):
-        """Verifica que el caballo negro retorne 'n' como símbolo"""
-        knight = Knight('BLACK', self.board)
+    def test_knight_symbol_black(self):
+        board = Board()
+        knight = Knight("BLACK", board)
         self.assertEqual(knight.symbol(), 'n')
 
 # testeo movimientos validos
