@@ -5,6 +5,15 @@ class King(Piece):
     def symbol(self):
         return 'K' if self.get_color() == "WHITE" else 'k'
 
+    def is_valid_piece_move(self, board, from_pos, to_pos):
+        """Verificar si el movimiento es válido para el rey."""
+        from_row, from_col = from_pos
+        to_row, to_col = to_pos
+        return max(abs(from_row - to_row), abs(from_col - to_col)) == 1
+
+
+
+"""
     def valid_positions(
         self,
         from_row,
@@ -38,8 +47,7 @@ class King(Piece):
             ):
                 possible_king.append((possible_row, possible_col))
         return possible_king
-
-
+"""
 
 #agregar movientos ortogonales y diagonales
 #distancia mov ort
