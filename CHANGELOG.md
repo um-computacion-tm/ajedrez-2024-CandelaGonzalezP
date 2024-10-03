@@ -1,5 +1,50 @@
 # CHANGELOG
 
+## [0.37] - 02 / 10 / 2024 - Board
+
+### Changed
+
+- Test board 
+
+## [0.36] - 30 / 09 / 2024 - Rey
+
+### Changed
+
+- Movimientos rey test
+
+## [0.35] - 29 / 09 / 2024 - Rey
+
+### Changed
+
+- Movimientos rey
+
+## [0.34] - 28 / 09 / 2024 - Simbolos tests
+
+### Added
+
+- Test simbolos peones, caballo
+
+## [0.33] - 27 / 09 / 2024 - Simbolos tests
+
+### Added
+
+- Test simbolos reina, torre, alfil
+- Readme
+
+### Fixed
+
+- Simbolos reina, torre, alfil, peones, caballo
+
+## [0.32] - 26 / 09 / 2024 - Simbolos 
+
+### Fixed
+
+- Simbolos rey
+
+### Added
+
+- test simbolos rey
+
 ## [0.31] - 23 / 09 / 2024 - Test 
 
 ### Added

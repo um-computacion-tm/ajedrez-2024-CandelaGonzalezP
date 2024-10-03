@@ -13,3 +13,9 @@ class EmptyPosition(InvalidMove):
 
 class OutOfBoard(InvalidMove):
     message = "La posicion indicada se encuentra fuera del tablero"
+
+class OriginInvalidMove(InvalidMove):
+    message = "Movimiento inválido desde la posición de origen"
+
+class DestinationInvalidMove(InvalidMove):
+    message = "Movimiento inválido hacia la posición de destino"

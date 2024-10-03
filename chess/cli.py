@@ -1,40 +1,51 @@
 from chess.chess import Chess
-from chess.exceptions import InvalidMove
+from chess.exceptions import *
 
 def main():                                    #inicia un juego de ajedrez y ejecuta un bucle que sigue corriendo mientras el juego esté en curso 
     chess = Chess()
     while chess.is_playing():
         play(chess)
 
-def play(chess):                         # muestra representacion del tablero, turno actual del jugador y pide al usuario que ingrese las filas y columnas de origen (from_row, from_col) y destino (to_row, to_col).
+def play(chess):
     try:
         print(chess.show_board())
         print("turn: ", chess.turn)
-        from_row = int(input("From row: "))
-        from_col = int(input("From col: "))
-        to_row = int(input("To Row: "))
-        to_col = int(input("To Col: "))
 
-        chess.move(                                #especifica desde cual casilla hasta cual casilla (movimientos)
-            from_row,
-            from_col,
-            to_row,
-            to_col
-        )
-            
-        piece = self.__board__.get_piece(from_row, from_col)          # Obtener la pieza en la posición de origen y verificar que existe
-        if piece is None:
-            raise ValueError("No existe una pieza en esa posición.")
+        from_row = input("From row ")
+        if from_row.lower()=="stop":
+            return chess.tie() 
+        
+        from_col = input("From col ")
+        if from_col.lower()=="stop":
+            return chess.tie()
+        
+        to_row = input("To row ")
+        if to_row.lower()=="stop":
+            return chess.tie()
+        
+        to_col = input("To col ")
+        if to_col.lower()=="stop":
+            return chess.tie()
+        
+        from_row = int(from_row)
+        from_col = int(from_col)
+        to_row = int(to_row)
+        to_col = int(to_col)
 
+        chess.move(from_row, from_col, to_row, to_col)
 
-        if (self.__turn__ == "WHITE" and piece.color == "BLACK") or (self.__turn__ == "BLACK" and piece.color == "WHITE"):     #verifica turnos
-            raise ValueError("No es tu turno.")
-   
-
+    except EmptyPosition as e:
+        print("No hay ninguna pieza en la posición de origen")
+    except OutOfBoard as e:
+        print("Movimiento fuera de tablero")
+    except DestinationInvalidMove as e:
+        print("Movimiento destino invalido")
+    except InvalidTurn as e:
+        print("No es tu turno")
+    except OriginInvalidMove as e:
+        print("Sin piezas en posicion origen")
     except InvalidMove as e:
-        print(e)
-    except Exception as e:            #Captura cualquier excepción que ocurra durante la ejecución del bloque try y muestra un mensaje de error con print("error", e).
-        print("error", e)
+        print("Movimiento inválido")
+    except Exception as e:
+        print("Error inesperado")  
 
-if __name__ == '__main__':
-    main()

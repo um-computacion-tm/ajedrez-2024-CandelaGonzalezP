@@ -8,6 +8,10 @@ class TestPieces(unittest.TestCase):
         piece = Piece("BLACK", None)  # Asume que la pieza necesita un color y el tablero
         self.assertEqual(piece.get_color(), "BLACK")
 
+    def test_symbol_not_implemented(self):
+        piece = Piece("WHITE", None)  # Crea una instancia de Piece
+        with self.assertRaises(NotImplementedError):
+            piece.symbol()  # Verifica que se lance NotImplementedError
 
     def test_valid_positions(self):
         piece = Piece("BLACK", None)
@@ -17,7 +21,6 @@ class TestPieces(unittest.TestCase):
     def test_possible_diagonal_positions(self):
         piece = Piece("BLACK", None)
         self.assertEqual(piece.possible_diagonal_positions(0, 0), ())
-
 
     def test_possible_orthogonal_positions(self):
         piece = Piece("BLACK", None)
