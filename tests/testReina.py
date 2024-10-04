@@ -17,6 +17,20 @@ class TestQueenOrthogonalMoves(unittest.TestCase):
         queen = Queen("BLACK", board)
         self.assertEqual(queen.symbol(), 'q')
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # inicializar tablero
 
     def setUp(self):

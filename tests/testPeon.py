@@ -2,7 +2,6 @@ import unittest
 from chess.pawn import Pawn
 from chess.board import Board
 
-
 class TestPawn(unittest.TestCase):
 
 # simbolos piezas alfiles (blanco y negro)
@@ -17,7 +16,7 @@ class TestPawn(unittest.TestCase):
         pawn = Pawn("BLACK", board)
         self.assertEqual(pawn.symbol(), 'p')
 
-# movimientos
+# MOVIMIENTOS PEONES NEGROS
 
     def test_initial_black(self):
         board = Board(for_test = True)
@@ -50,6 +49,8 @@ class TestPawn(unittest.TestCase):
             [(3, 5), (3, 6)]
         )
 
+# MOVIMIENTOS PEONES BLANCOS
+
     def test_initial_white(self):
         board = Board(for_test = True)
         pawn = Pawn("WHITE", board)
@@ -69,6 +70,19 @@ class TestPawn(unittest.TestCase):
             possibles,
             [(4, 4)]
         )
+
+    def test_eat_left_white(self):
+        board = Board(for_test=True)
+        pawn = Pawn("WHITE", board)
+        board.set_piece(4, 3, Pawn("BLACK", board))  
+
+        possibles = pawn.get_possible_positions(5, 4)
+        self.assertEqual(
+            possibles,
+            [(4, 4)]  
+        )
+
+# Movimiento invalido por bloqueos
 
     def test_not_initial_white_block(self):
         board = Board(for_test = True)

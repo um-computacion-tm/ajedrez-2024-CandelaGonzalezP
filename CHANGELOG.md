@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## [0.40] - 05 / 10 / 2024 - test piezas x codigo rep
+
+### Fixed
+
+- Test rook, bishop, king, queen, knight, pawn por codigo repetido y cambiado
+
+## [0.39] - 04 / 10 / 2024 - test
+
+### Fixed
+
+- Test board
+- Test cli
+- Test excepciones
+- Test chess
+
+## [0.38] - 03 / 10 / 2024 - chess
+
+### Fixed
+
+- Cli agregados
+- Excepciones agregados
+- Bishop, Rook, Queen, King, Knight, Pawn cambios
+- Chess
+- Piece arreglos repeticion codigo
+
 ## [0.37] - 02 / 10 / 2024 - Board
 
 ### Changed

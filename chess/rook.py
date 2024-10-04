@@ -20,7 +20,7 @@ class Rook(Piece):
 
 
 
-
+"""
     def valid_positions(
         self,
         from_row,
@@ -36,3 +36,4 @@ class Rook(Piece):
             self.possible_positions_hl(from_row, from_col)    # horizontales hacia la izquierda
         )
         return (to_row, to_col) in possible_positions
+"""
