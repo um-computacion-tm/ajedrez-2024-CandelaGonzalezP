@@ -1,5 +1,75 @@
 # CHANGELOG
 
+## [0.40] - 05 / 10 / 2024 - test piezas x codigo rep
+
+### Fixed
+
+- Test rook, bishop, king, queen, knight, pawn por codigo repetido y cambiado
+
+## [0.39] - 04 / 10 / 2024 - test
+
+### Fixed
+
+- Test board
+- Test cli
+- Test excepciones
+- Test chess
+
+## [0.38] - 03 / 10 / 2024 - chess
+
+### Fixed
+
+- Cli agregados
+- Excepciones agregados
+- Bishop, Rook, Queen, King, Knight, Pawn cambios
+- Chess
+- Piece arreglos repeticion codigo
+
+## [0.37] - 02 / 10 / 2024 - Board
+
+### Changed
+
+- Test board 
+
+## [0.36] - 30 / 09 / 2024 - Rey
+
+### Changed
+
+- Movimientos rey test
+
+## [0.35] - 29 / 09 / 2024 - Rey
+
+### Changed
+
+- Movimientos rey
+
+## [0.34] - 28 / 09 / 2024 - Simbolos tests
+
+### Added
+
+- Test simbolos peones, caballo
+
+## [0.33] - 27 / 09 / 2024 - Simbolos tests
+
+### Added
+
+- Test simbolos reina, torre, alfil
+- Readme
+
+### Fixed
+
+- Simbolos reina, torre, alfil, peones, caballo
+
+## [0.32] - 26 / 09 / 2024 - Simbolos 
+
+### Fixed
+
+- Simbolos rey
+
+### Added
+
+- test simbolos rey
+
 ## [0.31] - 23 / 09 / 2024 - Test 
 
 ### Added

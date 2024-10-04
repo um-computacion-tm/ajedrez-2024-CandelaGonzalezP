@@ -55,12 +55,14 @@ class Board:                                       #se crea un tablero vacío de
             board_str += "\n"
         return board_str
     
+    
     def get_piece(self, row, col):
         if not (
             0 <= row < 8 or 0 <= col < 8
         ):
             raise OutOfBoard()
         return self.__positions__[row][col]
+    
 
     def set_piece(self, row, col, piece):      #mueve una pieza en una posición específica del tablero al actualizar las posiciones
         self.__positions__[row][col] = piece
@@ -70,3 +72,12 @@ class Board:                                       #se crea un tablero vacío de
         origin = self.get_piece(from_row, from_col)
         self.set_piece(to_row, to_col, origin)
         self.set_piece(from_row, from_col, None)
+
+
+    def count_pieces(self, color):
+        count = 0
+        for row in self.__positions__:
+            for piece in row:
+                if piece is not None and piece.get_color() == color:
+                    count += 1
+        return count

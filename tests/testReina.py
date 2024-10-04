@@ -5,6 +5,34 @@ from chess.pawn import Pawn
 
 class TestQueenOrthogonalMoves(unittest.TestCase):
 
+# simbolos piezas reinas (blanco y negro)
+
+    def test_queen_symbol_white(self):
+        board = Board()
+        queen = Queen("WHITE", board)
+        self.assertEqual(queen.symbol(), 'Q')
+
+    def test_queen_symbol_black(self):
+        board = Board()
+        queen = Queen("BLACK", board)
+        self.assertEqual(queen.symbol(), 'q')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# inicializar tablero
+
     def setUp(self):
         self.board = Board(for_test=True)
         self.queen = Queen("WHITE", self.board)
