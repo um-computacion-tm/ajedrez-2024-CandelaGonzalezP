@@ -42,6 +42,19 @@ class Piece:                       #HERENCIA PIEZAS
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # MOVIMIENTOS POSIBLES
 
    def valid_positions(

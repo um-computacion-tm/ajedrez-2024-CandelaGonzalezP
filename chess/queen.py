@@ -6,42 +6,40 @@ class Queen(Piece):
         return 'Q' if self.get_color() == "WHITE" else 'q'
     
 # Movimientos ortogonales y diagonales
+    def calculate_possible_moves(self, current_row, current_col, restrict_to_single_step=False):
+        movement_directions = [
+            (1, 0),   # Abajo
+            (-1, 0),  # Arriba
+            (0, 1),   # Derecha
+            (0, -1),  # Izquierda
+            (1, 1),   # Diagonal Abajo Derecha
+            (1, -1),  # Diagonal Abajo Izquierda
+            (-1, 1),  # Diagonal Arriba Derecha
+            (-1, -1)  # Diagonal Arriba Izquierda
+        ]
+        
+        return self._calculate_moves_in_directions(current_row, current_col, movement_directions, restrict_to_single_step)
 
-    def valid_positions(self, from_row, from_col, to_row, to_col):
-        possible_positions = self.calculate_possible_moves(from_row, from_col, self.__king_queen_directions__, single_step=False)
-        return (to_row, to_col) in possible_positions
+    def _calculate_moves_in_directions(self, current_row, current_col, directions, restrict_to_single_step):
+        valid_moves = []
 
+        for delta_row, delta_col in directions:
+            next_row, next_col = current_row + delta_row, current_col + delta_col
+            
+            while 0 <= next_row < 8 and 0 <= next_col < 8:
+                target_piece = self.__board__.get_piece(next_row, next_col)
 
+                if target_piece is not None:
+                    if target_piece.get_color() != self.get_color():
+                        valid_moves.append((next_row, next_col))  # Puede capturar
+                    break  # Detenerse si hay una pieza en la posición
 
+                valid_moves.append((next_row, next_col))  # Agregar movimiento válido
 
+                if restrict_to_single_step:
+                    break
 
+                next_row += delta_row
+                next_col += delta_col
 
-
-
-
-
-
-
-
-    def get_possible_positions(self, from_row, from_col):
-        return self.possible_diagonal_positions(
-            from_row,
-            from_col,
-        )
-    
-    def valid_positions(
-        self,
-        from_row,
-        from_col,
-        to_row,
-        to_col,
-    ):
-
-        possible_positions = (
-            self.possible_positions_vd(from_row, from_col) +  # verticales hacia abajo
-            self.possible_positions_va(from_row, from_col) +  # verticales hacia arriba
-            self.possible_positions_hr(from_row, from_col) +  # horizontales hacia la derecha
-            self.possible_positions_hl(from_row, from_col)    # horizontales hacia la izquierda
-        )
-        return (to_row, to_col) in possible_positions
-
+        return valid_moves
