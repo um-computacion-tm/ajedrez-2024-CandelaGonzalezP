@@ -54,7 +54,7 @@ class Piece:                       #HERENCIA PIEZAS
 
 
 
-
+"""
 # MOVIMIENTOS POSIBLES
 
    def valid_positions(
@@ -190,4 +190,4 @@ class Piece:                       #HERENCIA PIEZAS
            next_row += 1
            next_col -= 1
        return possibles
-
+"""

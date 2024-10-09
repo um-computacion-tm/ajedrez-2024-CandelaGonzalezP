@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [0.41] - 06 / 10 / 2024 - Arreglos x codigo rep
+
+### Fixed
+
+- Bishop, Pawns, pieces, queen, rook codigo rep
+- test alfil, test peon, test reina, test torres y test pieces codigo rep
+
+
 ## [0.40] - 05 / 10 / 2024 - test piezas x codigo rep
 
 ### Fixed
