@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.42] - 09 / 10 / 2024 - Arreglos x codigo rep
+
+### Fixed
+
+- Test Torres, Test pieces, Test Queen
+- Clase pieces
+
 ## [0.41] - 06 / 10 / 2024 - Arreglos x codigo rep
 
 ### Fixed

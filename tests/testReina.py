@@ -1,8 +1,6 @@
 import unittest
 from chess.queen import Queen
 from chess.board import Board
-from chess.pawn import Pawn
-from chess.exceptions import *
 from unittest.mock import MagicMock
 
 
@@ -62,20 +60,6 @@ class TestQueenOrthogonalMoves(unittest.TestCase):
 
         valid_moves = queen._calculate_moves_in_directions(4, 4, [(1, 0)], restrict_to_single_step=True)
         self.assertEqual(valid_moves, [(5, 4)]) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
