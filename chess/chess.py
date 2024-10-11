@@ -15,54 +15,31 @@ class Chess:
     def is_playing(self):        #identifica si el juego esta en curso
         return True
     
+# Realizar movimientos en el tablero
 
-
-
-    def move(self, from_row, from_col, to_row, to_col):
-        self.validate_move(from_row, from_col, to_row, to_col)
-        self.__board__.move(from_row, from_col, to_row, to_col)
+    def move (
+        self,
+        from_row,
+        from_col,
+        to_row,
+        to_col,
+    ):
         
-        if self.check_winner():
-            print(f"El ganador es... : {self.__turn__}")
-            return self.finish()
-        
-        self.change_turn()
-
-    def validate_move(self, from_row, from_col, to_row, to_col):
-        """Valida los parámetros del movimiento."""
-        self.validate_coordinates(from_row, from_col, to_row, to_col)
-        self.validate_piece(from_row, from_col)
-        self.validate_turn(from_row, from_col)
-        self.validate_move_validity(from_row, from_col, to_row, to_col)
-
-    def validate_coordinates(self, from_row, from_col, to_row, to_col):
-        """Valida que las coordenadas estén dentro de los límites."""
-        if not (0 <= to_row < 8 and 0 <= to_col < 8):
-            raise DestinationInvalidMove()
-
-    def validate_piece(self, from_row, from_col):
-        """Valida que haya una pieza en la posición inicial."""
+#validate coords
         piece = self.__board__.get_piece(from_row, from_col)
         if not piece:
             raise EmptyPosition()
-
-    def validate_turn(self, from_row, from_col):
-        """Valida que sea el turno correcto para mover la pieza."""
-        piece = self.__board__.get_piece(from_row, from_col)
-        if piece.get_color() != self.__turn__:
+        if not (0<=to_row<8 and 0<=to_col<8):
+            raise DestinationInvalidMove()
+        if not piece.get_color() == self.__turn__: 
             raise InvalidTurn()
-
-    def validate_move_validity(self, from_row, from_col, to_row, to_col):
-        """Valida que el movimiento de la pieza sea válido."""
-        piece = self.__board__.get_piece(from_row, from_col)
-        if not (piece.valid_move_1(from_row, from_col, to_row, to_col) or piece.valid_move_2(from_row, from_col, to_row, to_col)):
+        if not piece.valid_move_1(from_row, from_col, to_row, to_col) and not piece.valid_move_2(from_row, from_col, to_row, to_col):
             raise InvalidMove()
-
-    def check_winner(self):
-        """Verifica si hay un ganador."""
-        return self.ganador()
-
-
+        self.__board__.move(from_row, from_col, to_row, to_col)
+        if self.ganador():
+          print(f"El ganador es... : {self.turn}")
+          return self.finish()
+        self.change_turn()
 
 # Usuario elige terminan o no la partida (ofrece empate)
 

@@ -1,5 +1,4 @@
-"""
-import unittest
+"""import unittest
 from chess.queen import Queen
 from chess.board import Board
 from unittest.mock import MagicMock
@@ -64,5 +63,4 @@ class TestQueenOrthogonalMoves(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
-"""
+    unittest.main()"""

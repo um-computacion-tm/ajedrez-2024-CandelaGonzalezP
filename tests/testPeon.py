@@ -1,5 +1,4 @@
-"""
-import unittest
+"""import unittest
 from chess.pawn import Pawn
 from chess.board import Board
 
@@ -64,5 +63,4 @@ class TestPawn(unittest.TestCase):
         self.assertFalse(result)
 
 if __name__ == '__main__':
-    unittest.main()
-"""
+    unittest.main()"""

@@ -1,4 +1,3 @@
-"""
 import unittest
 from chess.chess import Chess
 from chess.exceptions import *
@@ -67,6 +66,17 @@ class TestChess(unittest.TestCase):
             self.chess.move(1, 0, 8, 0)  # Movimiento inválido hacia fuera del tablero
         self.assertEqual(str(context.exception), "Movimiento inválido hacia la posición de destino")  # Verifica el mensaje de la excepción
 
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     unittest.main()
-"""
+

@@ -1,4 +1,4 @@
-from chess.pieces import Piece      #TORRE CLASE
+from chess.pieces import Piece       #TORRE CLASE
 
 class Rook(Piece):
 
