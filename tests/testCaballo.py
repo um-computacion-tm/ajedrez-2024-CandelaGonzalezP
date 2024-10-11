@@ -1,5 +1,4 @@
-"""
-import unittest
+"""import unittest
 from chess.knight import Knight
 from chess.board import Board
 

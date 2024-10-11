@@ -9,7 +9,6 @@ class Piece:                       #HERENCIA PIEZAS
        """Devuelve un símbolo que representa la pieza. Este método se sobrescribirá en las subclases."""
        raise NotImplementedError   
 
-   @property
    def get_color(self):
       return self.__color__
 

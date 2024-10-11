@@ -1,4 +1,3 @@
-"""
 import unittest
 from unittest.mock import patch, MagicMock
 from chess.chess import Chess 
@@ -137,4 +136,3 @@ if __name__ == '__main__':
     unittest.main()
 
 #patch --> sobreescribe el comportamiento de algo (cuando se agrega  un patch, el input no se ejecuta, directamentemente devuelve esos valores)
-"""
