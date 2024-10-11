@@ -4,7 +4,7 @@ from chess.bishop import Bishop
 from chess.queen import Queen
 from chess.king import King
 from chess.pawn import Pawn
-from chess.exceptions import OutOfBoard
+from chess.exceptions import *
 
 class Board:                                       #se crea un tablero vacío de 8x8 y coloca piezas en sus posiciones iniciales, con piezas negras en la primera fila y piezas blancas en la última fila
     def __init__(self, for_test = False):
@@ -42,7 +42,6 @@ class Board:                                       #se crea un tablero vacío de
                 self.__positions__[6][col]= Pawn("WHITE", self) #peones blancos
 
 
-
     
     def __str__(self):                         #convierte el tablero en una cadena de texto que muestra las piezas en sus posiciones, dejando espacios en blanco donde no hay piezas, para que puedas ver el tablero en la consola.
         board_str = ""
@@ -57,10 +56,8 @@ class Board:                                       #se crea un tablero vacío de
     
     
     def get_piece(self, row, col):
-        if not (
-            0 <= row < 8 or 0 <= col < 8
-        ):
-            raise OutOfBoard()
+        if not (0 <= row < 8 and 0 <= col < 8):
+         raise OriginInvalidMove()
         return self.__positions__[row][col]
     
 
