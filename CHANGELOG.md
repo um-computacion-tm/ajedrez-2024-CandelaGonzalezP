@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.42] - 10 / 10 / 2024 - Arreglos clase board
+
+### Fixed
+
+- Board class
+- Test board
+
 ## [0.42] - 09 / 10 / 2024 - Arreglos x codigo rep
 
 ### Fixed
