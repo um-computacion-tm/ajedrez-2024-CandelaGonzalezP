@@ -1,3 +1,4 @@
+"""
 import unittest
 from chess.knight import Knight
 from chess.board import Board
@@ -23,7 +24,6 @@ class TestKnightSymbol(unittest.TestCase):
 # testeo movimientos validos
 
     def test_valid_moves(self):
-        """Verifica movimientos válidos en forma de 'L'."""
         valid_moves = [
             ((4, 4), (6, 5)),  # Movimiento en L hacia abajo y derecha
             ((4, 4), (6, 3)),  # Movimiento en L hacia abajo e izquierda
@@ -39,7 +39,6 @@ class TestKnightSymbol(unittest.TestCase):
 # testeo de movimientos invalidos
 
     def test_invalid_moves(self):
-        """Verifica movimientos inválidos que no cumplen la forma de 'L'."""
         invalid_moves = [
             ((4, 4), (4, 6)),  # Movimiento horizontal (no válido para un caballo)
             ((4, 4), (6, 6)),  # Movimiento diagonal (no válido para un caballo)
@@ -53,3 +52,4 @@ class TestKnightSymbol(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+"""

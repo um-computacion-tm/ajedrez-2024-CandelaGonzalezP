@@ -9,30 +9,28 @@ class Piece:                       #HERENCIA PIEZAS
        """Devuelve un símbolo que representa la pieza. Este método se sobrescribirá en las subclases."""
        raise NotImplementedError   
 
+   @property
    def get_color(self):
       return self.__color__
 
 
-   def calculate_possible_moves(self, current_row, current_col, movement_directions, restrict_to_single_step=False):
-       valid_moves = []
-        
-       for delta_row, delta_col in movement_directions:
-           next_row, next_col = current_row + delta_row, current_col + delta_col
+   def calculate_possible_moves(self, row, col, directions, single_step=False):
+       possibles = []
+       for row_dir, col_dir in directions:
+           next_row, next_col = row + row_dir, col + col_dir
            while 0 <= next_row < 8 and 0 <= next_col < 8:
-                target_piece = self.__board__.get_piece(next_row, next_col)
-                
-                if target_piece is not None:
-                    if target_piece.get_color() != self.get_color():
-                        valid_moves.append((next_row, next_col))  # Puede capturar
-                    break  # Detenerse si hay una pieza en la posición
-                
-                valid_moves.append((next_row, next_col))  # Agregar movimiento válido
+               other_piece = self.__board__.get_piece(next_row, next_col)
+               if other_piece is not None:
+                   if other_piece.get_color != self.get_color:
+                    possibles.append((next_row, next_col))  # Puede capturar
+                   break  # Detener si hay una pieza
+               possibles.append((next_row, next_col))
 
-                # Si se restringe a un solo paso, salir del bucle
-                if restrict_to_single_step:
+                # Si `single_step` es True, solo avanzamos una casilla
+               if single_step:
                     break
 
                 # Continuar en la misma dirección
-                next_row += delta_row
-                next_col += delta_col
-                return valid_moves
+               next_row += row_dir
+               next_col += col_dir
+       return possibles

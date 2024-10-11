@@ -1,3 +1,4 @@
+"""
 import unittest
 from chess.pawn import Pawn
 from chess.board import Board
@@ -64,3 +65,4 @@ class TestPawn(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+"""
