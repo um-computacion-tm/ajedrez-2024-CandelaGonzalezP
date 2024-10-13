@@ -7,7 +7,7 @@ class Pawn(Piece):
 
 # Movimientos hacia adelante y captura
 
-    def is_valid_piece_move(self, from_row, from_col, to_row, to_col):
+    def pawns_valid_positions(self, from_row, from_col, to_row, to_col):
         forward_moves = [(1, 0)] if self.__color__ == "BLACK" else [(-1, 0)]       # Direcciones para avanzar del peón
         if (self.__color__ == "BLACK" and from_row == 1) or (self.__color__ == "WHITE" and from_row == 6):        # Si el peón está en su posición inicial, puede avanzar dos casillas
             forward_moves.append((2, 0) if self.__color__ == "BLACK" else (-2, 0))
@@ -34,3 +34,5 @@ class Pawn(Piece):
                     valid_positions.append((next_row, next_col))  # Solo se puede capturar si hay una pieza enemiga
 
         return (to_row, to_col) in valid_positions
+    
+#no uso herencia
