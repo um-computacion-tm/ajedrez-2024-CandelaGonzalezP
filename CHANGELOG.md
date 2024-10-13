@@ -1,6 +1,12 @@
 # CHANGELOG
 
-## [0.42] - 10 / 10 / 2024 - Arreglos x codeclimate
+## [0.42] - 13 / 10 / 2024 - Tests
+
+### Changed
+
+- Test alfil, torre, reina, rey, pieces, caballo
+
+## [0.42] - 11 / 10 / 2024 - Arreglos x codeclimate
 
 ### Fixed
 
