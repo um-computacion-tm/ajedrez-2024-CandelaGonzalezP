@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [0.42] - 10 / 10 / 2024 - Arreglos x codeclimate
+
+### Fixed
+
+- Pieces
+
+### Changed
+
+- Tests
+
 ## [0.42] - 10 / 10 / 2024 - Arreglos clase board
 
 ### Fixed

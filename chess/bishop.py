@@ -7,7 +7,9 @@ class Bishop(Piece):
     
 # Movimientos en diagonal
 
-    def is_valid_piece_move(self, from_row, from_col, to_row, to_col):
+    def bishop_valid_position(self, from_row, from_col, to_row, to_col):
         directions = [(1, 1), (-1, -1), (1, -1), (-1, 1)]
-        possible_positions = self.calculate_possible_moves(from_row, from_col, directions)
+        possible_positions = self.find_valid_moves(from_row, from_col, directions)
         return (to_row, to_col) in possible_positions
+    
+#uso de herencia
