@@ -1,7 +1,7 @@
 from chess.chess import Chess
 from chess.exceptions import *
 
-def main():                                    #inicia un juego de ajedrez y ejecuta un bucle que sigue corriendo mientras el juego esté en curso 
+def main():                                    
     chess = Chess()
     while chess.is_playing():
         play(chess)

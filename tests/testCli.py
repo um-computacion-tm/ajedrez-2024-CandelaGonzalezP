@@ -4,6 +4,7 @@ from chess.chess import Chess
 from chess.cli import play, main 
 from chess.exceptions import *
 
+
 class TestCli(unittest.TestCase):
     @patch(  
         'builtins.input',
@@ -130,7 +131,6 @@ class TestCli(unittest.TestCase):
         self.assertEqual(mock_input.call_count,3)
         self.assertEqual(mock_print.call_count,4)
         self.assertEqual(mock_chess_move.call_count,0)
-
 
 if __name__ == '__main__':
     unittest.main()
