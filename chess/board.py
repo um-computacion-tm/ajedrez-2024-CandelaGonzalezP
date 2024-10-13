@@ -16,46 +16,21 @@ class Board:                                       #se crea un tablero vacío de
     def initialize_board(self):
         """Crea una matriz 8x8 inicializada con None."""
         return [[None for _ in range(8)] for _ in range(8)]
-
+    
     def setup_pieces(self):
         """Configura las piezas en el tablero."""
-        self.setup_rooks()
-        self.setup_bishops()
-        self.setup_kings()
-        self.setup_queens()
-        self.setup_knights()
-        self.setup_pawns()
+        self.setup_piece(Rook, ['Black', 'White'], [(0, 0), (0, 7), (7, 0), (7, 7)])  # Torres
+        self.setup_piece(Bishop, ['Black', 'White'], [(0, 2), (0, 5), (7, 2), (7, 5)])  # Alfiles
+        self.setup_piece(King, ['Black', 'White'], [(0, 4), (7, 4)])  # Reyes
+        self.setup_piece(Queen, ['Black', 'White'], [(0, 3), (7, 3)])  # Reinas
+        self.setup_piece(Knight, ['Black', 'White'], [(0, 1), (0, 6), (7, 1), (7, 6)])  # Caballos
+        self.setup_pawns()  # Peones
 
-    def setup_rooks(self):
-        """Coloca las torres en el tablero."""
-        self.__positions__[0][0] = Rook('Black', self)  # Torre negra
-        self.__positions__[7][7] = Rook('White', self)  # Torre blanca
-        self.__positions__[0][7] = Rook('Black', self)  # Torre negra 2
-        self.__positions__[7][0] = Rook('White', self)  # Torre blanca 2
-
-    def setup_bishops(self):
-        """Coloca los alfiles en el tablero."""
-        self.__positions__[0][2] = Bishop('Black', self)  # Alfil negro
-        self.__positions__[0][5] = Bishop('Black', self)  # Alfil negro 2
-        self.__positions__[7][2] = Bishop('White', self)  # Alfil blanco
-        self.__positions__[7][5] = Bishop('White', self)  # Alfil blanco 2
-
-    def setup_kings(self):
-        """Coloca los reyes en el tablero."""
-        self.__positions__[0][4] = King('Black', self)  # Rey negro
-        self.__positions__[7][4] = King('White', self)  # Rey blanco
-
-    def setup_queens(self):
-        """Coloca las reinas en el tablero."""
-        self.__positions__[0][3] = Queen('Black', self)  # Reina negra
-        self.__positions__[7][3] = Queen('White', self)  # Reina blanca
-
-    def setup_knights(self):
-        """Coloca los caballos en el tablero."""
-        self.__positions__[0][1] = Knight('Black', self)  # Caballo negro
-        self.__positions__[0][6] = Knight('Black', self)  # Caballo negro 2
-        self.__positions__[7][1] = Knight('White', self)  # Caballo blanco
-        self.__positions__[7][6] = Knight('White', self)  # Caballo blanco 2
+    def setup_piece(self, piece_class, colors, positions):
+        """Coloca piezas en el tablero."""
+        for i, position in enumerate(positions):
+            color = colors[i // 2]  # Alterna entre 'Black' y 'White'
+            self.__positions__[position[0]][position[1]] = piece_class(color, self)
 
     def setup_pawns(self):
         """Coloca los peones en el tablero."""
