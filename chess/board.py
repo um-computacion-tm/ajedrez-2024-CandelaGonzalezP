@@ -7,7 +7,66 @@ from chess.pawn import Pawn
 from chess.exceptions import *
 
 class Board:                                       #se crea un tablero vacío de 8x8 y coloca piezas en sus posiciones iniciales, con piezas negras en la primera fila y piezas blancas en la última fila
-    def __init__(self, for_test = False):
+    
+    def __init__(self, for_test=False):
+        self.__positions__ = self.initialize_board()
+        if not for_test:
+            self.setup_pieces()
+
+    def initialize_board(self):
+        """Crea una matriz 8x8 inicializada con None."""
+        return [[None for _ in range(8)] for _ in range(8)]
+
+    def setup_pieces(self):
+        """Configura las piezas en el tablero."""
+        self.setup_rooks()
+        self.setup_bishops()
+        self.setup_kings()
+        self.setup_queens()
+        self.setup_knights()
+        self.setup_pawns()
+
+    def setup_rooks(self):
+        """Coloca las torres en el tablero."""
+        self.__positions__[0][0] = Rook('Black', self)  # Torre negra
+        self.__positions__[7][7] = Rook('White', self)  # Torre blanca
+        self.__positions__[0][7] = Rook('Black', self)  # Torre negra 2
+        self.__positions__[7][0] = Rook('White', self)  # Torre blanca 2
+
+    def setup_bishops(self):
+        """Coloca los alfiles en el tablero."""
+        self.__positions__[0][2] = Bishop('Black', self)  # Alfil negro
+        self.__positions__[0][5] = Bishop('Black', self)  # Alfil negro 2
+        self.__positions__[7][2] = Bishop('White', self)  # Alfil blanco
+        self.__positions__[7][5] = Bishop('White', self)  # Alfil blanco 2
+
+    def setup_kings(self):
+        """Coloca los reyes en el tablero."""
+        self.__positions__[0][4] = King('Black', self)  # Rey negro
+        self.__positions__[7][4] = King('White', self)  # Rey blanco
+
+    def setup_queens(self):
+        """Coloca las reinas en el tablero."""
+        self.__positions__[0][3] = Queen('Black', self)  # Reina negra
+        self.__positions__[7][3] = Queen('White', self)  # Reina blanca
+
+    def setup_knights(self):
+        """Coloca los caballos en el tablero."""
+        self.__positions__[0][1] = Knight('Black', self)  # Caballo negro
+        self.__positions__[0][6] = Knight('Black', self)  # Caballo negro 2
+        self.__positions__[7][1] = Knight('White', self)  # Caballo blanco
+        self.__positions__[7][6] = Knight('White', self)  # Caballo blanco 2
+
+    def setup_pawns(self):
+        """Coloca los peones en el tablero."""
+        for col in range(8):
+            self.__positions__[1][col] = Pawn("BLACK", self)  # Peones negros
+            self.__positions__[6][col] = Pawn("WHITE", self)  # Peones blancos
+
+
+
+    
+    """def __init__(self, for_test = False):
         self.__positions__ = []                      #matriz (lista de listas)
         for _ in range(8):                           #por cada fila creo una columna con ocho lugares
             col = []
@@ -39,7 +98,7 @@ class Board:                                       #se crea un tablero vacío de
 
             for col in range(8):
                 self.__positions__[1][col]= Pawn("BLACK", self) #peones negros
-                self.__positions__[6][col]= Pawn("WHITE", self) #peones blancos
+                self.__positions__[6][col]= Pawn("WHITE", self) #peones blancos"""
 
 
 
@@ -71,11 +130,31 @@ class Board:                                       #se crea un tablero vacío de
         self.set_piece(to_row, to_col, origin)
         self.set_piece(from_row, from_col, None)
 
-
     def count_pieces(self, color):
+        """Cuenta el número de piezas de un color específico en el tablero."""
+        count = 0
+        for row in self.__positions__:
+            count += self.count_color_in_row(row, color)
+        return count
+
+    def count_color_in_row(self, row, color):
+        """Cuenta el número de piezas del color específico en una fila."""
+        count = 0
+        for piece in row:
+            if self.is_piece_color(piece, color):
+                count += 1
+        return count
+
+    def is_piece_color(self, piece, color):
+        """Verifica si la pieza no es None y si su color coincide con el color especificado."""
+        return piece is not None and piece.get_color() == color
+
+
+
+    """def count_pieces(self, color):
         count = 0
         for row in self.__positions__:
             for piece in row:
                 if piece is not None and piece.get_color() == color:
                     count += 1
-        return count
+        return count"""

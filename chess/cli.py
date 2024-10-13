@@ -6,6 +6,54 @@ def main():
     while chess.is_playing():
         play(chess)
 
+
+def play(chess):
+    try:
+        display_board(chess)
+        from_row, from_col = get_input_coordinates("From", chess)
+        to_row, to_col = get_input_coordinates("To", chess)
+
+        chess.move(from_row, from_col, to_row, to_col)
+
+    except (EmptyPosition, OutOfBoard, DestinationInvalidMove, InvalidTurn, OriginInvalidMove, InvalidMove) as e:
+        handle_move_error(e)
+    except Exception as e:
+        print("Error inesperado")
+
+
+def display_board(chess):
+    print(chess.show_board())
+    print("turn: ", chess.turn)
+
+
+def get_input_coordinates(prompt, chess):
+    row = input(f"{prompt} row ")
+    if row.lower() == "stop":
+        chess.tie()
+        return None, None  # Retorna valores nulos para indicar que se detuvo el juego
+    
+    col = input(f"{prompt} col ")
+    if col.lower() == "stop":
+        chess.tie()
+        return None, None  # Retorna valores nulos para indicar que se detuvo el juego
+
+    return int(row), int(col)
+
+
+def handle_move_error(exception):
+    error_messages = {
+        EmptyPosition: "No hay ninguna pieza en la posición de origen",
+        OutOfBoard: "Movimiento fuera de tablero",
+        DestinationInvalidMove: "Movimiento destino inválido",
+        InvalidTurn: "No es tu turno",
+        OriginInvalidMove: "Sin piezas en posición origen",
+        InvalidMove: "Movimiento inválido"
+    }
+    print(error_messages[type(exception)])
+
+
+
+"""
 def play(chess):
     try:
         print(chess.show_board())
@@ -48,4 +96,4 @@ def play(chess):
         print("Movimiento inválido")
     except Exception as e:
         print("Error inesperado")  
-
+"""
