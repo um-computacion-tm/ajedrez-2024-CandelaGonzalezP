@@ -39,46 +39,19 @@ class Board:                                       #se crea un tablero vacío de
             self.__positions__[6][col] = Pawn("WHITE", self)  # Peones blancos
 
 
+    def __str__(self):  # Convierte el tablero en una cadena de texto que muestra las piezas en sus posiciones.
+        return self.build_board_string()
 
-    
-    """def __init__(self, for_test = False):
-        self.__positions__ = []                      #matriz (lista de listas)
-        for _ in range(8):                           #por cada fila creo una columna con ocho lugares
-            col = []
-            for _ in range(8):
-                col.append(None)
-            self.__positions__.append(col)
-        if not for_test:                          #indica si el tablero se está inicializando para una prueba (test unitario) o para el juego normal
-            
-            self.__positions__[0] [0] = Rook('Black', self) #torres negra
-            self.__positions__[7] [7] = Rook('White', self) #torre blanca
-            self.__positions__[0] [7] = Rook('Black', self) #torres negra2
-            self.__positions__[7] [0] = Rook('White',self) #torre blanca2
-            
-            self.__positions__[0] [2] = Bishop('Black', self) #alfil negro
-            self.__positions__[0] [5] = Bishop('Black', self) #alfil negro2
-            self.__positions__[7] [2] = Bishop('White', self) #alfil blanco
-            self.__positions__[7] [5] = Bishop('White', self) #alfil blanco2
+    def build_board_string(self):
+        board_str = ""
+        for row in self.__positions__:
+            board_str += "".join(self.get_cell_string(cell) for cell in row) + "\n"
+        return board_str
 
-            self.__positions__[0][4] = King('Black', self) #rey negro
-            self.__positions__[7][4] = King('White', self) #rey blanco
-
-            self.__positions__[0][3] =  Queen('Black', self) #reina negro
-            self.__positions__[7][3] = Queen('White', self) #reina blanca
-
-            self.__positions__[0][1] = Knight('Black', self) #caballo negro
-            self.__positions__[0][6] = Knight ('Black', self) #caballo negro2
-            self.__positions__[7][1] = Knight ('White', self) #caballo blanco
-            self.__positions__[7][6] = Knight ('White', self) #caballo blanco2
-
-            for col in range(8):
-                self.__positions__[1][col]= Pawn("BLACK", self) #peones negros
-                self.__positions__[6][col]= Pawn("WHITE", self) #peones blancos"""
-
-
-
-    
-    def __str__(self):                         #convierte el tablero en una cadena de texto que muestra las piezas en sus posiciones, dejando espacios en blanco donde no hay piezas, para que puedas ver el tablero en la consola.
+    def get_cell_string(self, cell):
+        return str(cell) if cell is not None else " "
+        
+    """def __str__(self):                         #convierte el tablero en una cadena de texto que muestra las piezas en sus posiciones, dejando espacios en blanco donde no hay piezas, para que puedas ver el tablero en la consola.
         board_str = ""
         for row in self.__positions__:
             for cell in row:
@@ -87,8 +60,7 @@ class Board:                                       #se crea un tablero vacío de
                 else:
                     board_str += " "
             board_str += "\n"
-        return board_str
-    
+        return board_str"""
     
     def get_piece(self, row, col):
         if not (0 <= row < 8 and 0 <= col < 8):
@@ -123,13 +95,3 @@ class Board:                                       #se crea un tablero vacío de
     def is_piece_color(self, piece, color):
         """Verifica si la pieza no es None y si su color coincide con el color especificado."""
         return piece is not None and piece.get_color() == color
-
-
-
-    """def count_pieces(self, color):
-        count = 0
-        for row in self.__positions__:
-            for piece in row:
-                if piece is not None and piece.get_color() == color:
-                    count += 1
-        return count"""
