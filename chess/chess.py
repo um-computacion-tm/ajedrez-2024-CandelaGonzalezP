@@ -94,30 +94,3 @@ class Chess:
 
     def finish(self):
         return sys.exit()      #sys: maneja la entrada/salida estándar
-    
-
-
-"""
-    def move (
-        self,
-        from_row,
-        from_col,
-        to_row,
-        to_col,
-    ):
-        
-#validate coords
-        piece = self.__board__.get_piece(from_row, from_col)
-        if not piece:
-            raise EmptyPosition()
-        if not (0<=to_row<8 and 0<=to_col<8):
-            raise DestinationInvalidMove()
-        if not piece.get_color() == self.__turn__: 
-            raise InvalidTurn()
-        if not piece.valid_move_1(from_row, from_col, to_row, to_col) and not piece.valid_move_2(from_row, from_col, to_row, to_col):
-            raise InvalidMove()
-        self.__board__.move(from_row, from_col, to_row, to_col)
-        if self.ganador():
-          print(f"El ganador es... : {self.turn}")
-          return self.finish()
-        self.change_turn()"""

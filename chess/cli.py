@@ -52,7 +52,6 @@ def handle_move_error(exception):
     print(error_messages[type(exception)])
 
 
-
 """
 def play(chess):
     try:
