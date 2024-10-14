@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [0.47] - 15 / 10 / 2024 - Documentacion
+
+### Added
+
+- documentacion
+- atributos correcciones
+
 ## [0.46] - 14 / 10 / 2024 - Arreglos x errores de complejidad cognitiva 
 
 ### Fixed
