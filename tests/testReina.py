@@ -1,4 +1,4 @@
-"""import unittest
+import unittest
 from chess.queen import Queen
 from chess.board import Board
 from unittest.mock import MagicMock
@@ -17,54 +17,31 @@ class TestQueenValidPositions(unittest.TestCase):
         queen = Queen("BLACK", board)
         self.assertEqual(queen.symbol(), 'q')
 
-# Inicializar
 
     def setUp(self):
-        self.board = MagicMock()
-        self.white_queen = Queen("WHITE", self.board)
+        self.board = MagicMock()  # Simulamos el tablero
+        self.white_queen = Queen("WHITE", self.board)  # Instancia de la reina blanca
 
-# Movimientos válidos (diagonal, vertical y horizontal)
+    def test_valid_move_vertical(self):
+        move = {'from_row': 3, 'from_col': 3, 'to_row': 5, 'to_col': 3}
+        self.white_queen.find_valid_moves = MagicMock(return_value=[(5, 3), (4, 3)])
+        self.assertTrue(self.white_queen.queen_valid_positions(move))  # Debe ser verdadero
 
-    def test_valid_moves(self):
-        self.board.get_piece.side_effect = lambda row, col: None
-        
-        # Verificamos varios movimientos válidos en diferentes direcciones
-        self.assertTrue(self.white_queen.queen_valid_positions(3, 3, 4, 3))  # Abajo
-        self.assertTrue(self.white_queen.queen_valid_positions(3, 3, 2, 3))  # Arriba
-        self.assertTrue(self.white_queen.queen_valid_positions(3, 3, 3, 4))  # Derecha
-        self.assertTrue(self.white_queen.queen_valid_positions(3, 3, 3, 2))  # Izquierda
-        self.assertTrue(self.white_queen.queen_valid_positions(3, 3, 4, 4))  # Diagonal abajo derecha
-        self.assertTrue(self.white_queen.queen_valid_positions(3, 3, 2, 2))  # Diagonal arriba izquierda
+    def test_valid_move_horizontal(self):
+        move = {'from_row': 3, 'from_col': 3, 'to_row': 3, 'to_col': 5}
+        self.white_queen.find_valid_moves = MagicMock(return_value=[(3, 5), (3, 4)])
+        self.assertTrue(self.white_queen.queen_valid_positions(move))  # Debe ser verdadero
 
-# Captura de piezas enemigas
-
-    def test_capture_piece(self):
-        mock_black_piece = MagicMock()
-        mock_black_piece.get_color.return_value = "BLACK"
-        self.board.get_piece.side_effect = lambda row, col: mock_black_piece if (row, col) == (5, 5) else None
-        
-        self.assertTrue(self.white_queen.queen_valid_positions(4, 4, 5, 5))  # Captura diagonal
-
-# Movimiento inválido (bloqueado por una pieza del mismo color)
+    def test_valid_move_diagonal(self):
+        move = {'from_row': 3, 'from_col': 3, 'to_row': 5, 'to_col': 5}
+        self.white_queen.find_valid_moves = MagicMock(return_value=[(5, 5), (4, 4)])
+        self.assertTrue(self.white_queen.queen_valid_positions(move))  # Debe ser verdadero
 
     def test_invalid_move(self):
-        mock_white_piece = MagicMock()
-        mock_white_piece.get_color.return_value = "WHITE"
-        self.board.get_piece.side_effect = lambda row, col: mock_white_piece if (row, col) == (5, 5) else None
-        
-        self.assertFalse(self.white_queen.queen_valid_positions(4, 4, 5, 5))  # No puede capturar a una pieza del mismo color
+        move = {'from_row': 3, 'from_col': 3, 'to_row': 5, 'to_col': 4}
+        self.white_queen.find_valid_moves = MagicMock(return_value=[(5, 5), (4, 4)])
+        self.assertFalse(self.white_queen.queen_valid_positions(move))  # Debe ser falso
 
-# Restricción de movimiento a un solo paso
-
-    def test_restrict_to_single_step(self):
-        self.board.get_piece.side_effect = lambda row, col: None
-
-    # Probar con una dirección y limitar el movimiento a un paso
-
-        self.assertTrue(self.white_queen.queen_valid_positions(4, 4, 5, 4, directions=[(1, 0)]))  # Solo un paso adelante
-        self.assertTrue(self.white_queen.queen_valid_positions(4, 4, 6, 4, directions=[(1, 0)]))  # Más de un paso no es válido
 
 if __name__ == "__main__":
     unittest.main()
-
-"""
