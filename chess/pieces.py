@@ -14,13 +14,26 @@ class Piece:                       #HERENCIA PIEZAS
 
 
    def find_valid_moves(self, row, col, directions, single_step=False):
+        valid_moves = []
+        position = {'row': row, 'col': col}  # Agrupar la posición en un diccionario
+        for delta_row, delta_col in directions:
+            valid_moves.extend(self.explore_direction(position, delta_row, delta_col, single_step))
+        
+        return valid_moves
+
+
+   """def find_valid_moves(self, row, col, directions, single_step=False):
     valid_moves = []
     for delta_row, delta_col in directions:
         valid_moves.extend(self.explore_direction(row, col, delta_row, delta_col, single_step))
     
-    return valid_moves
+    return valid_moves"""
 
-   def explore_direction(self, row, col, delta_row, delta_col, single_step):
+
+
+   def explore_direction(self, position, delta_row, delta_col, single_step):
+        """Explora en una dirección dada desde una posición inicial."""
+        row, col = position['row'], position['col']
         current_row, current_col = row + delta_row, col + delta_col
         valid_moves = []
 
@@ -40,6 +53,26 @@ class Piece:                       #HERENCIA PIEZAS
 
         return valid_moves
 
+   """def explore_direction(self, row, col, delta_row, delta_col, single_step):
+        current_row, current_col = row + delta_row, col + delta_col
+        valid_moves = []
+
+        while self.is_within_board(current_row, current_col):
+            target_piece = self.__board__.get_piece(current_row, current_col)
+
+            if target_piece is not None:
+                self.handle_target_piece(target_piece, current_row, current_col, valid_moves)
+                break  # Si hay una pieza, se detiene el avance
+            
+            valid_moves.append((current_row, current_col))  # Movimiento vacío válido
+
+            if single_step:
+                break  # Solo permite un paso si es necesario
+            
+            current_row, current_col = self.update_position(current_row, current_col, delta_row, delta_col)
+
+        return valid_moves"""
+
    def handle_target_piece(self, target_piece, current_row, current_col, valid_moves):
         if target_piece.get_color() != self.get_color():
             valid_moves.append((current_row, current_col))  # Capturar pieza contraria
@@ -47,29 +80,6 @@ class Piece:                       #HERENCIA PIEZAS
    def update_position(self, current_row, current_col, delta_row, delta_col):
         return current_row + delta_row, current_col + delta_col
 
-
-
-   """def explore_direction(self, row, col, delta_row, delta_col, single_step):
-    current_row, current_col = row + delta_row, col + delta_col
-    valid_moves = []
-    while self.is_within_board(current_row, current_col):
-        target_piece = self.__board__.get_piece(current_row, current_col)
-        
-        if target_piece is not None:
-            if target_piece.get_color() != self.get_color():
-                valid_moves.append((current_row, current_col))  # Capturar pieza contraria
-            break  # Si hay una pieza, se detiene el avance
-        
-        valid_moves.append((current_row, current_col))  # Movimiento vacío válido
-        
-        if single_step:
-            break  # Solo permite un paso si es necesario
-            
-        # Continuar explorando en la misma dirección
-        current_row += delta_row
-        current_col += delta_col
-
-    return valid_moves"""
 
    def is_within_board(self, row, col):
       return 0 <= row < 8 and 0 <= col < 8

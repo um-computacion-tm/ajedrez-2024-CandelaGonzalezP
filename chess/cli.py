@@ -36,7 +36,6 @@ def get_input_coordinates(prompt, chess):
     if col.lower() == "stop":
         chess.tie()
         return None, None  # Retorna valores nulos para indicar que se detuvo el juego
-
     return int(row), int(col)
 
 

@@ -1,12 +1,22 @@
 # CHANGELOG
 
-## [0.42] - 13 / 10 / 2024 - Tests
+## [0.46] - 14 / 10 / 2024 - Arreglos x errores de complejidad cognitiva 
+
+### Fixed
+
+- chess
+- board
+- pawn
+- rook
+- coverage tests
+
+## [0.45] - 13 / 10 / 2024 - Tests
 
 ### Changed
 
 - Test alfil, torre, reina, rey, pieces, caballo
 
-## [0.42] - 11 / 10 / 2024 - Arreglos x codeclimate
+## [0.44] - 11 / 10 / 2024 - Arreglos x codeclimate
 
 ### Fixed
 
@@ -16,7 +26,7 @@
 
 - Tests
 
-## [0.42] - 10 / 10 / 2024 - Arreglos clase board
+## [0.43] - 10 / 10 / 2024 - Arreglos clase board
 
 ### Fixed
 
