@@ -43,6 +43,13 @@ class TestPawn(unittest.TestCase):
         result = self.pawn.pawns_valid_positions(6, 4, 5, 5)  
         self.assertTrue(result)
 
+    def test_invalid_capture_out_of_bounds(self):
+        # Posiciones fuera del tablero
+        out_of_bounds_positions = [(-1, 0), (8, 0), (0, -1), (0, 8)]
+        for row, col in out_of_bounds_positions:
+            result = self.pawn.is_valid_capture(row, col)
+            self.assertFalse(result) 
+
     def test_invalid_capture_move_no_piece(self):
         result = self.pawn.pawns_valid_positions(6, 4, 5, 5)  
         self.assertFalse(result)
@@ -54,6 +61,7 @@ class TestPawn(unittest.TestCase):
     def test_invalid_move_backward(self):
         result = self.pawn.pawns_valid_positions(6, 4, 7, 4)  
         self.assertFalse(result)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -51,16 +51,6 @@ class Board:                                       #se crea un tablero vacío de
     def get_cell_string(self, cell):
         return str(cell) if cell is not None else " "
         
-    """def __str__(self):                         #convierte el tablero en una cadena de texto que muestra las piezas en sus posiciones, dejando espacios en blanco donde no hay piezas, para que puedas ver el tablero en la consola.
-        board_str = ""
-        for row in self.__positions__:
-            for cell in row:
-                if cell is not None:
-                    board_str += str(cell)
-                else:
-                    board_str += " "
-            board_str += "\n"
-        return board_str"""
     
     def get_piece(self, row, col):
         if not (0 <= row < 8 and 0 <= col < 8):

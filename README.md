@@ -1,6 +1,7 @@
 # Ajedrez orientado a objetos -2024
 
-## Candela Gonzalez
+## Alumno: Candela Gonzalez Privitera
+## Legajo: 63007
 
 # Circleci Badge
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/um-computacion-tm/ajedrez-2024-CandelaGonzalezP/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/um-computacion-tm/ajedrez-2024-CandelaGonzalezP/tree/main)
