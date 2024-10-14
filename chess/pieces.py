@@ -1,4 +1,4 @@
-class Piece:                       #HERENCIA PIEZAS 
+class Piece:                                   # HERENCIA PIEZAS 
 
     def __init__(self, color, board):
 
@@ -12,39 +12,10 @@ class Piece:                       #HERENCIA PIEZAS
 
         self.__color__ = color
         self.__board__ = board
-        self.__king_queen_directions__ = [(-1, -1), (-1, 1), (1, -1), (1, 1), 
-                                           (-1, 0), (1, 0), (0, -1), (0, 1)]
-
-    def is_valid_move(self, from_pos, to_pos):
-
-        """
-        Verifica si el movimiento de una pieza es válido.
-
-        Args:
-            from_pos (tuple): Posición inicial de la pieza (fila, columna).
-            to_pos (tuple): Posición final de la que se desea mover (fila, columna).
-
-        Returns:
-            bool: True si el movimiento es válido, False en caso contrario.
-        """
-
-        from_row, from_col = from_pos
-        to_row, to_col = to_pos
-        valid_moves = self.get_valid_moves()
-        for delta_row, delta_col in valid_moves:
-            if (to_row == from_row + delta_row) and (to_col == from_col + delta_col):
-                return True
-        return False
-
-    def get_valid_moves(self):
-
-        """Método que debe ser sobrescrito en las subclases para definir los movimientos válidos."""
-        
-        raise NotImplementedError
-
+        self.__king_queen_directions__ = [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]
 
     def symbol(self):
-       
+
         """
         Devuelve un símbolo que representa la pieza. Este método debe ser sobrescrito en las subclases.
 
@@ -52,10 +23,10 @@ class Piece:                       #HERENCIA PIEZAS
             NotImplementedError: Si no se implementa en la subclase.
         """
 
-        raise NotImplementedError
+        raise NotImplementedError   
 
     def get_color(self):
-      
+
         """
         Retorna el color de la pieza.
 
@@ -65,9 +36,8 @@ class Piece:                       #HERENCIA PIEZAS
 
         return self.__color__
 
-
     def find_valid_moves(self, row, col, directions, single_step=False):
-        
+
         """
         Encuentra movimientos válidos para la pieza en función de las direcciones dadas.
 
@@ -82,15 +52,14 @@ class Piece:                       #HERENCIA PIEZAS
         """
 
         valid_moves = []
-        position = {'row': row, 'col': col}  
+        position = {'row': row, 'col': col}  # Agrupar la posición en un diccionario
         for delta_row, delta_col in directions:
             valid_moves.extend(self.explore_direction(position, delta_row, delta_col, single_step))
         
         return valid_moves
 
-
     def explore_direction(self, position, delta_row, delta_col, single_step):
-        
+
         """
         Explora en una dirección dada desde una posición inicial.
 
@@ -112,15 +81,14 @@ class Piece:                       #HERENCIA PIEZAS
             if target_piece is not None:
                 self.handle_target_piece(target_piece, current_row, current_col, valid_moves)
                 break  # Si hay una pieza, se detiene el avance
-            valid_moves.append((current_row, current_col))  
+            valid_moves.append((current_row, current_col))  # Movimiento vacío válido
             if single_step:
                 break  # Solo permite un paso si es necesario
             current_row, current_col = self.update_position(current_row, current_col, delta_row, delta_col)
         return valid_moves
-        
 
     def handle_target_piece(self, target_piece, current_row, current_col, valid_moves):
-        
+
         """
         Maneja la pieza objetivo en la posición actual.
 
@@ -132,7 +100,7 @@ class Piece:                       #HERENCIA PIEZAS
         """
 
         if target_piece.get_color() != self.get_color():
-            valid_moves.append((current_row, current_col))  
+            valid_moves.append((current_row, current_col))  # Capturar pieza contraria
 
     def update_position(self, current_row, current_col, delta_row, delta_col):
         
@@ -148,12 +116,11 @@ class Piece:                       #HERENCIA PIEZAS
         Returns:
             tuple: Nueva fila y columna después de aplicar el cambio.
         """
-
+        
         return current_row + delta_row, current_col + delta_col
 
-
     def is_within_board(self, row, col):
-      
+        
         """
         Verifica si la posición dada está dentro de los límites del tablero.
 
@@ -164,5 +131,5 @@ class Piece:                       #HERENCIA PIEZAS
         Returns:
             bool: True si la posición está dentro del tablero, False en caso contrario.
         """
-
+        
         return 0 <= row < 8 and 0 <= col < 8
