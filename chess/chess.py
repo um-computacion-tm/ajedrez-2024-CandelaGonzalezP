@@ -59,29 +59,18 @@ class Chess:
 
 
     def validate_move(self, piece, move):
-
-        """Valida que el movimiento de la pieza sea válido.
-
-        Args:
-            piece (Piece): La pieza a mover.
-            move (dict): Un diccionario que contiene las posiciones de origen y destino.
-
-        Raises:
-            EmptyPosition: Si la posición de origen está vacía.
-            DestinationInvalidMove: Si la posición de destino está fuera del tablero.
-            InvalidTurn: Si no es el turno del jugador correspondiente.
-            InvalidMove: Si el movimiento de la pieza no es válido.
-
-        Returns:
-            None: No devuelve nada.
-        """
-
+        """Valida que el movimiento de la pieza sea válido."""
+        
         from_row, from_col, to_row, to_col = move['from_row'], move['from_col'], move['to_row'], move['to_col']
-        self.check_empty_position(piece)
-        self.check_within_board(to_row, to_col)
-        self.check_turn(piece)
+        self.check_empty_position(piece)  # Verificar si hay una pieza en la posición
+        self.check_within_board(to_row, to_col)  # Verificar si el movimiento está dentro del tablero
+
+        # Debug: Imprimir el color de la pieza y el turno actual
+        print(f"Color de la pieza: {piece.get_color() if piece else 'None'}, Turno actual: {self.__turn__}")
+
+        self.check_turn(piece)  # Verificar que sea el turno correcto
         from_position = {'from_row': from_row, 'from_col': from_col}  # Crear un diccionario
-        self.check_valid_move(piece, from_position, to_row, to_col)  # Llamar con el diccionario
+        self.check_valid_move(piece, from_position, to_row, to_col) 
 
 
     def check_empty_position(self, piece):
@@ -120,21 +109,12 @@ class Chess:
             raise DestinationInvalidMove()
 
     def check_turn(self, piece):
-
-        """Verifica que sea el turno correcto del jugador.
-
-        Args:
-            piece (Piece): La pieza a mover.
-
-        Raises:
-            InvalidTurn: Si no es el turno del jugador correspondiente.
-
-        Returns:
-            None: No devuelve nada.
-        """
-
-        if not piece.get_color() == self.__turn__:
-            raise InvalidTurn()
+        """Verifica que sea el turno correcto del jugador."""
+        
+        if piece is None:
+            raise EmptyPosition()  # Asegúrate de que la pieza existe
+        if piece.get_color() != self.__turn__:
+            raise InvalidTurn() 
 
 
     def check_valid_move(self, piece, from_position, to_row, to_col):
@@ -190,21 +170,16 @@ class Chess:
             bool: Devuelve True si el oponente no tiene piezas restantes; de lo contrario, False.
         """
 
-        opponent_color="Black" if self.__turn__=="White" else "White"
+        opponent_color="BLACK" if self.__turn__=="WHITE" else "WHITE"
         return self.__board__.count_pieces(opponent_color)==0
 
 # propertys
 
     @property                 
     def turn(self):
-
-        """Verifica si hay un ganador en el juego.
-
-        Returns:
-            bool: Devuelve True si el oponente no tiene piezas restantes; de lo contrario, False.
-        """
-
         return self.__turn__
+
+
 
     def show_board(self):    
 
@@ -216,18 +191,18 @@ class Chess:
 
         return str(self.__board__)
 
-    def change_turn(self):     
 
-        """Alterna el turno entre "WHITE" y "BLACK".
+    def change_turn(self):     
+        """Alterna el turno entre 'WHITE' y 'BLACK'.
 
         Returns:
             None: No devuelve nada.
         """
-
-        if self.__turn__ == 'white':
-            self.__turn__ = 'black'
+        if self.__turn__ == 'WHITE':
+            self.__turn__ = 'BLACK'
         else:
-            self.__turn__ = 'white'
+            self.__turn__ = 'WHITE'
+
 
     def finish(self):
 
@@ -239,3 +214,6 @@ class Chess:
 
         return sys.exit()      
     
+
+
+# agregado change turn cambiso chats

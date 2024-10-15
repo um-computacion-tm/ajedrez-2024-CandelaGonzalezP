@@ -10,12 +10,12 @@ class TestQueenValidPositions(unittest.TestCase):
     def test_queen_symbol_white(self):
         board = Board()
         queen = Queen("WHITE", board)
-        self.assertEqual(queen.symbol(), 'Q')
+        self.assertEqual(queen.symbol(), '♕')
 
     def test_queen_symbol_black(self):
         board = Board()
         queen = Queen("BLACK", board)
-        self.assertEqual(queen.symbol(), 'q')
+        self.assertEqual(queen.symbol(), '♛')
 
 
     def setUp(self):

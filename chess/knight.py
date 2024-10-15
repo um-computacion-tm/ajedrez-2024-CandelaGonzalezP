@@ -10,15 +10,7 @@ class Knight(Piece):
     """
 
     def symbol(self):
-
-        """
-        Obtiene el símbolo que representa al caballo según su color.
-
-        Returns:
-            str: 'N' si el caballo es blanco, 'n' si es negro.
-        """
-
-        return 'N' if self.get_color() == "WHITE" else 'n'    
+        return '♘' if self.get_color() == 'WHITE' else '♞' 
 
 # Movimientos en L en toda direccion
 

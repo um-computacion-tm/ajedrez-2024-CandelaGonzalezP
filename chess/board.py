@@ -21,8 +21,7 @@ class Board:
         Inicializa un nuevo tablero de ajedrez.
 
         Args:
-            for_test (bool): Indica si el tablero es para pruebas. Si es True, 
-                             no se configuran las piezas automáticamente.
+            for_test (bool): Indica si el tablero es para pruebas. Si es True, no se configuran las piezas automáticamente.
         """
 
         self.__positions__ = self.initialize_board()
@@ -49,11 +48,11 @@ class Board:
         al comienzo del juego.
         """
 
-        self.setup_piece(Rook, ['Black', 'White'], [(0, 0), (0, 7), (7, 0), (7, 7)])  # Torres
-        self.setup_piece(Bishop, ['Black', 'White'], [(0, 2), (0, 5), (7, 2), (7, 5)])  # Alfiles
-        self.setup_piece(King, ['Black', 'White'], [(0, 4), (7, 4)])  # Reyes
-        self.setup_piece(Queen, ['Black', 'White'], [(0, 3), (7, 3)])  # Reinas
-        self.setup_piece(Knight, ['Black', 'White'], [(0, 1), (0, 6), (7, 1), (7, 6)])  # Caballos
+        self.setup_piece(Rook, ['BLACK', 'WHITE'], [(0, 0), (0, 7), (7, 0), (7, 7)])  # Torres
+        self.setup_piece(Bishop, ['BLACK', 'WHITE'], [(0, 2), (0, 5), (7, 2), (7, 5)])  # Alfiles
+        self.setup_piece(King, ['BLACK', 'WHITE'], [(0, 4), (7, 4)])  # Reyes
+        self.setup_piece(Queen, ['BLACK', 'WHITE'], [(0, 3), (7, 3)])  # Reinas
+        self.setup_piece(Knight, ['BLACK', 'WHITE'], [(0, 1), (0, 6), (7, 1), (7, 6)])  # Caballos
         self.setup_pawns()  # Peones
 
     def setup_piece(self, piece_class, colors, positions):
@@ -85,45 +84,48 @@ class Board:
             self.__positions__[6][col] = Pawn("WHITE", self)  # Peones blancos
 
 
-    def __str__(self):  
 
+    def __str__(self):  
         """
         Convierte el tablero en una cadena de texto.
-
         Returns:
             str: Una representación en forma de cadena del tablero y las piezas en sus posiciones.
         """
-
         return self.build_board_string()
+
+
 
     def build_board_string(self):
 
         """
         Construye la representación en cadena del tablero.
-
         Returns:
             str: Una cadena que representa el estado actual del tablero.
         """
 
-        board_str = ""
-        for row in self.__positions__:
-            board_str += "".join(self.get_cell_string(cell) for cell in row) + "\n"
+        board_str = "  0 1 2 3 4 5 6 7\n"  # Índices de columna
+        for i, row in enumerate(self.__positions__):
+            board_str += f"{i} "  # Índice de fila
+            for cell in row:
+                board_str += self.get_cell_string(cell) + " "
+            board_str += "\n"
         return board_str
+
+
 
     def get_cell_string(self, cell):
 
         """
         Obtiene la representación en cadena de una celda.
-
         Args:
             cell: La celda del tablero que puede ser una pieza o None.
-
         Returns:
             str: La representación en cadena de la celda.
         """
 
-        return str(cell) if cell is not None else " "
-        
+        return cell.symbol() if cell is not None else " " 
+
+
 
     def get_piece(self, row, col):
 
@@ -225,4 +227,4 @@ class Board:
             bool: True si la pieza es del color especificado, False en caso contrario.
         """
 
-        return piece is not None and piece.get_color() == color
+        return piece is not None and piece.get_color() == color   

@@ -10,15 +10,8 @@ class Rook(Piece):
     """
 
     def symbol(self):
+        return '♖' if self.get_color() == 'WHITE' else '♜'
 
-        """
-        Obtiene el símbolo que representa a la torre según su color.
-
-        Returns:
-            str: 'R' si la torre es blanca, 'r' si es negra.
-        """
-
-        return 'R' if self.get_color() == "WHITE" else 'r'
 
 # Movimientos ortogonales
 

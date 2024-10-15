@@ -9,12 +9,12 @@ class TestPawn(unittest.TestCase):
     def test_pawn_symbol_white(self):
         board = Board()
         pawn = Pawn("WHITE", board)
-        self.assertEqual(pawn.symbol(), 'P')
+        self.assertEqual(pawn.symbol(), '♙')
 
     def test_pawn_symbol_black(self):
         board = Board()
         pawn = Pawn("BLACK", board)
-        self.assertEqual(pawn.symbol(), 'p')
+        self.assertEqual(pawn.symbol(), '♟')
 
 # Inicializar tablero
 

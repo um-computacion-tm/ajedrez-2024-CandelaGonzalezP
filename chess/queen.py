@@ -10,15 +10,7 @@ class Queen(Piece):
     """
 
     def symbol(self):
-
-        """
-        Obtiene el símbolo que representa a la reina según su color.
-
-        Returns:
-            str: 'Q' si la reina es blanca, 'q' si es negra.
-        """
-
-        return 'Q' if self.get_color() == "WHITE" else 'q'
+        return '♕' if self.get_color() == 'WHITE' else '♛'
 
 # Movimientos en diagonal y ortogonales
 

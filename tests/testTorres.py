@@ -9,12 +9,12 @@ class TestRook(unittest.TestCase):
     def test_rook_symbol_white(self):
         board = Board()
         rook = Rook("WHITE", board)
-        self.assertEqual(rook.symbol(), 'R')
+        self.assertEqual(rook.symbol(), '♖')
 
     def test_rook_symbol_black(self):
         board = Board()
         rook = Rook("BLACK", board)
-        self.assertEqual(rook.symbol(), 'r') 
+        self.assertEqual(rook.symbol(), '♜') 
 
 # Inicializa el tablero
 

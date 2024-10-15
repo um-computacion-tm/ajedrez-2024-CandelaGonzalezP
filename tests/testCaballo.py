@@ -13,12 +13,12 @@ class TestKnight(unittest.TestCase):
     def test_knight_symbol_white(self):
         board = Board()
         knight = Knight("WHITE", board)
-        self.assertEqual(knight.symbol(), 'N')
+        self.assertEqual(knight.symbol(), '♘')
 
     def test_knight_symbol_black(self):
         board = Board()
         knight = Knight("BLACK", board)
-        self.assertEqual(knight.symbol(), 'n')
+        self.assertEqual(knight.symbol(), '♞')
 
 # Testeo movimientos válidos
 

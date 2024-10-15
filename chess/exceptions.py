@@ -6,7 +6,7 @@ class InvalidMove(Exception):
         __message__ (str): Mensaje de error por defecto.
     """
     
-    __message__ = "Movimieto de pieza invalido"
+    __message__ = "Movimiento inválido"
     def __str__(self):
 
         """Devuelve el mensaje de error.
@@ -28,7 +28,7 @@ class InvalidTurn(InvalidMove):
         __message__ (str): Mensaje de error específico para el turno inválido.
     """
 
-    __message__ = "No puedes mover pieza de otro jugador"
+    __message__ = "No es tu turno"
 
 class EmptyPosition(InvalidMove):
 
@@ -41,7 +41,7 @@ class EmptyPosition(InvalidMove):
         __message__ (str): Mensaje de error específico para el turno inválido.
     """
 
-    __message__ = "La posicion esta vacia"
+    __message__ = "No hay ninguna pieza en la posición de origen"
 
 class OutOfBoard(InvalidMove):
 
@@ -54,7 +54,7 @@ class OutOfBoard(InvalidMove):
         __message__ (str): Mensaje de error específico para una posición fuera del tablero.
     """
 
-    __message__ = "La posicion indicada se encuentra fuera del tablero"
+    __message__ = "Movimiento fuera de tablero"
 
 class OriginInvalidMove(InvalidMove):
 
@@ -67,7 +67,7 @@ class OriginInvalidMove(InvalidMove):
         __message__ (str): Mensaje de error específico para un movimiento inválido desde la posición de origen.
     """
 
-    __message__ = "Movimiento inválido desde la posición de origen"
+    __message__ = "Sin piezas en posición origen"
 
 class DestinationInvalidMove(InvalidMove):
 
@@ -80,4 +80,6 @@ class DestinationInvalidMove(InvalidMove):
         __message__ (str): Mensaje de error específico para un movimiento inválido hacia la posición de destino.
     """
 
-    __message__ = "Movimiento inválido hacia la posición de destino"
+    __message__ = "Movimiento destino inválido"
+
+# cambios mensajes

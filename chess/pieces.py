@@ -14,16 +14,7 @@ class Piece:                                   # HERENCIA PIEZAS
         self.__board__ = board
         self.__king_queen_directions__ = [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]
 
-    def symbol(self):
-
-        """
-        Devuelve un símbolo que representa la pieza. Este método debe ser sobrescrito en las subclases.
-
-        Raises:
-            NotImplementedError: Si no se implementa en la subclase.
-        """
-
-        raise NotImplementedError   
+  
 
     def get_color(self):
 
@@ -133,3 +124,6 @@ class Piece:                                   # HERENCIA PIEZAS
         """
         
         return 0 <= row < 8 and 0 <= col < 8
+    
+
+# eliminado de not implemented symbol

@@ -10,15 +10,7 @@ class King(Piece):
     """
 
     def symbol(self):
-
-        """
-        Obtiene el símbolo que representa al rey según su color.
-
-        Returns:
-            str: 'K' si el rey es blanco, 'k' si es negro.
-        """
-
-        return 'K' if self.get_color() == "WHITE" else 'k'
+        return '♔' if self.get_color() == 'WHITE' else '♚'
 
 # Movimientos de a una casilla en todas las direcciones
 

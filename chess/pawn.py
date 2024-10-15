@@ -10,15 +10,7 @@ class Pawn(Piece):
     """
 
     def symbol(self):
-
-        """
-        Obtiene el símbolo que representa al peón según su color.
-
-        Returns:
-            str: 'P' si el peón es blanco, 'p' si es negro.
-        """
-
-        return 'P' if self.get_color() == "WHITE" else 'p'
+        return '♙' if self.get_color() == 'WHITE' else '♟'
 
 # Movimientos de avance y captura
 

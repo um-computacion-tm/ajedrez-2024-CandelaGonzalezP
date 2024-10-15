@@ -1,13 +1,7 @@
 from chess.chess import Chess
 from chess.exceptions import *
 
-def main():    
-
-    """Función principal que inicia el juego de ajedrez.
-
-    Crea una instancia de Chess y gestiona el bucle principal del juego.
-    """
-
+def main():                                    
     chess = Chess()
     while chess.is_playing():
         play(chess)
@@ -43,7 +37,7 @@ def play(chess):
     except (EmptyPosition, OutOfBoard, DestinationInvalidMove, InvalidTurn, OriginInvalidMove, InvalidMove) as e:
         handle_move_error(e)
     except Exception as e:
-        print("Error inesperado")
+        print(f"Error inesperado: {e}") 
 
 
 def display_board(chess):
@@ -105,3 +99,8 @@ def handle_move_error(exception):
         InvalidMove: "Movimiento inválido"
     }
     print(error_messages[type(exception)])
+
+
+
+if __name__ == '__main__':
+    main()

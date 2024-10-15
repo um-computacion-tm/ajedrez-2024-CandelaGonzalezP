@@ -10,15 +10,7 @@ class Bishop(Piece):
     """
 
     def symbol(self):
-
-        """
-        Obtiene el símbolo que representa al alfil según su color.
-
-        Returns:
-            str: 'B' si el alfil es blanco, 'b' si es negro.
-        """
-
-        return 'B' if self.get_color() == "WHITE" else 'b'
+        return '♗' if self.get_color() == 'WHITE' else '♝'
 
 
 # Movimientos en diagonal

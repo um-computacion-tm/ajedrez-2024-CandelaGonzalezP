@@ -9,12 +9,12 @@ class TestBishop(unittest.TestCase):
     def test_bishop_symbol_white(self):
         board = Board()
         bishop = Bishop("WHITE", board)
-        self.assertEqual(bishop.symbol(), 'B')
+        self.assertEqual(bishop.symbol(), '♗')
 
     def test_bishop_symbol_black(self):
         board = Board()
         bishop = Bishop("BLACK", board)
-        self.assertEqual(bishop.symbol(), 'b')
+        self.assertEqual(bishop.symbol(), '♝')
 
 # Inicia tablero
     def setUp(self):

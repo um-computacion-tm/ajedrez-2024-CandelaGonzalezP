@@ -7,12 +7,12 @@ class TestKing(unittest.TestCase):
     def test_king_symbol_white(self):
         board = Board()
         king = King("WHITE", board)
-        self.assertEqual(king.symbol(), 'K')
+        self.assertEqual(king.symbol(), '♔')
 
     def test_king_symbol_black(self):
         board = Board()
         king = King("BLACK", board)
-        self.assertEqual(king.symbol(), 'k')
+        self.assertEqual(king.symbol(), '♚')
 
 # Movimientos válidos
 

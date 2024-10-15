@@ -13,11 +13,6 @@ class TestPieces(unittest.TestCase):
         piece = Piece("BLACK", None)  # Asume que la pieza necesita un color y el tablero
         self.assertEqual(piece.get_color(), "BLACK")
 
-    def test_symbol_not_implemented(self):
-        piece = Piece("WHITE", None)  # Crea una instancia de Piece
-        with self.assertRaises(NotImplementedError):
-            piece.symbol()  # Verifica que se lance NotImplementedError
-
 
     def setUp(self):
         self.board = MagicMock()  # Mockeamos el tablero
