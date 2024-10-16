@@ -25,7 +25,8 @@ class Chess:
         """
 
         return True
-    
+
+
 # Realizar movimientos en el tablero
 
     def move(self, from_row, from_col, to_row, to_col):
@@ -112,7 +113,7 @@ class Chess:
         """Verifica que sea el turno correcto del jugador."""
         
         if piece is None:
-            raise EmptyPosition()  # Asegúrate de que la pieza existe
+            raise EmptyPosition()
         if piece.get_color() != self.__turn__:
             raise InvalidTurn() 
 
@@ -138,40 +139,18 @@ class Chess:
         if not piece.valid_move_1(from_row, from_col, to_row, to_col) and not piece.valid_move_2(from_row, from_col, to_row, to_col):
             raise InvalidMove()
 
-        
-# Usuario elige terminan o no la partida (ofrece empate)
-
-    def offer_draw(self):
-
-        """Pregunta al usuario si desea terminar la partida ofreciendo un empate.
-
-        Returns:
-            None: Si el usuario acepta, termina la partida. Si no, continúa el juego.
-        """
-
-        import sys
-        print("¿Quiere terminar la partida? (si/no)")
-        user_input = input().strip().lower()
-        if user_input == "si":
-            print("Su partida ha sido terminada, gracias por jugar!")
-            return self.finish()
-        else:
-            print("Su partida continúa.")
-            return True
 
 
 # Verifica equipo ganador del ajedrez
 
     def ganador(self):
 
-        """Verifica si hay un ganador en el juego.
-
-        Returns:
-            bool: Devuelve True si el oponente no tiene piezas restantes; de lo contrario, False.
-        """
-
-        opponent_color="BLACK" if self.__turn__=="WHITE" else "WHITE"
-        return self.__board__.count_pieces(opponent_color)==0
+        opponent_color = "BLACK" if self.__turn__ == "WHITE" else "WHITE"
+        if self.__board__.count_pieces(opponent_color) == 0:
+            winner = "WHITE" if opponent_color == "BLACK" else "BLACK"
+            print(f" CONGRATULATION!, {winner} WINS")
+            return True
+        return False
 
 # propertys
 
@@ -192,16 +171,20 @@ class Chess:
         return str(self.__board__)
 
 
-    def change_turn(self):     
-        """Alterna el turno entre 'WHITE' y 'BLACK'.
 
-        Returns:
-            None: No devuelve nada.
-        """
+
+
+
+    def change_turn(self):     
         if self.__turn__ == 'WHITE':
             self.__turn__ = 'BLACK'
         else:
             self.__turn__ = 'WHITE'
+
+
+
+
+
 
 
     def finish(self):

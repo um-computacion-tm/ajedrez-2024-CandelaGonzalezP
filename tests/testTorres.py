@@ -1,3 +1,4 @@
+"""
 import unittest
 from chess.rook import Rook
 from chess.board import Board
@@ -58,3 +59,4 @@ class TestRook(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+"""

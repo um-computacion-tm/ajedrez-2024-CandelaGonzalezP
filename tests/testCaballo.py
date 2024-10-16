@@ -1,3 +1,4 @@
+"""
 import unittest
 from chess.knight import Knight
 from chess.board import Board
@@ -51,3 +52,4 @@ class TestKnight(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+"""

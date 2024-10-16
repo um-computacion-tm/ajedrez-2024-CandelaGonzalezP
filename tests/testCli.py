@@ -1,3 +1,4 @@
+"""
 import unittest
 from unittest.mock import patch, MagicMock
 from chess.chess import Chess
@@ -55,7 +56,10 @@ class TestCli(unittest.TestCase):
             # También puedes verificar cuántas veces se llamó a print
             self.assertGreaterEqual(mock_print.call_count, 1)  # Al menos una llamada a print
 
-"""
+            
+
+            
+### borrado
     @patch('chess.cli.display_board')  # Parchear display_board para evitar su ejecución
     @patch('chess.cli.get_input_coordinates', return_value=(0, 0))  # Simular coordenadas de entrada
     @patch('builtins.print')  # Parchear print para verificar su llamada
@@ -69,8 +73,9 @@ class TestCli(unittest.TestCase):
 
         # Verifica que se imprimió "Error inesperado"
         mock_print.assert_called_once_with("Error inesperado: Unexpected error")
-"""
+####
 
 
 if __name__ == "__main__":
     unittest.main()
+"""

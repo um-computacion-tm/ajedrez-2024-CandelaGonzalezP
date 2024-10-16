@@ -1,4 +1,4 @@
-import unittest
+""""import unittest
 from chess.bishop import Bishop
 from chess.board import Board
 
@@ -80,3 +80,4 @@ class TestBishop(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+"""

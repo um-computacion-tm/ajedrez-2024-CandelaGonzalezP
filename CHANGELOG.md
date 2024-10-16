@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [0.48] - 16 / 10 / 2024 - Correcciones
+
+### Changed
+
+- Funcion "ganador"
+- Funcion "get piece"
+
+### Deleted
+
+- Funcion "offer draw" 
+
+### Added
+
+- Excepcion InvalidCoordinateInputError
+
+
 ## [0.47] - 15 / 10 / 2024 - Documentacion
 
 ### Added

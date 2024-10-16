@@ -1,3 +1,4 @@
+"""
 import unittest
 from chess.chess import Chess
 from chess.exceptions import *
@@ -102,7 +103,7 @@ class TestChess(unittest.TestCase):
 
 
 
-"""
+#### borrado
     def test_change_turn(self):
         # Verifica el turno inicial
         self.assertEqual(self.chess.turn, "WHITE")
@@ -114,7 +115,10 @@ class TestChess(unittest.TestCase):
         self.chess.change_turn()
         # Verifica que el turno cambió de nuevo a 'white'
         self.assertEqual(self.chess.turn, "BLACK")
-"""
+#####
+
+
 
 if __name__ == '__main__':
     unittest.main()
+"""

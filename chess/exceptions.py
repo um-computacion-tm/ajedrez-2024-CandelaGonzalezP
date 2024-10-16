@@ -82,4 +82,7 @@ class DestinationInvalidMove(InvalidMove):
 
     __message__ = "Movimiento destino inválido"
 
-# cambios mensajes
+class InvalidCoordinateInputError(InvalidMove):
+    message = "Las coordenadas deben ser números."
+
+    
