@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [0.49] - 17 / 10 / 2024 - 
+
+### Fixed
+
+- Funcion empate "offer"
+
+### Deleted
+
+- Test Cli funciones eliminadas
+
+
 ## [0.48] - 16 / 10 / 2024 - Correcciones
 
 ### Changed

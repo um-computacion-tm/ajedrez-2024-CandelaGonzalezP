@@ -82,7 +82,20 @@ class DestinationInvalidMove(InvalidMove):
 
     __message__ = "Movimiento destino inválido"
 
+class SelfCaptureException(InvalidMove):
+    message = "No puedes capturar tus propias piezas."
+
 class InvalidCoordinateInputError(InvalidMove):
-    message = "Las coordenadas deben ser números."
+
+    """Excepción para indicar que las coordenadas de entrada no son válidas.
+
+    Inherits:
+        InvalidMove: Excepción base para movimientos inválidos.
+
+    Attributes:
+        __message__ (str): Mensaje de error específico para coordenadas no válidas.
+    """
+
+    __message__ = "Las coordenadas deben ser números."
 
     

@@ -1,6 +1,5 @@
-"""
-import unittest
-from chess.chess import Chess
+"""import unittest
+from chess.game import Chess
 from chess.exceptions import *
 from chess.board import Board
 from unittest.mock import MagicMock, patch
@@ -25,14 +24,6 @@ class TestChess(unittest.TestCase):
             self.chess.move(7, 2, 5, 4)  # Movimiento inválido
 
         self.assertEqual(self.chess.turn, "White")  # Verifica que el turno sigue siendo "white"
-
-
-
-
-
-
-
-
 
 
     def test_ganador_when_opponent_has_no_pieces(self):
@@ -63,29 +54,6 @@ class TestChess(unittest.TestCase):
             self.chess.move(1, 0, 8, 0)  # Movimiento inválido hacia fuera del tablero
         self.assertEqual(str(context.exception), "Movimiento destino inválido")  # Verifica el mensaje de la excepción
 
-    @patch('builtins.input', side_effect=['si'])  # Simula que el usuario ingresa "si"
-    def test_offer_draw_accept(self, mock_input):
-        with self.assertRaises(SystemExit):  # Espera que se llame a sys.exit()
-            self.chess.offer_draw()  # Llama al método
-
-    @patch('builtins.input', side_effect=['no'])  # Simula que el usuario ingresa "no"
-    def test_offer_draw_reject(self, mock_input):
-        result = self.chess.offer_draw()  # Llama al método
-        self.assertTrue(result)  # Espera que la partida continúe
-
-    @patch.object(Chess, 'check_valid_move')
-    @patch.object(Chess, 'check_turn')  # Mockea check_turn para evitar InvalidTurn
-    def test_check_valid_move_called(self, mock_check_turn, mock_check_valid_move):
-        # Verifica que se llame a check_valid_move correctamente.
-        from_row, from_col, to_row, to_col = 1, 1, 2, 2
-        mock_check_valid_move.return_value = None  # Simula que el movimiento es válido
-        mock_check_turn.return_value = None  # Simula que el turno es válido
-
-        # Llama al método validate_move
-        self.chess.validate_move(self.piece, {'from_row': from_row, 'from_col': from_col, 'to_row': to_row, 'to_col': to_col})
-
-        # Verifica que check_valid_move fue llamado con los argumentos correctos
-        mock_check_valid_move.assert_called_once_with(self.piece, {'from_row': from_row, 'from_col': from_col}, to_row, to_col)
 
     @patch.object(Chess, 'check_valid_move')
     @patch.object(Chess, 'check_turn')  # Mockea check_turn para evitar InvalidTurn
@@ -101,24 +69,5 @@ class TestChess(unittest.TestCase):
 
 
 
-
-
-#### borrado
-    def test_change_turn(self):
-        # Verifica el turno inicial
-        self.assertEqual(self.chess.turn, "WHITE")
-        # Cambia el turno
-        self.chess.change_turn()
-        # Verifica que el turno cambió a 'black'
-        self.assertEqual(self.chess.turn, "WHITE")
-        # Cambia el turno de nuevo
-        self.chess.change_turn()
-        # Verifica que el turno cambió de nuevo a 'white'
-        self.assertEqual(self.chess.turn, "BLACK")
-#####
-
-
-
 if __name__ == '__main__':
-    unittest.main()
-"""
+    unittest.main()"""

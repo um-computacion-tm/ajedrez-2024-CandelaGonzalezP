@@ -1,4 +1,9 @@
-"""
+"""import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 import unittest
 from chess.board import Board
 from chess.rook import Rook
@@ -139,7 +144,69 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(count_black, 16)  # 8 peones + 8 piezas (torres, caballos, alfiles, rey, reina)
 
 
-if __name__ == '__main__':
-    unittest.main()
+# verifica distintos escenarios de tablero
+
+    def test_build_board_string_initial_setup(self):
+        board_string = self.board.build_board_string()
+        expected_start = "  0 1 2 3 4 5 6 7\n0 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ \n1 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ \n"
+        self.assertTrue(board_string.startswith(expected_start), "El tablero inicial no se genera correctamente.")
 
 """
+
+
+
+
+
+"""
+    def test_build_board_string_format(self):
+        board_string = self.board.build_board_string()
+        rows = board_string.strip().split("\n")
+        
+        # Verificar que haya 9 filas (1 de encabezado y 8 filas de tablero)
+        self.assertEqual(len(rows), 9, "El tablero no contiene exactamente 8 filas más la fila de encabezado.")
+
+        # Verificar que el encabezado tiene el formato correcto (números de columna)
+        header = rows[0]
+        self.assertEqual(header, "  0 1 2 3 4 5 6 7", "El encabezado de columnas no es correcto.")
+
+        # Verificar cada fila del tablero
+        for row in rows[1:]:
+            # Asegurarse de que cada fila comience con un índice de fila seguido de 8 celdas
+            row_elements = row.split(" ")
+            self.assertEqual(len(row_elements), 9, f"La fila '{row}' no contiene exactamente 8 celdas más el índice de fila.")
+            
+            # Verificar que el primer elemento de la fila es el número de la fila
+            row_index = row_elements[0]
+            self.assertTrue(row_index.isdigit() and 0 <= int(row_index) <= 7, f"El índice de fila '{row_index}' no es válido.")
+
+
+
+    def test_build_board_string_partial_setup_with_varied_pieces(self):
+        # Inicializar el tablero vacío
+        self.board.__positions__ = [[None for _ in range(8)] for _ in range(8)]
+        
+        # Colocar varias piezas en posiciones específicas
+        self.board.__positions__[3][3] = Queen('WHITE')  # Reina blanca en la posición (3, 3)
+        self.board.__positions__[2][5] = Knight('BLACK')  # Caballo negro en la posición (2, 5)
+        self.board.__positions__[6][2] = Bishop('WHITE')  # Alfil blanco en la posición (6, 2)
+        
+        # Generar la representación del tablero
+        board_string = self.board.build_board_string()
+        
+        # Comprobar que las piezas están en las posiciones correctas
+        expected_middle = "  0 1 2 3 4 5 6 7\n" \
+                        "2           ♞     \n" \
+                        "3       ♕         \n" \
+                        "4                 \n" \
+                        "5                 \n" \
+                        "6     ♗           \n"
+        
+        # Comprobar si la cadena generada contiene las piezas en sus posiciones esperadas
+        self.assertIn("♕", board_string, "La reina blanca no se encuentra en la posición correcta.")
+        self.assertIn("♞", board_string, "El caballo negro no se encuentra en la posición correcta.")
+        self.assertIn("♗", board_string, "El alfil blanco no se encuentra en la posición correcta.")
+        
+        # Verificar que las posiciones específicas coincidan con la cadena esperada
+        self.assertIn(expected_middle, board_string, "La disposición parcial del tablero no es correcta.")
+"""
+
