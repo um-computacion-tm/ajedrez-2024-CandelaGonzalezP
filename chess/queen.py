@@ -15,24 +15,6 @@ class Queen(Piece):
 # Movimientos en diagonal y ortogonales
 
     def queen_valid_positions(self, move, directions=None):
-
-        """
-        Verifica si el movimiento de la reina es válido.
-
-        Args:
-            move (dict): Diccionario que contiene las posiciones de origen y destino del movimiento.
-                Debe tener las claves 'from_row', 'from_col', 'to_row', y 'to_col'.
-            directions (list, optional): Lista de direcciones en las que puede moverse la reina. 
-                Si no se proporciona, se utilizan las direcciones predeterminadas de rey/reina.
-
-        Returns:
-            bool: True si el movimiento es válido, False en caso contrario.
-
-        Description:
-            Esta función verifica si el movimiento de la reina desde (from_row, from_col) 
-            hasta (to_row, to_col) es válido, considerando sus movimientos ortogonales y diagonales.
-        """
-
         from_row, from_col, to_row, to_col = move['from_row'], move['from_col'], move['to_row'], move['to_col']
         if directions is None:
             directions = self.__king_queen_directions__

@@ -16,36 +16,9 @@ class Rook(Piece):
 # Movimientos ortogonales
 
     def rook_valid_positions(self, from_row, from_col, to_row, to_col):
-
-        """
-        Verifica si el movimiento de la torre es válido.
-
-        Args:
-            from_row (int): Fila de origen de la torre.
-            from_col (int): Columna de origen de la torre.
-            to_row (int): Fila de destino de la torre.
-            to_col (int): Columna de destino de la torre.
-
-        Returns:
-            bool: True si el movimiento es válido, False en caso contrario.
-
-        Description:
-            Esta función verifica si el movimiento de la torre desde (from_row, from_col) 
-            hasta (to_row, to_col) es válido, considerando sus movimientos ortogonales (arriba, 
-            abajo, izquierda, derecha).
-        """
-
         directions = self.get_rook_directions()
         possible_positions = self.find_valid_moves(from_row, from_col, directions)
         return (to_row, to_col) in possible_positions
 
     def get_rook_directions(self):
-
-        """
-        Obtiene las direcciones válidas en las que la torre puede moverse.
-
-        Returns:
-            list: Lista de tuplas que representan las direcciones ortogonales (arriba, abajo, izquierda, derecha).
-        """
-
         return [(1, 0), (-1, 0), (0, -1), (0, 1)]

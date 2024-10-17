@@ -9,6 +9,7 @@
 ### Deleted
 
 - Test Cli funciones eliminadas
+- Documentacion
 
 
 ## [0.48] - 16 / 10 / 2024 - Correcciones

@@ -83,7 +83,17 @@ class DestinationInvalidMove(InvalidMove):
     __message__ = "Movimiento destino inválido"
 
 class SelfCaptureException(InvalidMove):
-    message = "No puedes capturar tus propias piezas."
+
+    """Excepción para indicar que el jugador intenta capturar sus propias piezas.
+
+    Inherits:
+        InvalidMove: Excepción base para movimientos inválidos.
+
+    Attributes:
+        __message__ (str): Mensaje de error específico para capturas propias.
+    """
+
+    __message__ = "No puedes capturar tus propias piezas."
 
 class InvalidCoordinateInputError(InvalidMove):
 
