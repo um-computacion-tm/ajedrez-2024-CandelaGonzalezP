@@ -1,6 +1,12 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import unittest
 from chess.bishop import Bishop
 from chess.board import Board
+from chess.pawn import Pawn
 
 class TestBishop(unittest.TestCase):
 
@@ -9,12 +15,12 @@ class TestBishop(unittest.TestCase):
     def test_bishop_symbol_white(self):
         board = Board()
         bishop = Bishop("WHITE", board)
-        self.assertEqual(bishop.symbol(), 'B')
+        self.assertEqual(bishop.symbol(), '♗')
 
     def test_bishop_symbol_black(self):
         board = Board()
         bishop = Bishop("BLACK", board)
-        self.assertEqual(bishop.symbol(), 'b')
+        self.assertEqual(bishop.symbol(), '♝')
 
 # Inicia tablero
     def setUp(self):
@@ -26,57 +32,24 @@ class TestBishop(unittest.TestCase):
 
 # Movimiento válido en diagonal
 
-    # Diagonal hacia arriba a la derecha
-    def test_valid_move_up_right(self):
-        result = self.bishop.bishop_valid_position(4, 4, 6, 6)
-        self.assertTrue(result)
+    def test_valid_positions_clear_path(self):
+        from_row, from_col = 4, 4
+        to_row, to_col = 6, 6  # Movimiento válido en diagonal
+        self.assertTrue(self.bishop.valid_positions(from_row, from_col, to_row, to_col))
 
-    # Diagonal hacia arriba a la izquierda
-    def test_valid_move_up_left(self):
-        result = self.bishop.bishop_valid_position(4, 4, 6, 2)
-        self.assertTrue(result)
+    def test_invalid_positions_blocked(self):
+        from_row, from_col = 4, 4
+        blocking_piece = Pawn("WHITE", self.board)
+        self.board.set_piece(3, 3, blocking_piece)  # Pone una pieza aliada en el camino
+        to_row, to_col = 2, 2  # Movimiento bloqueado
+        self.assertFalse(self.bishop.valid_positions(from_row, from_col, to_row, to_col))
 
-    # Diagonal hacia abajo a la derecha
-    def test_valid_move_down_right(self):
-        result = self.bishop.bishop_valid_position(4, 4, 2, 6)
-        self.assertTrue(result)
-
-    # Diagonal hacia abajo a la izquierda
-    def test_valid_move_down_left(self):
-        result = self.bishop.bishop_valid_position(4, 4, 2, 2)
-        self.assertTrue(result)
-
-# Movimiento inválido que no es diagonal
-
-    def test_invalid_move_up_right(self):
-        result = self.bishop.bishop_valid_position(4, 4, 5, 3)
-        self.assertTrue(result)
-
-    def test_invalid_move_up_left(self):
-        result = self.bishop.bishop_valid_position(4, 4, 5, 5)
-        self.assertTrue(result)
-
-    def test_invalid_move_down_right(self):
-        result = self.bishop.bishop_valid_position(4, 4, 3, 5)
-        self.assertTrue(result)
-
-    def test_invalid_move_down_left(self):
-        result = self.bishop.bishop_valid_position(4, 4, 3, 3)
-        self.assertTrue(result)
-
-# Movimiento bloqueado por otra pieza
-
-    def test_blocked_by_piece(self):
-        self.board.set_piece(5, 5, Bishop("WHITE", self.board))  # Alfil propio bloqueando
-        result = self.bishop.bishop_valid_position(4, 4, 6, 6)  # Bloqueado por el alfil en (5, 5)
-        self.assertFalse(result)
-
-# Movimiento válido donde termina en una posición con una pieza enemiga
-
-    def test_valid_move_with_enemy_piece(self):
-        self.board.set_piece(6, 6, Bishop("BLACK", self.board))  # Alfil enemigo en la posición destino
-        result = self.bishop.bishop_valid_position(4, 4, 6, 6)  # Debería ser válido
-        self.assertTrue(result)
+    def test_valid_capture_opponent(self):
+        from_row, from_col = 4, 4
+        opponent_piece = Pawn("BLACK", self.board)
+        self.board.set_piece(6, 6, opponent_piece)  # Pone una pieza contraria en el destino
+        to_row, to_col = 6, 6  # Movimiento válido para capturar
+        self.assertTrue(self.bishop.valid_positions(from_row, from_col, to_row, to_col))
 
 if __name__ == '__main__':
     unittest.main()

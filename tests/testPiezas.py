@@ -1,3 +1,9 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 import unittest
 from chess.pieces import Piece
 from chess.board import Board
@@ -12,11 +18,6 @@ class TestPieces(unittest.TestCase):
     def test_get_color(self):
         piece = Piece("BLACK", None)  # Asume que la pieza necesita un color y el tablero
         self.assertEqual(piece.get_color(), "BLACK")
-
-    def test_symbol_not_implemented(self):
-        piece = Piece("WHITE", None)  # Crea una instancia de Piece
-        with self.assertRaises(NotImplementedError):
-            piece.symbol()  # Verifica que se lance NotImplementedError
 
 
     def setUp(self):

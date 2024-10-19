@@ -1,48 +1,34 @@
-from chess.pieces import Piece         #REINA
+from chess.pieces import Piece
 
 class Queen(Piece):
-    
-    """
-    Clase que representa una reina en el juego de ajedrez.
-    
-    Hereda de la clase Piece, lo que proporciona las funcionalidades básicas 
-    para las piezas del juego.
-    """
+    def __init__(self, color, board):
+        super().__init__(color, board)
+        # Definimos las direcciones en las que la reina puede moverse: ortogonales y diagonales
+        self.__queen_directions__ = [(-1, 0), (1, 0), (0, -1), (0, 1),  # Ortogonales (torre)
+                                     (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales (alfil)
 
     def symbol(self):
+        """Devuelve el símbolo Unicode de la reina según el color."""
+        return '♕' if self.get_color() == "WHITE" else '♛'
 
-        """
-        Obtiene el símbolo que representa a la reina según su color.
+    def valid_positions(self, board, from_pos, to_pos):
+        """Valida si el movimiento de la reina es correcto."""
+        from_row, from_col = from_pos
+        to_row, to_col = to_pos
 
-        Returns:
-            str: 'Q' si la reina es blanca, 'q' si es negra.
-        """
+        # Verifica si el destino está dentro del tablero
+        if not self.is_within_board(to_row, to_col):
+            return False
 
-        return 'Q' if self.get_color() == "WHITE" else 'q'
+        # Obtiene la pieza en la posición destino, si hay una
+        target_piece = board.get_piece(to_row, to_col)
 
-# Movimientos en diagonal y ortogonales
+        # Si hay una pieza en la posición destino y es del mismo color, el movimiento no es válido
+        if target_piece is not None and target_piece.get_color() == self.get_color():
+            return False
 
-    def queen_valid_positions(self, move, directions=None):
+        # Calcula los movimientos válidos en todas las direcciones posibles
+        valid_moves = self.find_valid_moves(from_row, from_col, self.__queen_directions__)
 
-        """
-        Verifica si el movimiento de la reina es válido.
-
-        Args:
-            move (dict): Diccionario que contiene las posiciones de origen y destino del movimiento.
-                Debe tener las claves 'from_row', 'from_col', 'to_row', y 'to_col'.
-            directions (list, optional): Lista de direcciones en las que puede moverse la reina. 
-                Si no se proporciona, se utilizan las direcciones predeterminadas de rey/reina.
-
-        Returns:
-            bool: True si el movimiento es válido, False en caso contrario.
-
-        Description:
-            Esta función verifica si el movimiento de la reina desde (from_row, from_col) 
-            hasta (to_row, to_col) es válido, considerando sus movimientos ortogonales y diagonales.
-        """
-
-        from_row, from_col, to_row, to_col = move['from_row'], move['from_col'], move['to_row'], move['to_col']
-        if directions is None:
-            directions = self.__king_queen_directions__
-        possible_positions = self.find_valid_moves(from_row, from_col, directions, single_step=False)
-        return (to_row, to_col) in possible_positions
+        # Verifica si la posición destino está entre los movimientos válidos
+        return (to_row, to_col) in valid_moves

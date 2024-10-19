@@ -1,3 +1,9 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 import unittest
 from chess.board import Board
 from chess.rook import Rook
@@ -136,6 +142,15 @@ class TestBoard(unittest.TestCase):
         count_black = self.board.count_pieces("BLACK")
         self.assertEqual(count_white, 16)  # 8 peones + 8 piezas (torres, caballos, alfiles, rey, reina)
         self.assertEqual(count_black, 16)  # 8 peones + 8 piezas (torres, caballos, alfiles, rey, reina)
+
+
+# verifica distintos escenarios de tablero
+
+    def test_build_board_string_initial_setup(self):
+        """Verifica que el tablero inicial se construya correctamente con piezas en posiciones predeterminadas."""
+        board_string = self.board.build_board_string()
+        expected_start = "  0 1 2 3 4 5 6 7\n0 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ \n1 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ \n"
+        self.assertTrue(board_string.startswith(expected_start), "El tablero inicial no se genera correctamente.")
 
 
 if __name__ == '__main__':

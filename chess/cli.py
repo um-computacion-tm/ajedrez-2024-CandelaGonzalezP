@@ -1,107 +1,85 @@
-from chess.chess import Chess
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
+from chess.game import Chess
 from chess.exceptions import *
 
-def main():    
+class ChessCli:
 
-    """Función principal que inicia el juego de ajedrez.
+    def __init__(self):
+        self.__game__ = Chess()
 
-    Crea una instancia de Chess y gestiona el bucle principal del juego.
-    """
+    def start(self):
+        print("¡Bienvenido al juego de Ajedrez!")
+        while not self.__game__.is_game_over():
+            self.show_board()
+            print(f"Turno del jugador {self.__game__.get_turn()}")
 
-    chess = Chess()
-    while chess.is_playing():
-        play(chess)
+            # Obtener el movimiento del jugador
+            move = self.get_move()
+            if move:  # Asegúrate de que el movimiento no sea None
+                from_row, from_col, to_row, to_col = move
+                try:
+                    self.__game__.make_move(from_row, from_col, to_row, to_col)
+                except Exception as e:
+                    print(f"Error: {e}")
 
+            # Obtener las opciones después del movimiento
+            option = self.offer_options()
+            if option == 'exit':
+                print("Has salido del juego.")
+                break
+            elif option == 'draw':
+                print("Se ha ofrecido un empate.")
+                # Aquí puedes agregar la lógica para manejar el empate
 
-def play(chess):
-
-    """Gestiona un turno de juego en el ajedrez.
-
-    Muestra el tablero, obtiene las coordenadas de movimiento del jugador,
-    y realiza el movimiento en el tablero.
-
-    Args:
-        chess (Chess): La instancia del juego de ajedrez.
-
-    Raises:
-        EmptyPosition: Si la posición de origen está vacía.
-        OutOfBoard: Si el movimiento está fuera del tablero.
-        DestinationInvalidMove: Si la posición de destino es inválida.
-        InvalidTurn: Si no es el turno del jugador correspondiente.
-        OriginInvalidMove: Si no hay piezas en la posición de origen.
-        InvalidMove: Si el movimiento de la pieza no es válido.
-
-    Returns:
-        None: No devuelve nada.
-    """
-
-    try:
-        display_board(chess)
-        from_row, from_col = get_input_coordinates("From", chess)
-        to_row, to_col = get_input_coordinates("To", chess)
-        chess.move(from_row, from_col, to_row, to_col)
-    except (EmptyPosition, OutOfBoard, DestinationInvalidMove, InvalidTurn, OriginInvalidMove, InvalidMove) as e:
-        handle_move_error(e)
-    except Exception as e:
-        print("Error inesperado")
+        self.end_game()
 
 
-def display_board(chess):
 
-    """Muestra el estado actual del tablero de ajedrez.
-
-    Args:
-        chess (Chess): La instancia del juego de ajedrez.
-
-    Returns:
-        None: No devuelve nada, solo imprime el tablero y el turno actual.
-    """
-
-    print(chess.show_board())
-    print("turn: ", chess.turn)
+    def show_board(self):
+        print(self.__game__.__board__)
 
 
-def get_input_coordinates(prompt, chess):
+    def get_move(self):
+        try:
+            from_pos = input("Ingrese la posición de origen (fila,columna): ")
+            to_pos = input("Ingrese la posición de destino (fila,columna): ")
+            from_row, from_col = map(int, from_pos.split(","))
+            to_row, to_col = map(int, to_pos.split(","))
+            return from_row, from_col, to_row, to_col
+        except ValueError:
+            print("Entrada inválida. Por favor ingrese en formato fila,columna.")
+            return self.get_move()
 
-    """Obtiene las coordenadas de entrada del usuario para el movimiento.
+    def offer_options(self):
+        print()  # Imprime una línea en blanco para separarlas visualmente
+        exit_option = input("Ingrese 'exit' para salir del juego: ")
+        if exit_option.lower() == 'exit':
+            return 'exit'  # Opción de salir
 
-    Args:
-        prompt (str): Mensaje para indicar al usuario que ingrese coordenadas.
-        chess (Chess): La instancia del juego de ajedrez.
+        draw_option = input("¿Ofrecer empate? (y/n): ")
+        if draw_option.lower() == 'y':
+            # Aquí se le pregunta al jugador contrario si acepta el empate
+            accept_draw = input("El otro jugador ofrece un empate. ¿Aceptar? (y/n): ")
+            if accept_draw.lower() == 'y':
+                print("El empate ha sido aceptado.")
+                return 'draw'  # Opción de empate aceptada
+            else:
+                print("El empate ha sido rechazado.")
+        
+        return None 
+    
 
-    Returns:
-        tuple: Devuelve una tupla con las coordenadas (fila, columna) como enteros.
-               Retorna (None, None) si el usuario elige detener el juego.
-    """
-
-    row = input(f"{prompt} row ")
-    if row.lower() == "stop":
-        chess.tie()
-        return None, None  
-    col = input(f"{prompt} col ")
-    if col.lower() == "stop":
-        chess.tie()
-        return None, None  
-    return int(row), int(col)
+    def end_game(self):
+        print("¡El juego ha terminado!")
+        winner = "BLANCAS" if self.__game__.get_turn() == "BLACK" else "NEGRAS"
+        print(f"El ganador es: {winner}")
 
 
-def handle_move_error(exception):
-
-    """Maneja los errores de movimiento y muestra el mensaje correspondiente.
-
-    Args:
-        exception (Exception): La excepción que se produjo.
-
-    Returns:
-        None: No devuelve nada, solo imprime el mensaje de error correspondiente.
-    """
-
-    error_messages = {
-        EmptyPosition: "No hay ninguna pieza en la posición de origen",
-        OutOfBoard: "Movimiento fuera de tablero",
-        DestinationInvalidMove: "Movimiento destino inválido",
-        InvalidTurn: "No es tu turno",
-        OriginInvalidMove: "Sin piezas en posición origen",
-        InvalidMove: "Movimiento inválido"
-    }
-    print(error_messages[type(exception)])
+if __name__ == "__main__":
+    cli = ChessCli()
+    cli.start()  # Inicia el juego

@@ -1,5 +1,52 @@
 # CHANGELOG
 
+## [0.51] - 19 / 10 / 2024 - 
+
+### Fixed
+
+- Queen, King
+
+
+## [0.50] - 18 / 10 / 2024 - 
+
+### Fixed
+
+- Cli class
+- Game class
+- Tests piezas en general, board, game, cli
+
+### Added
+
+- funcion "valid move" en knight, rook, bishop
+
+## [0.49] - 17 / 10 / 2024 - 
+
+### Fixed
+
+- Funcion empate "offer"
+
+### Deleted
+
+- Test Cli funciones eliminadas
+- Documentacion
+
+
+## [0.48] - 16 / 10 / 2024 - Correcciones
+
+### Changed
+
+- Funcion "ganador"
+- Funcion "get piece"
+
+### Deleted
+
+- Funcion "offer draw" 
+
+### Added
+
+- Excepcion InvalidCoordinateInputError
+
+
 ## [0.47] - 15 / 10 / 2024 - Documentacion
 
 ### Added
