@@ -17,12 +17,27 @@ class ChessCli:
         while not self.__game__.is_game_over():
             self.show_board()
             print(f"Turno del jugador {self.__game__.get_turn()}")
-            from_row, from_col, to_row, to_col = self.get_move()
-            try:
-                self.__game__.make_move(from_row, from_col, to_row, to_col)
-            except Exception as e:
-                print(f"Error: {e}")
+
+            # Obtener el movimiento del jugador
+            move = self.get_move()
+            if move:  # Asegúrate de que el movimiento no sea None
+                from_row, from_col, to_row, to_col = move
+                try:
+                    self.__game__.make_move(from_row, from_col, to_row, to_col)
+                except Exception as e:
+                    print(f"Error: {e}")
+
+            # Obtener las opciones después del movimiento
+            option = self.offer_options()
+            if option == 'exit':
+                print("Has salido del juego.")
+                break
+            elif option == 'draw':
+                print("Se ha ofrecido un empate.")
+                # Aquí puedes agregar la lógica para manejar el empate
+
         self.end_game()
+
 
 
     def show_board(self):
@@ -39,7 +54,26 @@ class ChessCli:
         except ValueError:
             print("Entrada inválida. Por favor ingrese en formato fila,columna.")
             return self.get_move()
+
+    def offer_options(self):
+        print()  # Imprime una línea en blanco para separarlas visualmente
+        exit_option = input("Ingrese 'exit' para salir del juego: ")
+        if exit_option.lower() == 'exit':
+            return 'exit'  # Opción de salir
+
+        draw_option = input("¿Ofrecer empate? (y/n): ")
+        if draw_option.lower() == 'y':
+            # Aquí se le pregunta al jugador contrario si acepta el empate
+            accept_draw = input("El otro jugador ofrece un empate. ¿Aceptar? (y/n): ")
+            if accept_draw.lower() == 'y':
+                print("El empate ha sido aceptado.")
+                return 'draw'  # Opción de empate aceptada
+            else:
+                print("El empate ha sido rechazado.")
         
+        return None 
+    
+
     def end_game(self):
         print("¡El juego ha terminado!")
         winner = "BLANCAS" if self.__game__.get_turn() == "BLACK" else "NEGRAS"
