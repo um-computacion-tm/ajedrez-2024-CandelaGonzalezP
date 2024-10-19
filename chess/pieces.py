@@ -12,7 +12,7 @@ class Piece:                                   # HERENCIA PIEZAS
 
         self.__color__ = color
         self.__board__ = board
-        self.__directions__ = self.get_directions()  # Llamar al método que obtiene las direcciones
+        self._king_queen_directions_ = [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]   
 
     def get_directions(self):
         return []  # Este método se sobrescribirá en las clases derivadas

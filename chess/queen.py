@@ -1,38 +1,24 @@
 from chess.pieces import Piece
 
 class Queen(Piece):
-
-    def __init__(self, color, board):
-        super().__init__(color, board)
-
-    def get_directions(self):
-        # Definimos las direcciones en las que la reina puede moverse: ortogonales y diagonales
-        return [(-1, 0), (1, 0), (0, -1), (0, 1),  # Ortogonales (torre)
-                (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales (alfil)
-
+    
+    """
+    Clase que representa una reina en el juego de ajedrez.
+    
+    Hereda de la clase Piece, lo que proporciona las funcionalidades básicas 
+    para las piezas del juego.
+    """
 
     def symbol(self):
-        """Devuelve el símbolo Unicode de la reina según el color."""
-        return '♕' if self.get_color() == "WHITE" else '♛'
+        return '♕' if self.get_color() == 'WHITE' else '♛'
 
-    def valid_positions(self, board, from_pos, to_pos):
-        """Valida si el movimiento de la reina es correcto."""
-        from_row, from_col = from_pos
-        to_row, to_col = to_pos
+# Movimientos en diagonal y ortogonales
 
-        # Verifica si el destino está dentro del tablero
-        if not self.is_within_board(to_row, to_col):
-            return False
+    def valid_positions(self, from_row, from_col, to_row, to_col):
+        directions = self._king_queen_directions_  # Movimientos ortogonales y diagonales
+        possible_positions = self.get_possible_moves(from_row, from_col, directions)
+        return (to_row, to_col) in possible_positions
 
-        # Obtiene la pieza en la posición destino, si hay una
-        target_piece = board.get_piece(to_row, to_col)
-
-        # Si hay una pieza en la posición destino y es del mismo color, el movimiento no es válido
-        if self.is_own_piece(target_piece):
-            return False
-
-        # Calcula los movimientos válidos en todas las direcciones posibles
-        valid_moves = self.find_valid_moves(from_row, from_col, self.__directions__)
-
-        # Verifica si la posición destino está entre los movimientos válidos
-        return (to_row, to_col) in valid_moves
+    def get_possible_moves(self, from_row, from_col, directions):
+        return self.find_valid_moves(from_row, from_col, directions, single_step=False)
+    

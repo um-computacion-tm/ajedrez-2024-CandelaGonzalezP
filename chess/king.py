@@ -1,37 +1,25 @@
-from chess.pieces import Piece
+from chess.pieces import Piece        #REY 
 
 class King(Piece):
 
-    def __init__(self, color, board):
-        super().__init__(color, board)
-
-    def get_directions(self):
-        # El rey puede moverse en todas las direcciones, pero solo una casilla a la vez
-        return [(-1, 0), (1, 0), (0, -1), (0, 1),   # Ortogonales
-                (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales
-
+    """
+    Clase que representa un rey en el juego de ajedrez.
+    
+    Hereda de la clase Piece, lo que proporciona las funcionalidades básicas 
+    para las piezas del juego.
+    """
 
     def symbol(self):
-        """Devuelve el símbolo Unicode del rey según el color."""
-        return '♔' if self.get_color() == "WHITE" else '♚'
+        return '♔' if self.get_color() == 'WHITE' else '♚'
 
-    def valid_positions(self, board, from_pos, to_pos):
-        """Valida si el movimiento del rey es correcto."""
-        from_row, from_col = from_pos
-        to_row, to_col = to_pos
+# Movimientos de a una casilla en todas las direcciones
 
-        # Verifica si el destino está dentro del tablero
-        if not self.is_within_board(to_row, to_col):
-            return False
+    def valid_positions(self, from_row, from_col, to_row, to_col):
+        """Verifica si el movimiento del rey es válido."""
+        directions = self._king_queen_directions_# Movimientos del rey (iguales que los de la reina pero limitados)
+        possible_positions = self.get_possible_moves(from_row, from_col, directions)
+        return (to_row, to_col) in possible_positions
 
-        # Obtiene la pieza en la posición destino, si hay una
-        target_piece = board.get_piece(to_row, to_col)
-
-        # Si hay una pieza en la posición destino y es del mismo color, el movimiento no es válido
-        if self.is_own_piece(target_piece):
-            return False
-
-        # Aquí puedes agregar la lógica adicional para el rey
-        valid_moves = self.find_valid_moves(from_row, from_col, self.__directions__)
-
-        return (to_row, to_col) in valid_moves
+    def get_possible_moves(self, from_row, from_col, directions):
+        """Obtiene las posiciones válidas del rey desde una posición inicial."""
+        return self.find_valid_moves(from_row, from_col, directions, single_step=True)  # Solo un paso
