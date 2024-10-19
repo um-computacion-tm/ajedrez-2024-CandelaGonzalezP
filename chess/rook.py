@@ -17,7 +17,8 @@ class Rook(Piece):
 
     def valid_positions(self, from_row, from_col, to_row, to_col):
         possible_positions = self.get_possible_moves(from_row, from_col)
-        return (to_row, to_col) in possible_positions
+        position_to_check = (to_row, to_col)
+        return position_to_check in possible_positions
 
     def get_possible_moves(self, from_row, from_col):
         directions = self.get_rook_directions()
@@ -25,13 +26,3 @@ class Rook(Piece):
 
     def get_rook_directions(self):
         return [(1, 0), (-1, 0), (0, -1), (0, 1)]
-
-"""
-    def rook_valid_positions(self, from_row, from_col, to_row, to_col):
-        directions = self.get_rook_directions()
-        possible_positions = self.find_valid_moves(from_row, from_col, directions)
-        return (to_row, to_col) in possible_positions
-
-    def get_rook_directions(self):
-        return [(1, 0), (-1, 0), (0, -1), (0, 1)]
-"""

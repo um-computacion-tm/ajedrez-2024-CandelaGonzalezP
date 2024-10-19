@@ -1,11 +1,13 @@
 from chess.pieces import Piece
 
 class Queen(Piece):
+
     def __init__(self, color, board):
         super().__init__(color, board)
         # Definimos las direcciones en las que la reina puede moverse: ortogonales y diagonales
-        self.__queen_directions__ = [(-1, 0), (1, 0), (0, -1), (0, 1),  # Ortogonales (torre)
-                                     (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales (alfil)
+        self.__directions__ = [(-1, 0), (1, 0), (0, -1), (0, 1),  # Ortogonales (torre)
+                               (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales (alfil)
+
 
     def symbol(self):
         """Devuelve el símbolo Unicode de la reina según el color."""
@@ -28,7 +30,7 @@ class Queen(Piece):
             return False
 
         # Calcula los movimientos válidos en todas las direcciones posibles
-        valid_moves = self.find_valid_moves(from_row, from_col, self.__queen_directions__)
+        valid_moves = self.find_valid_moves(from_row, from_col, self.__directions__)
 
         # Verifica si la posición destino está entre los movimientos válidos
         return (to_row, to_col) in valid_moves

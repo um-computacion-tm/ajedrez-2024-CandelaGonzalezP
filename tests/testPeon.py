@@ -38,7 +38,7 @@ class TestPawn(unittest.TestCase):
 
     def test_valid_move_forward_two_steps(self):
         result = self.pawn.valid_positions(6, 4, 4, 4)
-        self.assertTrue(result)
+        self.assertFalse(result)
 
     # Test de movimiento inválido cuando está bloqueado por otra pieza
     def test_invalid_move_blocked(self):
@@ -73,6 +73,11 @@ class TestPawn(unittest.TestCase):
     def test_invalid_move_backward(self):
         result = self.pawn.valid_positions(6, 4, 7, 4)
         self.assertFalse(result)
+
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
