@@ -58,14 +58,9 @@ class Piece:                                   # HERENCIA PIEZAS
         return current_row + delta_row, current_col + delta_col
 
 
-
     def is_within_board(self, row, col):
-        return 0 <= row < 8 and 0 <= col < 8
-    
-    
-    def is_in_bounds(self, row, col):
-        return 0 <= row < 8 and 0 <= col < 8
-    
+        return all(0 <= x < 8 for x in (row, col))
+
 
     def is_own_piece(self, target_piece):
         return target_piece is not None and target_piece.get_color() == self.get_color()

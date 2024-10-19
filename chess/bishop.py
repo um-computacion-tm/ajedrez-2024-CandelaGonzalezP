@@ -16,9 +16,8 @@ class Bishop(Piece):
 # Movimientos en diagonal
 
     def valid_positions(self, from_row, from_col, to_row, to_col):
-        valid_moves = self.get_possible_moves(from_row, from_col)
-        # Validar la posición objetivo mediante una comparación directa
-        return (to_row, to_col) in valid_moves  # Bishop moves only diagonally
+        available_moves = self.get_possible_moves(from_row, from_col)
+        return (to_row, to_col) in available_moves
 
     def get_possible_moves(self, from_row, from_col):
         directions = [(1, 1), (-1, -1), (1, -1), (-1, 1)]
