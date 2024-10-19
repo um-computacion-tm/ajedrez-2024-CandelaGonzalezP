@@ -1,13 +1,14 @@
 # CHANGELOG
 
-## [0.51] - 19 / 10 / 2024 - 
+## [0.51] - 19 / 10 / 2024 - Fixed
 
 ### Fixed
 
 - Queen, King
+- Arreglos de codeclimate
 
 
-## [0.50] - 18 / 10 / 2024 - 
+## [0.50] - 18 / 10 / 2024 - Fixed
 
 ### Fixed
 
@@ -19,7 +20,7 @@
 
 - funcion "valid move" en knight, rook, bishop
 
-## [0.49] - 17 / 10 / 2024 - 
+## [0.49] - 17 / 10 / 2024 - Fixed
 
 ### Fixed
 
