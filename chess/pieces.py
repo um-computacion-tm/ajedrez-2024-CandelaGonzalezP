@@ -12,8 +12,10 @@ class Piece:                                   # HERENCIA PIEZAS
 
         self.__color__ = color
         self.__board__ = board
+        self.__directions__ = self.get_directions()  # Llamar al método que obtiene las direcciones
 
-  
+    def get_directions(self):
+        return []  # Este método se sobrescribirá en las clases derivadas
 
     def get_color(self):
         return self.__color__
@@ -59,3 +61,11 @@ class Piece:                                   # HERENCIA PIEZAS
 
     def is_within_board(self, row, col):
         return 0 <= row < 8 and 0 <= col < 8
+    
+    
+    def is_in_bounds(self, row, col):
+        return 0 <= row < 8 and 0 <= col < 8
+    
+
+    def is_own_piece(self, target_piece):
+        return target_piece is not None and target_piece.get_color() == self.get_color()

@@ -15,10 +15,12 @@ class Rook(Piece):
 
 # Movimientos ortogonales
 
+
     def valid_positions(self, from_row, from_col, to_row, to_col):
-        possible_positions = self.get_possible_moves(from_row, from_col)
-        position_to_check = (to_row, to_col)
-        return position_to_check in possible_positions
+        possible_moves = self.get_possible_moves(from_row, from_col)
+        # Comprobar si la posición de destino está en los movimientos válidos
+        return (to_row, to_col) in [(move[0], move[1]) for move in possible_moves]  # Rook moves only straight
+
 
     def get_possible_moves(self, from_row, from_col):
         directions = self.get_rook_directions()

@@ -4,9 +4,11 @@ class Queen(Piece):
 
     def __init__(self, color, board):
         super().__init__(color, board)
+
+    def get_directions(self):
         # Definimos las direcciones en las que la reina puede moverse: ortogonales y diagonales
-        self.__directions__ = [(-1, 0), (1, 0), (0, -1), (0, 1),  # Ortogonales (torre)
-                               (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales (alfil)
+        return [(-1, 0), (1, 0), (0, -1), (0, 1),  # Ortogonales (torre)
+                (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales (alfil)
 
 
     def symbol(self):
@@ -26,7 +28,7 @@ class Queen(Piece):
         target_piece = board.get_piece(to_row, to_col)
 
         # Si hay una pieza en la posición destino y es del mismo color, el movimiento no es válido
-        if target_piece is not None and target_piece.get_color() == self.get_color():
+        if self.is_own_piece(target_piece):
             return False
 
         # Calcula los movimientos válidos en todas las direcciones posibles
