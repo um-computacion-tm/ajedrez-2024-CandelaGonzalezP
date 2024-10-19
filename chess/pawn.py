@@ -3,6 +3,9 @@ from chess.queen import Queen
 
 class Pawn(Piece):
     
+    def __init__(self, color, board):
+        super().__init__(color, board)
+
     def symbol(self):
         return '♙' if self.get_color() == 'WHITE' else '♟'
 
@@ -16,14 +19,17 @@ class Pawn(Piece):
         start_row = self.get_start_row()       # Obtener fila inicial según el color
 
         # Movimientos hacia adelante
-        self.add_forward_moves(from_row, from_col, direction, moves, start_row)
+        self.add_forward_moves(from_row, from_col, moves, direction)
 
         # Capturas diagonales
         self.add_capture_moves(from_row, from_col, direction, moves)
 
         return moves
 
-    def add_forward_moves(self, from_row, from_col, direction, moves, start_row):
+    def add_forward_moves(self, from_row, from_col, moves, direction):
+        # Determina la fila inicial según el color del jugador
+        start_row = 1 if self.get_color() == 'WHITE' else 6
+        
         # Movimiento hacia adelante si está vacío
         if self.is_empty(from_row + direction, from_col):
             moves.append((from_row + direction, from_col))
@@ -45,8 +51,6 @@ class Pawn(Piece):
     def get_start_row(self):
         return 6 if self.__color__ == 'WHITE' else 1
 
-    def is_in_bounds(self, row, col):
-        return 0 <= row < 8 and 0 <= col < 8
 
     def is_empty(self, row, col):
         return self.is_in_bounds(row, col) and self.__board__.get_piece(row, col) is None

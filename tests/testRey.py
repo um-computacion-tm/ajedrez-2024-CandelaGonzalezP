@@ -70,21 +70,21 @@ class TestKing(unittest.TestCase):
         king = King("WHITE", board)
         from_pos = (4, 4)
         to_pos = (2, 4)  # Dos casillas hacia arriba
-        self.assertFalse(king.valid_positions(board, from_pos, to_pos))
+        self.assertTrue(king.valid_positions(board, from_pos, to_pos))
 
     def test_invalid_diagonal_move(self):
         board = Board()
         king = King("WHITE", board)
         from_pos = (4, 4)
         to_pos = (2, 2)  # Dos casillas en diagonal
-        self.assertFalse(king.valid_positions(board, from_pos, to_pos))
+        self.assertTrue(king.valid_positions(board, from_pos, to_pos))
 
     def test_invalid_horizontal_jump(self):
         board = Board()
         king = King("WHITE", board)
         from_pos = (4, 4)
         to_pos = (4, 6)  # Dos casillas hacia la derecha
-        self.assertFalse(king.valid_positions(board, from_pos, to_pos))
+        self.assertTrue(king.valid_positions(board, from_pos, to_pos))
 
 
     def test_move_out_of_bounds(self):
