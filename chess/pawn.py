@@ -16,14 +16,14 @@ class Pawn(Piece):
         start_row = self.get_start_row()       # Obtener fila inicial según el color
 
         # Movimientos hacia adelante
-        self.add_forward_moves(from_row, from_col, direction, start_row, moves)
+        self.add_forward_moves(from_row, from_col, direction, moves, start_row)
 
         # Capturas diagonales
         self.add_capture_moves(from_row, from_col, direction, moves)
 
         return moves
 
-    def add_forward_moves(self, from_row, from_col, direction, start_row, moves):
+    def add_forward_moves(self, from_row, from_col, direction, moves, start_row):
         # Movimiento hacia adelante si está vacío
         if self.is_empty(from_row + direction, from_col):
             moves.append((from_row + direction, from_col))
@@ -53,4 +53,4 @@ class Pawn(Piece):
 
     def can_capture(self, row, col):
         piece = self.__board__.get_piece(row, col)
-        return piece is not None and piece.get_color != self.__color__   
+        return piece is not None and piece.get_color() != self.__color__  

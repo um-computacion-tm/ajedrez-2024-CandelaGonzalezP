@@ -5,8 +5,8 @@ class King(Piece):
     def __init__(self, color, board):
         super().__init__(color, board)
         # El rey puede moverse en todas las direcciones, pero solo una casilla a la vez
-        self.__king_directions__ = [(-1, 0), (1, 0), (0, -1), (0, 1),   # Ortogonales
-                                    (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales
+        self.__directions__ = [(-1, 0), (1, 0), (0, -1), (0, 1),   # Ortogonales
+                               (-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales
 
     def symbol(self):
         """Devuelve el símbolo Unicode del rey según el color."""
@@ -33,7 +33,7 @@ class King(Piece):
             return False
 
         # Calcula los movimientos válidos del rey
-        valid_moves = self.find_valid_moves(from_row, from_col, self.__king_directions__, single_step=True)
+        valid_moves = self.find_valid_moves(from_row, from_col, self.__directions__, single_step=True)
 
         # Verifica si la posición destino está entre los movimientos válidos
         return (to_row, to_col) in valid_moves

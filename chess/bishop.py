@@ -16,18 +16,10 @@ class Bishop(Piece):
 # Movimientos en diagonal
 
     def valid_positions(self, from_row, from_col, to_row, to_col):
-        possible_positions = self.get_possible_moves(from_row, from_col)
-        return (to_row, to_col) in possible_positions
+        valid_moves = self.get_possible_moves(from_row, from_col)
+        target_position = (to_row, to_col)
+        return target_position in valid_moves
 
     def get_possible_moves(self, from_row, from_col):
         directions = [(1, 1), (-1, -1), (1, -1), (-1, 1)]
         return self.find_valid_moves(from_row, from_col, directions)
-
-
-
-"""
-    def bishop_valid_position(self, from_row, from_col, to_row, to_col):
-        directions = [(1, 1), (-1, -1), (1, -1), (-1, 1)]
-        possible_positions = self.find_valid_moves(from_row, from_col, directions)
-        return (to_row, to_col) in possible_positions
-"""

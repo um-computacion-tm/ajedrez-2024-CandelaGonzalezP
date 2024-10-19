@@ -74,5 +74,10 @@ class TestPawn(unittest.TestCase):
         result = self.pawn.valid_positions(6, 4, 7, 4)
         self.assertFalse(result)
 
+
+
+
+
+
 if __name__ == '__main__':
     unittest.main()

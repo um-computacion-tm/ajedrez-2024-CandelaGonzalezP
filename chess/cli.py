@@ -12,31 +12,34 @@ class ChessCli:
     def __init__(self):
         self.__game__ = Chess()
 
+
     def start(self):
         print("¡Bienvenido al juego de Ajedrez!")
         while not self.__game__.is_game_over():
             self.show_board()
             print(f"Turno del jugador {self.__game__.get_turn()}")
-
-            # Obtener el movimiento del jugador
-            move = self.get_move()
-            if move:  # Asegúrate de que el movimiento no sea None
-                from_row, from_col, to_row, to_col = move
-                try:
-                    self.__game__.make_move(from_row, from_col, to_row, to_col)
-                except Exception as e:
-                    print(f"Error: {e}")
-
-            # Obtener las opciones después del movimiento
-            option = self.offer_options()
-            if option == 'exit':
-                print("Has salido del juego.")
-                break
-            elif option == 'draw':
-                print("Se ha ofrecido un empate.")
-                # Aquí puedes agregar la lógica para manejar el empate
+            self.process_player_move()  # Manejar el movimiento del jugador
+            self.process_game_options()  # Manejar las opciones del juego
 
         self.end_game()
+
+    def process_player_move(self):
+        move = self.get_move()
+        if move:  # Asegúrate de que el movimiento no sea None
+            from_row, from_col, to_row, to_col = move
+            try:
+                self.__game__.make_move(from_row, from_col, to_row, to_col)
+            except Exception as e:
+                print(f"Error: {e}")
+
+    def process_game_options(self):
+        option = self.offer_options()
+        if option == 'exit':
+            print("Has salido del juego.")
+            raise SystemExit  # Salir del juego
+        elif option == 'draw':
+            print("Se ha ofrecido un empate.")
+            # Aquí puedes agregar la lógica para manejar el empate
 
 
 
