@@ -15,7 +15,7 @@ class Piece:                                   # HERENCIA PIEZAS
         self._king_queen_directions_ = [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]   
 
     def get_directions(self):
-        return []  # Este método se sobrescribirá en las clases derivadas
+        return []  
 
     def get_color(self):
         return self.__color__

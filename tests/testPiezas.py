@@ -11,6 +11,7 @@ from chess.bishop import Bishop
 from chess.pawn import Pawn
 from chess.rook import Rook
 from chess.queen import Queen
+from chess.king import King
 from unittest.mock import MagicMock
 
 class TestPieces(unittest.TestCase):
@@ -22,7 +23,9 @@ class TestPieces(unittest.TestCase):
 
     def setUp(self):
         self.board = MagicMock()  # Mockeamos el tablero
-        self.piece = Piece("WHITE", self.board)  # Creamos una pieza genérica
+        self.piece = Piece("WHITE", self.board)  
+        self.black_piece = Piece(color='BLACK', board=self.board)
+        self.white_piece = Piece(color='WHITE', board=self.board)
 
 # Test para movimiento en una dirección vacía
 
@@ -71,6 +74,24 @@ class TestPieces(unittest.TestCase):
 
         expected_moves = []  # No hay movimientos válidos
         self.assertEqual(valid_moves, expected_moves)
+
+
+
+
+    def test_get_directions(self):
+        # Verifica que get_directions retorne una lista vacía
+        self.assertEqual(self.piece.get_directions(), [], "El método get_directions debe retornar una lista vacía en la clase Piece.")
+
+
+    def test_is_own_piece(self):
+        # Verifica que is_own_piece retorne True para la misma pieza
+        self.assertTrue(self.white_piece.is_own_piece(self.white_piece), "Debería retornar True para la misma pieza.")
+        
+        # Verifica que is_own_piece retorne False para una pieza diferente
+        self.assertFalse(self.white_piece.is_own_piece(self.black_piece), "Debería retornar False para una pieza de color diferente.")
+        
+        # Verifica que is_own_piece retorne False si no hay pieza
+        self.assertFalse(self.white_piece.is_own_piece(None), "Debería retornar False si no hay pieza.")
 
 
 
