@@ -33,32 +33,32 @@ class TestRook(unittest.TestCase):
 
     # Testea un movimiento válido hacia arriba
     def test_valid_move_up(self):
-        is_possible = self.rook.rook_valid_positions(4, 4, 3, 4)
+        is_possible = self.rook.valid_positions(4, 4, 3, 4)
         self.assertTrue(is_possible)
 
     # Testea un movimiento válido hacia abajo
     def test_valid_move_down(self):
-        is_possible = self.rook.rook_valid_positions(4, 4, 5, 4)
+        is_possible = self.rook.valid_positions(4, 4, 5, 4)
         self.assertTrue(is_possible)
 
     # Testea un movimiento válido hacia la izquierda
     def test_valid_move_left(self):
-        is_possible = self.rook.rook_valid_positions(4, 4, 4, 3)
+        is_possible = self.rook.valid_positions(4, 4, 4, 3)
         self.assertTrue(is_possible)
 
     # Testea un movimiento válido hacia la derecha
     def test_valid_move_right(self):
-        is_possible = self.rook.rook_valid_positions(4, 4, 4, 5)
+        is_possible = self.rook.valid_positions(4, 4, 4, 5)
         self.assertTrue(is_possible)
 
     # Testea un movimiento inválido en diagonal
     def test_invalid_move_diagonal(self):
-        is_possible = self.rook.rook_valid_positions(4, 4, 3, 3)
+        is_possible = self.rook.valid_positions(4, 4, 3, 3)
         self.assertFalse(is_possible)
 
-    # Testea un movimiento inválido que no sea ortogonal
-    def test_invalid_move_two_steps(self):
-        is_possible = self.rook.rook_valid_positions(4, 4, 2, 4)
+    # Testea un movimiento válido de dos casillas hacia arriba (parte del movimiento ortogonal)
+    def test_valid_move_two_steps_up(self):
+        is_possible = self.rook.valid_positions(4, 4, 2, 4)
         self.assertTrue(is_possible)
 
 

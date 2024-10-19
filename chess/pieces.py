@@ -12,7 +12,6 @@ class Piece:                                   # HERENCIA PIEZAS
 
         self.__color__ = color
         self.__board__ = board
-        self.__king_queen_directions__ = [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]
 
   
 
@@ -60,4 +59,3 @@ class Piece:                                   # HERENCIA PIEZAS
 
     def is_within_board(self, row, col):
         return 0 <= row < 8 and 0 <= col < 8
-    

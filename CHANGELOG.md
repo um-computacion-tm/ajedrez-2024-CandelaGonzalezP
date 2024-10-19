@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## [0.51] - 19 / 10 / 2024 - 
+
+### Fixed
+
+- Queen, King
+
+
+## [0.50] - 18 / 10 / 2024 - 
+
+### Fixed
+
+- Cli class
+- Game class
+- Tests piezas en general, board, game, cli
+
+### Added
+
+- funcion "valid move" en knight, rook, bishop
+
 ## [0.49] - 17 / 10 / 2024 - 
 
 ### Fixed

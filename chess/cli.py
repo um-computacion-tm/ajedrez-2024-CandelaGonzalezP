@@ -7,91 +7,45 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from chess.game import Chess
 from chess.exceptions import *
 
+class ChessCli:
 
-def main():                                    
-    chess = Chess()
-    while chess.is_playing():
-        play(chess)
- 
+    def __init__(self):
+        self.__game__ = Chess()
 
-def play(chess):
-    try:
-        print(chess.show_board()) 
-        print("turn: ", chess.turn)
-        print("Ingrese su movimiento, OFFER para empate o EXIT para terminar: ")
+    def start(self):
+        print("¡Bienvenido al juego de Ajedrez!")
+        while not self.__game__.is_game_over():
+            self.show_board()
+            print(f"Turno del jugador {self.__game__.get_turn()}")
+            from_row, from_col, to_row, to_col = self.get_move()
+            try:
+                self.__game__.make_move(from_row, from_col, to_row, to_col)
+            except Exception as e:
+                print(f"Error: {e}")
+        self.end_game()
 
-        from_row = input("Desde fila: ").strip().upper()
 
-        # Opción para salir del juego
-        if from_row == "EXIT":
-            print(f"{chess.turn} ha terminado la partida.")
-            exit()
+    def show_board(self):
+        print(self.__game__.__board__)
 
-        # Opción para ofrecer empate
-        if from_row == "OFFER":
-            print(f"{chess.turn} ha ofrecido un empate.")
-            response = input("¿Aceptas el empate? (Y/N): ").strip().upper()
-            if response == "Y":
-                print("Ambos jugadores han acordado un empate. El juego ha terminado.")
-                exit()  # Terminar el juego
-            else:
-                print("El jugador ha rechazado el empate. Continúa el juego.")
-                return  # Regresa al inicio del turno actual
 
-        from_col = input("Desde columna: ").strip().upper()
-        if from_col == "EXIT":                      
-            print(f"{chess.turn} ha terminado la partida.")
-            exit()
-        if from_col == "OFFER":
-            print("El jugador ya ofreció el empate. Continúa con tu movimiento.")
-            return  # Regresa al inicio del turno
-
-        to_row = input("Hacia fila: ").strip().upper()
-        if to_row == "EXIT":
-            print(f"{chess.turn} ha terminado la partida.")
-            exit()
-        if to_row == "OFFER":
-            print("El jugador ya ofreció el empate. Continúa con tu movimiento.")
-            return  # Regresa al inicio del turno
-
-        to_col = input("Hacia columna: ").strip().upper()
-        if to_col == "EXIT":
-            print(f"{chess.turn} ha terminado la partida.")
-            exit()
-        if to_col == "OFFER":
-            print("El jugador ya ofreció el empate. Continúa con tu movimiento.")
-            return  # Regresa al inicio del turno
-
+    def get_move(self):
         try:
-            from_row = int(from_row)
-            from_col = int(from_col)
-            to_row = int(to_row)
-            to_col = int(to_col)
+            from_pos = input("Ingrese la posición de origen (fila,columna): ")
+            to_pos = input("Ingrese la posición de destino (fila,columna): ")
+            from_row, from_col = map(int, from_pos.split(","))
+            to_row, to_col = map(int, to_pos.split(","))
+            return from_row, from_col, to_row, to_col
         except ValueError:
-            raise InvalidCoordinateInputError
-
-        chess.move(
-            from_row,
-            from_col,
-            to_row,
-            to_col
-        )
-
-        # Verificar si hay un ganador
-        ganador = chess.ganador()
-        if ganador:
-            print(f"El juego ha terminado. {ganador} es el ganador.")
-            exit()  # Salir del programa
-        return
-
-    # Manejar excepciones de manera ordenada
-    except InvalidCoordinateInputError as e:
-        print(e)
-    except InvalidMove as e:
-        print(e)
-    except Exception as e:
-        print("error", e)
+            print("Entrada inválida. Por favor ingrese en formato fila,columna.")
+            return self.get_move()
+        
+    def end_game(self):
+        print("¡El juego ha terminado!")
+        winner = "BLANCAS" if self.__game__.get_turn() == "BLACK" else "NEGRAS"
+        print(f"El ganador es: {winner}")
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    cli = ChessCli()
+    cli.start()  # Inicia el juego
