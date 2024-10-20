@@ -93,6 +93,19 @@ class TestChessCli(unittest.TestCase):
         mock_print.assert_called_with("Se ha ofrecido un empate.")
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     unittest.main()
 

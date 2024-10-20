@@ -11,6 +11,7 @@ class King(Piece):
 
     def symbol(self):
         return '♔' if self.get_color() == 'WHITE' else '♚'
+    
 
 # Movimientos de a una casilla en todas las direcciones
 
@@ -23,3 +24,4 @@ class King(Piece):
     def get_possible_moves(self, from_row, from_col, directions):
         """Obtiene las posiciones válidas del rey desde una posición inicial."""
         return self.find_valid_moves(from_row, from_col, directions, single_step=True)  # Solo un paso
+    

@@ -94,10 +94,3 @@ class Board:
 
     def is_piece_color(self, piece, color):
         return piece is not None and piece.get_color() == color   
-    
-
-
-
-
-
-

@@ -10,6 +10,10 @@ class Chess:
     def switch_turn(self):
         self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"
 
+    def set_turn(self, color):
+        if color in ["WHITE", "BLACK"]:
+            self.__turn__ = color
+
     def get_turn(self):
         return self.__turn__
     
