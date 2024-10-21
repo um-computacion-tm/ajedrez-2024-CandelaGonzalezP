@@ -75,9 +75,6 @@ class TestPieces(unittest.TestCase):
         expected_moves = []  # No hay movimientos válidos
         self.assertEqual(valid_moves, expected_moves)
 
-
-
-
     def test_get_directions(self):
         # Verifica que get_directions retorne una lista vacía
         self.assertEqual(self.piece.get_directions(), [], "El método get_directions debe retornar una lista vacía en la clase Piece.")
@@ -92,11 +89,6 @@ class TestPieces(unittest.TestCase):
         
         # Verifica que is_own_piece retorne False si no hay pieza
         self.assertFalse(self.white_piece.is_own_piece(None), "Debería retornar False si no hay pieza.")
-
-
-
-
-
 
 if __name__ == '__main__':
     unittest.main()

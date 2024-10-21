@@ -74,7 +74,5 @@ class TestQueenValidPositions(unittest.TestCase):
         self.assertEqual(possible_moves, [(5, 3), (3, 5), (5, 5)])
 
 
-
-
 if __name__ == "__main__":
     unittest.main()

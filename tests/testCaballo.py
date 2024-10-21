@@ -10,10 +10,6 @@ from chess.board import Board
 
 class TestKnight(unittest.TestCase):
 
-    def setUp(self):
-        self.board = Board(for_test=True)  # Inicializa el tablero vacío
-        self.knight = Knight('WHITE', self.board)
-
 # Simbolos piezas caballos (blanco y negro)
 
     def test_knight_symbol_white(self):
@@ -28,36 +24,28 @@ class TestKnight(unittest.TestCase):
 
 # TESTEO MOVIMIENTOS
 
+    def setUp(self):
+        self.board = Board()
+        self.knight = Knight("WHITE", self.board)
+        self.board.set_piece(4, 4, self.knight)  # Coloca el caballo en el centro
 
-    # Testeo de movimientos válidos
-    def test_valid_moves(self):
+    def test_valid_position_L_shape(self):
+        # Movimientos válidos en forma de L
         valid_moves = [
-            ((4, 4), (6, 5)),  # Movimiento en L hacia abajo y derecha
-            ((4, 4), (6, 3)),  # Movimiento en L hacia abajo e izquierda
-            ((4, 4), (2, 5)),  # Movimiento en L hacia arriba y derecha
-            ((4, 4), (2, 3)),  # Movimiento en L hacia arriba e izquierda
-            ((4, 4), (5, 6)),  # Movimiento en L hacia la derecha
-            ((4, 4), (5, 2)),  # Movimiento en L hacia la izquierda
+            (6, 5), (6, 3), (5, 6), (5, 2), (3, 6), (3, 2), (2, 5), (2, 3)
         ]
-        for from_pos, to_pos in valid_moves:
-            with self.subTest(from_pos=from_pos, to_pos=to_pos):
-                from_row, from_col = from_pos
-                to_row, to_col = to_pos
-                self.assertTrue(self.knight.valid_positions(from_row, from_col, to_row, to_col))
+        for move in valid_moves:
+            to_row, to_col = move
+            self.assertTrue(self.knight.valid_positions(4, 4, to_row, to_col))
 
-    # Testeo de movimientos inválidos
-    def test_invalid_moves(self):
+    def test_invalid_position(self):
+        # Movimientos no válidos
         invalid_moves = [
-            ((4, 4), (4, 6)),  # Movimiento horizontal (no válido para un caballo)
-            ((4, 4), (6, 6)),  # Movimiento diagonal (no válido para un caballo)
-            ((4, 4), (5, 5)),  # Movimiento recto (no válido para un caballo)
-            ((4, 4), (4, 3)),  # Movimiento horizontal (no válido para un caballo)
+            (4, 5), (5, 4), (6, 4), (4, 6)  # Estos no son movimientos en L
         ]
-        for from_pos, to_pos in invalid_moves:
-            with self.subTest(from_pos=from_pos, to_pos=to_pos):
-                from_row, from_col = from_pos
-                to_row, to_col = to_pos
-                self.assertFalse(self.knight.valid_positions(from_row, from_col, to_row, to_col))
+        for move in invalid_moves:
+            to_row, to_col = move
+            self.assertFalse(self.knight.valid_positions(4, 4, to_row, to_col))
 
 if __name__ == '__main__':
     unittest.main()

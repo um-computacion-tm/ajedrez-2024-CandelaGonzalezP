@@ -1,6 +1,14 @@
 # CHANGELOG
 
-## [0.51] - 19 / 10 / 2024 - Fixed
+## [0.53] - 21 / 10 / 2024 - Fixed
+
+### Fixed
+
+- Clase board por problemas de implementacion
+- Documentacion
+- Arreglos codeclimate
+
+## [0.52] - 20 / 10 / 2024 - Fixed
 
 ### Fixed
 
