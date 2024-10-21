@@ -24,16 +24,30 @@ class Board:
         return [[None for _ in range(8)] for _ in range(8)]
     
     def setup_pieces(self):
-        self.setup_piece(Rook, ['BLACK', 'WHITE'], [(0, 0), (0, 7), (7, 0), (7, 7)])  # Torres
-        self.setup_piece(Bishop, ['BLACK', 'WHITE'], [(0, 2), (0, 5), (7, 2), (7, 5)])  # Alfiles
-        self.setup_piece(King, ['BLACK', 'WHITE'], [(0, 4), (7, 4)])  # Reyes
-        self.setup_piece(Queen, ['BLACK', 'WHITE'], [(0, 3), (7, 3)])  # Reinas
-        self.setup_piece(Knight, ['BLACK', 'WHITE'], [(0, 1), (0, 6), (7, 1), (7, 6)])  # Caballos
+        # Piezas negras en la fila 0
+        self.setup_piece(Rook, [(0, 0), (0, 7)])  # Torres negras
+        self.setup_piece(Knight, [(0, 1), (0, 6)])  # Caballos negros
+        self.setup_piece(Bishop, [(0, 2), (0, 5)])  # Alfiles negros
+        self.setup_piece(Queen, [(0, 3)])  # Reina negra
+        self.setup_piece(King, [(0, 4)])  # Rey negro
+        
+        # Piezas blancas en la fila 7
+        self.setup_piece(Rook, [(7, 0), (7, 7)])  # Torres blancas
+        self.setup_piece(Knight, [(7, 1), (7, 6)])  # Caballos blancos
+        self.setup_piece(Bishop, [(7, 2), (7, 5)])  # Alfiles blancos
+        self.setup_piece(Queen, [(7, 3)])  # Reina blanca
+        self.setup_piece(King, [(7, 4)])  # Rey blanco
+        
         self.setup_pawns()  # Peones
 
-    def setup_piece(self, piece_class, colors, positions):
-        for i, position in enumerate(positions):
-            color = colors[i // 2]  # Alterna entre 'Black' y 'White'
+    def setup_piece(self, piece_class, positions):
+        for position in positions:
+            if position[0] == 0:
+                color = "BLACK"  # Piezas negras en la fila 0
+            elif position[0] == 7:
+                color = "WHITE"  # Piezas blancas en la fila 7
+            else:
+                continue  # Si no es una fila válida, omite esta posición.
             self.__positions__[position[0]][position[1]] = piece_class(color, self)
 
     def setup_pawns(self):
@@ -41,34 +55,23 @@ class Board:
             self.__positions__[1][col] = Pawn("BLACK", self)  # Peones negros
             self.__positions__[6][col] = Pawn("WHITE", self)  # Peones blancos
 
-
-
-    def __str__(self):  
-        return self.build_board_string()
-
-
-
-    def build_board_string(self):
+    def __str__(self):
         board_str = "  0 1 2 3 4 5 6 7\n"  # Índices de columna
-        for i, row in enumerate(self.__positions__):
-            board_str += f"{i} "  # Índice de fila
-            for cell in row:
-                board_str += self.get_cell_string(cell) + " "
-            board_str += "\n"
-        return board_str
-
-
+        for row in range(8):  # Recorre las filas de 0 a 7
+            row_str = f"{row} "  # Agrega el número de fila al principio
+            for col in range(8):
+                piece = self.get_piece(row, col)  # Obtén la pieza en la posición
+                row_str += self.get_cell_string(piece) + " "  # Espacio después de cada pieza
+            board_str += row_str.strip() + "\n"  # Agrega la fila al tablero
+        return board_str.strip()  # Elimina el último salto de línea
 
     def get_cell_string(self, cell):
-        return cell.symbol() if cell is not None else " " 
-
-
-
+        return cell.symbol() if cell is not None else "."
+    
     def get_piece(self, row, col):
         if not (0 <= row < 8 and 0 <= col < 8):
-         raise OriginInvalidMove()
+            raise OriginInvalidMove()
         return self.__positions__[row][col]
-    
 
     def set_piece(self, row, col, piece):
         self.__positions__[row][col] = piece
@@ -93,4 +96,4 @@ class Board:
         return count
 
     def is_piece_color(self, piece, color):
-        return piece is not None and piece.get_color() == color   
+        return piece is not None and piece.get_color() == color  

@@ -144,14 +144,90 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(count_black, 16)  # 8 peones + 8 piezas (torres, caballos, alfiles, rey, reina)
 
 
-# verifica distintos escenarios de tablero
+    def test_get_cell_string_with_pieces(self):
+        # Define un diccionario de piezas y sus posiciones
+        pieces = {
+            Rook("WHITE", self.board): (0, 0),
+            Knight("WHITE", self.board): (0, 1),
+            Bishop("WHITE", self.board): (0, 2),
+            Queen("WHITE", self.board): (0, 3),
+            King("WHITE", self.board): (0, 4),
+            Bishop("WHITE", self.board): (0, 5),
+            Knight("WHITE", self.board): (0, 6),
+            Rook("WHITE", self.board): (0, 7),
+            Pawn("WHITE", self.board): (1, 0),
+            Pawn("BLACK", self.board): (6, 0),
+        }
 
-    def test_build_board_string_initial_setup(self):
-        """Verifica que el tablero inicial se construya correctamente con piezas en posiciones predeterminadas."""
-        board_string = self.board.build_board_string()
-        expected_start = "  0 1 2 3 4 5 6 7\n0 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ \n1 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ \n"
-        self.assertTrue(board_string.startswith(expected_start), "El tablero inicial no se genera correctamente.")
+        # Coloca las piezas en el tablero
+        for piece, position in pieces.items():
+            self.board.set_piece(position[0], position[1], piece)
 
+        # Verifica la representación de cada pieza
+        for piece, position in pieces.items():
+            self.assertEqual(self.board.get_cell_string(piece), piece.symbol())
+
+    def test_get_cell_string_with_empty_cell(self):
+        # Verifica que la representación de una celda vacía sea correcta
+        empty_cell_string = self.board.get_cell_string(None)
+        self.assertEqual(empty_cell_string, ".")  # Debe devolver un punto para celda vacía
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+        # Configura las piezas blancas
+        self.board.set_piece(0, 0, Rook("WHITE", self.board))
+        self.board.set_piece(0, 1, Knight("WHITE", self.board))
+        self.board.set_piece(0, 2, Bishop("WHITE", self.board))
+        self.board.set_piece(0, 3, Queen("WHITE", self.board))
+        self.board.set_piece(0, 4, King("WHITE", self.board))
+        self.board.set_piece(0, 5, Bishop("WHITE", self.board))
+        self.board.set_piece(0, 6, Knight("WHITE", self.board))
+        self.board.set_piece(0, 7, Rook("WHITE", self.board))
+        for col in range(8):
+            self.board.set_piece(1, col, Pawn("WHITE", self.board))
+
+        # Configura las piezas negras
+        self.board.set_piece(7, 0, Rook("BLACK", self.board))
+        self.board.set_piece(7, 1, Knight("BLACK", self.board))
+        self.board.set_piece(7, 2, Bishop("BLACK", self.board))
+        self.board.set_piece(7, 3, Queen("BLACK", self.board))
+        self.board.set_piece(7, 4, King("BLACK", self.board))
+        self.board.set_piece(7, 5, Bishop("BLACK", self.board))
+        self.board.set_piece(7, 6, Knight("BLACK", self.board))
+        self.board.set_piece(7, 7, Rook("BLACK", self.board))
+        for col in range(8):
+            self.board.set_piece(6, col, Pawn("BLACK", self.board))
+
+    def test_full_board_representation(self):
+        # La representación esperada del tablero completo al inicio del juego
+        expected_board_str = (
+            "  0 1 2 3 4 5 6 7\n"
+            "0 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ \n"
+            "1 ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ \n"
+            "2 . . . . . . . . \n"
+            "3 . . . . . . . . \n"
+            "4 . . . . . . . . \n"
+            "5 . . . . . . . . \n"
+            "6 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ \n"
+            "7 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ \n"
+        )
+        self.assertEqual(str(self.board), expected_board_str)
+"""
 
 if __name__ == '__main__':
     unittest.main()

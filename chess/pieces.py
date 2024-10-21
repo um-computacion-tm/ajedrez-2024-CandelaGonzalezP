@@ -14,9 +14,8 @@ class Piece:                                   # HERENCIA PIEZAS
         self.__board__ = board
         self._king_queen_directions_ = [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]   
 
-
     def get_directions(self):
-        return []  # Este método se sobrescribirá en las clases derivadas
+        return []  
 
     def get_color(self):
         return self.__color__
@@ -65,4 +64,3 @@ class Piece:                                   # HERENCIA PIEZAS
 
     def is_own_piece(self, target_piece):
         return target_piece is not None and target_piece.get_color() == self.get_color()
-    

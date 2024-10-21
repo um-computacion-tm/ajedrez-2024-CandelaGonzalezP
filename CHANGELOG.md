@@ -4,6 +4,13 @@
 
 ### Fixed
 
+- Pieces, simbolos formato
+- Arreglos de codeclimate
+
+## [0.51] - 19 / 10 / 2024 - Fixed
+
+### Fixed
+
 - Queen, King
 - Arreglos de codeclimate
 

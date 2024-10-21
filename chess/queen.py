@@ -1,4 +1,4 @@
-from chess.pieces import Piece         #REINA
+from chess.pieces import Piece
 
 class Queen(Piece):
     
@@ -21,4 +21,4 @@ class Queen(Piece):
 
     def get_possible_moves(self, from_row, from_col, directions):
         return self.find_valid_moves(from_row, from_col, directions, single_step=False)
-        
+       

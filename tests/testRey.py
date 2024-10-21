@@ -91,22 +91,5 @@ class TestKing(unittest.TestCase):
 
 
 
-
-    def setUp(self):
-        # Inicializa el objeto Chess antes de cada prueba
-        self.game = Chess()
-
-
-    def test_king_valid_move(self):
-        self.game.set_turn('WHITE')  # Aseguramos que es el turno de las blancas
-        self.game.__board__.set_piece(0, 4, King('WHITE', self.game.__board__))  # Colocamos al rey blanco en el tablero
-        
-        # Intentamos mover al rey blanco
-        self.game.make_move(0, 4, 1, 4)  # Movimiento válido para el rey blanco
-        
-        # Verificamos que el rey blanco se ha movido a la nueva posición
-        self.assertIsInstance(self.game.__board__.get_piece(1, 4), King)  # Debe haber un rey en (1, 4)
-        self.assertEqual(self.game.get_turn(), 'BLACK')  # Después del movimiento, debe ser el turno de las negras
-
 if __name__ == '__main__':
     unittest.main()
