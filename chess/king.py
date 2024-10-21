@@ -24,22 +24,12 @@ class King(Piece):
 
     def valid_positions(self, from_row, from_col, to_row, to_col):
 
-        """
-        Verifica si el movimiento del rey es válido.
-
-        Args:
-            from_row (int): Fila de la posición de origen.
-            from_col (int): Columna de la posición de origen.
-            to_row (int): Fila de la posición de destino.
-            to_col (int): Columna de la posición de destino.
-
-        Returns:
-            bool: True si el movimiento es válido, False de lo contrario.
-        """
-
+        if not self.is_within_board(to_row, to_col):
+            return False 
         directions = self._king_queen_directions_
         possible_positions = self.get_possible_moves(from_row, from_col, directions)
         return (to_row, to_col) in possible_positions
+
 
     def get_possible_moves(self, from_row, from_col, directions):
 

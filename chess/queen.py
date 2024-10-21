@@ -24,20 +24,14 @@ class Queen(Piece):
 
     def valid_positions(self, from_row, from_col, to_row, to_col):
 
-        """
-        Verifica si el movimiento de la reina es válido.
 
-        Args:
-            from_row (int): Fila de la posición de origen.
-            from_col (int): Columna de la posición de origen.
-            to_row (int): Fila de la posición de destino.
-            to_col (int): Columna de la posición de destino.
+        return self._is_valid_move(from_row, from_col, to_row, to_col)
 
-        Returns:
-            bool: True si el movimiento es válido, False en caso contrario.
-        """
+    def _is_valid_move(self, from_row, from_col, to_row, to_col):
 
-        directions = self._king_queen_directions_  
+
+
+        directions = self._king_queen_directions_
         possible_positions = self.get_possible_moves(from_row, from_col, directions)
         return (to_row, to_col) in possible_positions
 
