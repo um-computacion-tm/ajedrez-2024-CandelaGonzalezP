@@ -61,4 +61,23 @@ Ejecutar los tests y el juego
 docker run -i ajedrez-2024-CandelaGonzalezP
 ```
 
+### Para jugar
 
+1. Clonar repositorio
+
+```
+git clone https://github.com/um-computacion-tm/ajedrez-2024-CandelaGonzalezP.git
+```
+
+2. Instalar dependencias
+
+```
+pip install -r requirements.txt
+```
+
+3. Ejecutar
+
+```
+python3 -m chess.cli
+
+```

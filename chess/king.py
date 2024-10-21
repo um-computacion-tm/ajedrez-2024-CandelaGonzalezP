@@ -10,16 +10,49 @@ class King(Piece):
     """
 
     def symbol(self):
+
+        """
+        Obtiene el símbolo que representa al rey.
+
+        Returns:
+            str: El símbolo del rey en función de su color ("♔" para blancas, "♚" para negras).
+        """
+
         return '♔' if self.get_color() == 'WHITE' else '♚'
 
 # Movimientos de a una casilla en todas las direcciones
 
     def valid_positions(self, from_row, from_col, to_row, to_col):
-        """Verifica si el movimiento del rey es válido."""
-        directions = self._king_queen_directions_# Movimientos del rey (iguales que los de la reina pero limitados)
+
+        """
+        Verifica si el movimiento del rey es válido.
+
+        Args:
+            from_row (int): Fila de la posición de origen.
+            from_col (int): Columna de la posición de origen.
+            to_row (int): Fila de la posición de destino.
+            to_col (int): Columna de la posición de destino.
+
+        Returns:
+            bool: True si el movimiento es válido, False de lo contrario.
+        """
+
+        directions = self._king_queen_directions_
         possible_positions = self.get_possible_moves(from_row, from_col, directions)
         return (to_row, to_col) in possible_positions
 
     def get_possible_moves(self, from_row, from_col, directions):
-        """Obtiene las posiciones válidas del rey desde una posición inicial."""
-        return self.find_valid_moves(from_row, from_col, directions, single_step=True)  # Solo un paso
+
+        """
+        Obtiene las posiciones válidas del rey desde una posición inicial.
+
+        Args:
+            from_row (int): Fila de la posición inicial.
+            from_col (int): Columna de la posición inicial.
+            directions (list): Lista de direcciones en las que el rey puede moverse.
+
+        Returns:
+            list: Lista de posiciones válidas a las que el rey puede moverse.
+        """
+
+        return self.find_valid_moves(from_row, from_col, directions, single_step=True)  

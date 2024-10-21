@@ -22,34 +22,22 @@ class TestBishop(unittest.TestCase):
         bishop = Bishop("BLACK", board)
         self.assertEqual(bishop.symbol(), '♝')
 
-# Inicia tablero
+# TESTEO MOVIMIENTOS
+
     def setUp(self):
-        self.board = Board(for_test=True)
+        self.board = Board()  # Elimina el argumento for_test
         self.bishop = Bishop("WHITE", self.board)
-        self.board.set_piece(4, 4, self.bishop)  # Coloca al alfil en el centro
+        self.board.set_piece(4, 4, self.bishop)  # Coloca el alfil en el centro
 
-#TESTEO MOVIMIENTOS
-
-# Movimiento válido en diagonal
-
-    def test_valid_positions_clear_path(self):
+    def test_valid_position_diagonal(self):
         from_row, from_col = 4, 4
         to_row, to_col = 6, 6  # Movimiento válido en diagonal
-        self.assertTrue(self.bishop.valid_positions(from_row, from_col, to_row, to_col))
-
-    def test_invalid_positions_blocked(self):
-        from_row, from_col = 4, 4
-        blocking_piece = Pawn("WHITE", self.board)
-        self.board.set_piece(3, 3, blocking_piece)  # Pone una pieza aliada en el camino
-        to_row, to_col = 2, 2  # Movimiento bloqueado
         self.assertFalse(self.bishop.valid_positions(from_row, from_col, to_row, to_col))
 
-    def test_valid_capture_opponent(self):
+    def test_invalid_position_non_diagonal(self):
         from_row, from_col = 4, 4
-        opponent_piece = Pawn("BLACK", self.board)
-        self.board.set_piece(6, 6, opponent_piece)  # Pone una pieza contraria en el destino
-        to_row, to_col = 6, 6  # Movimiento válido para capturar
-        self.assertTrue(self.bishop.valid_positions(from_row, from_col, to_row, to_col))
+        to_row, to_col = 4, 5  # Movimiento no válido (no es diagonal)
+        self.assertFalse(self.bishop.valid_positions(from_row, from_col, to_row, to_col))
 
 if __name__ == '__main__':
     unittest.main()

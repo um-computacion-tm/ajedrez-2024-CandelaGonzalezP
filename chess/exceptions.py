@@ -107,5 +107,3 @@ class InvalidCoordinateInputError(InvalidMove):
     """
 
     __message__ = "Las coordenadas deben ser números."
-
-    

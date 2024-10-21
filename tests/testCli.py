@@ -91,8 +91,7 @@ class TestChessCli(unittest.TestCase):
 
         # Verificar que se imprime el mensaje de empate correcto
         mock_print.assert_called_with("Se ha ofrecido un empate.")
-
+        
 
 if __name__ == "__main__":
     unittest.main()
-

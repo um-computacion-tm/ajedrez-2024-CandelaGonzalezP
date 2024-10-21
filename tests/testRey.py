@@ -7,6 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import unittest
 from chess.king import King
 from chess.board import Board
+from chess.game import Chess
 
 class TestKing(unittest.TestCase):
 
@@ -87,6 +88,8 @@ class TestKing(unittest.TestCase):
         from_pos = (4, 4)
         to_pos = (4, 6)  # Dos casillas hacia la derecha
         self.assertFalse(king.valid_positions(from_pos[0], from_pos[1], to_pos[0], to_pos[1]))
+
+
 
 if __name__ == '__main__':
     unittest.main()
