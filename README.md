@@ -49,6 +49,10 @@ git clone https://github.com/um-computacion-tm/ajedrez-2024-CandelaGonzalezP.git
 ```
 ### Ejecutar el juego
 
+```
+python3 -m chess.cli
+```
+
 Crear imágen de Docker del juego
 
 ```bash
