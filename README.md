@@ -29,6 +29,7 @@ Este proyecto es un juego de ajedrez desarrollado en Python utilizando programac
 ### Instrucciones
 
 El jugador con las piezas blancas siempre comienza el juego. Para realizar un movimiento, cada jugador debe especificar la fila y columna de la pieza a mover, así como las coordenadas de destino. Los jugadores se alternan por turnos, siguiendo las reglas estándar de movimiento de cada pieza: peones avanzan pero capturan en diagonal, torres se mueven en líneas rectas, caballos en "L", alfiles en diagonal, la reina en cualquier dirección, y el rey un casillero en cualquier dirección.
+El juego finaliza cuando algun jugador se queda sin piezas, con la opcion "exit", u ofreciendo y aceptando un empate de ambas partes.
 
 ### Requisitos
 
